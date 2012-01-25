@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/TypeMappings.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id06014317" level="1" role="heading" xml-lang="en">Type Mappings</paragraph>
+<bookmark branch="index" id="id_id55748549" xml-lang="en"><bookmark_value>Type Mappings</bookmark_value>
+</bookmark>
+<table id="tab_id16458964"><tablerow><tablecell><emph>UNO Type</emph>
+</tablecell>
+<tablecell><emph>OOo Basic</emph>
+</tablecell>
+<tablecell><emph>Python</emph>
+</tablecell>
+<tablecell><emph>Java</emph>
+</tablecell>
+<tablecell><emph>C++</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>void</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>None</tablecell>
+<tablecell>void</tablecell>
+<tablecell>void</tablecell>
+<tablecell>Empty type, used only as method return type and in any. </tablecell>
+</tablerow>
+<tablerow><tablecell>boolean</tablecell>
+<tablecell>Boolean</tablecell>
+<tablecell>bool</tablecell>
+<tablecell>boolean</tablecell>
+<tablecell>sal_Bool</tablecell>
+<tablecell>Can be true or false. </tablecell>
+</tablerow>
+<tablerow><tablecell>byte</tablecell>
+<tablecell>Integer</tablecell>
+<tablecell>long</tablecell>
+<tablecell>byte</tablecell>
+<tablecell>sal_Int8</tablecell>
+<tablecell>Signed 8-bit integer type (ranging from -128 to 127, inclusive). </tablecell>
+</tablerow>
+<tablerow><tablecell>short</tablecell>
+<tablecell>Integer</tablecell>
+<tablecell>long</tablecell>
+<tablecell>short</tablecell>
+<tablecell>sal_Int16</tablecell>
+<tablecell>Signed 16-bit integer type (ranging from －32768 to 32767, inclusive). </tablecell>
+</tablerow>
+<tablerow><tablecell>unshigned short</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>long</tablecell>
+<tablecell>short</tablecell>
+<tablecell>sal_uInt16</tablecell>
+<tablecell>Unsigned 16-bit integer type (deprecated). </tablecell>
+</tablerow>
+<tablerow><tablecell>long</tablecell>
+<tablecell>long</tablecell>
+<tablecell>long</tablecell>
+<tablecell>int</tablecell>
+<tablecell>sal_Int32</tablecell>
+<tablecell>Signed 32-bit integer type (ranging from －2147483648 to 2147483647, inclusive). </tablecell>
+</tablerow>
+<tablerow><tablecell>unsigned long</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>long</tablecell>
+<tablecell>int</tablecell>
+<tablecell>sal_uInt32</tablecell>
+<tablecell>Unsigned 32-bit integer type (deprecated). </tablecell>
+</tablerow>
+<tablerow><tablecell>hyper</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>long</tablecell>
+<tablecell>long</tablecell>
+<tablecell>sal_Int64</tablecell>
+<tablecell>Signed 64-bit integer type (ranging from －9223372036854775808 to 9223372036854775807, inclusive). </tablecell>
+</tablerow>
+<tablerow><tablecell>unsined hyper</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>long</tablecell>
+<tablecell>long</tablecell>
+<tablecell>sal_uInt64</tablecell>
+<tablecell>Unsigned 64-bit integer type (deprecated). </tablecell>
+</tablerow>
+<tablerow><tablecell>float</tablecell>
+<tablecell>Single</tablecell>
+<tablecell>float</tablecell>
+<tablecell>float</tablecell>
+<tablecell>float</tablecell>
+<tablecell>IEC 60559 single precision floating point type. </tablecell>
+</tablerow>
+<tablerow><tablecell>double</tablecell>
+<tablecell>Double</tablecell>
+<tablecell>float</tablecell>
+<tablecell>double</tablecell>
+<tablecell>double</tablecell>
+<tablecell>IEC 60559 double precision floating point type. </tablecell>
+</tablerow>
+<tablerow><tablecell>char</tablecell>
+<tablecell>internal type</tablecell>
+<tablecell>uno.Char</tablecell>
+<tablecell>char</tablecell>
+<tablecell>sal_Unicode</tablecell>
+<tablecell>Represents individual Unicode characters (more precisely: individual UTF-16 code units). </tablecell>
+</tablerow>
+<tablerow><tablecell>string</tablecell>
+<tablecell>String</tablecell>
+<tablecell>unicode</tablecell>
+<tablecell>java.lang.String</tablecell>
+<tablecell>rtl::OUString</tablecell>
+<tablecell>Represents Unicode strings (more precisely: strings of Unicode scalar values). </tablecell>
+</tablerow>
+<tablerow><tablecell>type</tablecell>
+<tablecell>com.sun.star.<br />
+ reflection.XIdlClass</tablecell>
+<tablecell>uno.Type</tablecell>
+<tablecell>com.sun.star.<br />
+ uno.Type</tablecell>
+<tablecell>com::sun::star::<br />
+uno::Type</tablecell>
+<tablecell>Meta type that describes all UNO types. </tablecell>
+</tablerow>
+<tablerow><tablecell>any</tablecell>
+<tablecell>Variant</tablecell>
+<tablecell>(uno.Any)</tablecell>
+<tablecell>java.lang.Object</tablecell>
+<tablecell>com::sun::star::<br />
+uno::Any</tablecell>
+<tablecell>Special type that can represent values of all other types. </tablecell>
+</tablerow>
+</table>
+<list format="1" type="unordered"><listitem><link href="http://wiki.services.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Professional_UNO">http://wiki.services.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Professional_UNO↗</link>
+</listitem>
+<listitem><link href="http://udk.openoffice.org/python/python-bridge.html">http://udk.openoffice.org/python/python-bridge.html↗</link>
+</listitem>
+</list>
+</body>
+
+</helpdocument>

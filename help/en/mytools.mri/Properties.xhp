@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Properties.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id88860625" level="1" role="heading" xml-lang="en">Properties</paragraph>
+<bookmark branch="index" id="id_id63927614" xml-lang="en"><bookmark_value>Properties</bookmark_value>
+</bookmark>
+<paragraph id="par_id54801355" role="paragraph" xml-lang="en"> You can see properties' information of UNO objects. </paragraph>
+<paragraph id="par_id32483232" role="paragraph" xml-lang="en">When you select Properties scope, information of the current target object is shown. </paragraph>
+<section id="sec_id04474623"><paragraph id="hd_id18792630" level="2" role="heading" xml-lang="en">Looking at Property Information </paragraph>
+<paragraph id="par_id58043843" role="paragraph" xml-lang="en">Properties are listed every line in the information edit. </paragraph>
+<table id="tab_id00885250"><tablerow><tablecell>Name</tablecell>
+<tablecell>Type</tablecell>
+<tablecell>Value</tablecell>
+<tablecell>Info.</tablecell>
+<tablecell>Attr. </tablecell>
+</tablerow>
+<tablerow><tablecell>CharFontName</tablecell>
+<tablecell>string</tablecell>
+<tablecell>Times New Roman</tablecell>
+<tablecell />
+<tablecell>Maybevoid </tablecell>
+</tablerow>
+<tablerow><tablecell>AvailableServiceNames</tablecell>
+<tablecell>[]string</tablecell>
+<tablecell>-SEQUENCE-</tablecell>
+<tablecell>Pseud</tablecell>
+<tablecell>ReadOnly </tablecell>
+</tablerow>
+</table>
+<paragraph id="par_id99409091" role="paragraph" xml-lang="en">In the case of CharFontName property, type of its value is "string", value is "Times New Roman", no Info., property value is "Maybevoid". </paragraph>
+<paragraph id="par_id64267767" role="paragraph" xml-lang="en">Next AvailableServiceNames property has "[]string" type value means a sequence of string type value. Its value is shown like "-SEQUENCE-" means -type- value can not be converted to string. Its Info. column shows "Pseud" describing this property is a pseud property (see below about pseud property). </paragraph>
+</section>
+<section id="sec_id05152175"><paragraph id="hd_id42472970" level="2" role="heading" xml-lang="en">Pseud Property </paragraph>
+<paragraph id="par_id43118870" role="paragraph" xml-lang="en">Pseud property is very depends on the implementation of the binding of the language which you use to write a macro. </paragraph>
+<paragraph id="par_id86088396" role="paragraph" xml-lang="en">There are two types of properties. One is normal property. And another is mapped by the introspection and these properties are called "pseud property".  For example getArgs method is maped to Args property and it is pseud property. Pseud properties do not have their entries in com.sun.star.beans.XPropertySet interface, therefore, you can not to get these property values through XPropertySet interface (getPropertyValue and setPropertyValue methods can not use to get these property values). </paragraph>
+<paragraph id="par_id05530395" role="paragraph" xml-lang="en">If getXXX method and setXXX method is there, XXX pseud-property is readable and writable. If only getXXX method is supported, it it read-only and only setXXX method is supported, it is just write-only. </paragraph>
+<paragraph id="par_id97997727" role="paragraph" xml-lang="en">Pseud property is created from method having prefix like get, set and is. </paragraph>
+<paragraph id="par_id26646759" role="paragraph" xml-lang="en">MRI uses XPropertySet interface of the target to get its property values, therefore, values of pseud properties are not able to get. However pseud properties are used frequently in codes. Therefore MRI calls the base method of the pseud property when you call a pseud property in the convenient purpose. </paragraph>
+<paragraph id="par_id58425443" role="paragraph" xml-lang="en">If you want to know about Attribute well, see com.sun.star.beans.PropertyAttribute constants group.  </paragraph>
+<paragraph id="par_id47129003" role="paragraph" xml-lang="en">In the case of a property having a string type value, CR and LF are replaced by "\r" and "\n". And long texts are abbreviated. </paragraph>
+</section>
+<section id="sec_id69241603"><paragraph id="hd_id54673846" level="2" role="heading" xml-lang="en">Special Notations </paragraph>
+<paragraph id="par_id22502330" role="paragraph" xml-lang="en">Sometimes MRI shows special notations in the type, value and information of a property. </paragraph>
+<paragraph id="par_id42036247" role="paragraph" xml-lang="en">In the type information, these notation is used. </paragraph>
+<table id="tab_id41938318"><tablerow><tablecell><emph>Type</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>[]type</tablecell>
+<tablecell>Sequence of value type </tablecell>
+</tablerow>
+</table>
+<paragraph id="par_id16592907" role="paragraph" xml-lang="en">These notations are shown in the value information. </paragraph>
+<table id="tab_id63383291"><tablerow><tablecell><emph>Value</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>""</tablecell>
+<tablecell>Empty string. </tablecell>
+</tablerow>
+</table>
+<paragraph id="par_id44652893" role="paragraph" xml-lang="en">Pseud or other information are there and listed in the table below. </paragraph>
+<table id="tab_id45947571"><tablerow><tablecell><emph>Information</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Pseud</tablecell>
+<tablecell>Pseud property. </tablecell>
+</tablerow>
+<tablerow><tablecell> -----</tablecell>
+<tablecell>Its value could not to get </tablecell>
+</tablerow>
+<tablerow><tablecell>Ignored</tablecell>
+<tablecell>Listed in the ignored list of properties. </tablecell>
+</tablerow>
+<tablerow><tablecell>Attr.</tablecell>
+<tablecell>Attribute of an interface. </tablecell>
+</tablerow>
+</table>
+</section>
+<section id="sec_id20133267"><paragraph id="hd_id63929683" level="2" role="heading" xml-lang="en">Getting Property Values </paragraph>
+<paragraph id="par_id07857259" role="paragraph" xml-lang="en">Set the mode to "Get" from the Mode menu of the MRI window and double click a line shows a name of a property that you want to get its value. MRI shows values according to the type class of the properties. </paragraph>
+</section>
+<section id="sec_id25633809"><paragraph id="hd_id24892680" level="2" role="heading" xml-lang="en">Setting Property Values </paragraph>
+<paragraph id="par_id88849833" role="paragraph" xml-lang="en">If mode is set to "Set", you can set a property value having numerical, string, enum or boolean type value. </paragraph>
+<paragraph id="par_id26581002" role="paragraph" xml-lang="en">When you double click a line, the property is not read-only and it has numerical, string, enum or boolean value, the dialog box is shown. Input a new value of the property in its edit box. A inputted value is converted to appropriate type value for the property. </paragraph>
+<paragraph id="par_id01093454" role="paragraph" xml-lang="en">Boolean type value is converted in this rule, 0 or false: False, 1 or true: True and others: False (string type notation is compared in its lowercase). </paragraph>
+<paragraph id="par_id23831687" role="paragraph" xml-lang="en">If the property is pseud property, the method corresponds to the property is called. See Methods Needing Arguments section about calling a method. </paragraph>
+<paragraph id="par_id43746838" role="paragraph" xml-lang="en">When you set a property value, MRI reloads the information of the property and tries to keep the carret position and scrolled value of the information edit. </paragraph>
+</section>
+<section id="sec_id39625277"><paragraph id="hd_id99469093" level="2" role="heading" xml-lang="en">Modifier Keys </paragraph>
+<paragraph id="par_id52062531" role="paragraph" xml-lang="en">You can get or set property values by double clicking on the information edit. You can use Ctrl and Alt keys as modifire key. </paragraph>
+<table id="tab_id19448092"><tablerow><tablecell><emph>Key</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl</tablecell>
+<tablecell>Suppress actions caused by double clickings. </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt</tablecell>
+<tablecell>Temporary, change the mode Get to Set or Set to Get. </tablecell>
+</tablerow>
+</table>
+</section>
+</body>
+
+</helpdocument>

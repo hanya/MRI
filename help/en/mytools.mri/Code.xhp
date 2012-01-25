@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Code.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id55258666" level="1" role="heading" xml-lang="en">Code</paragraph>
+<bookmark branch="index" id="id_id05331882" xml-lang="en"><bookmark_value>Code</bookmark_value>
+</bookmark>
+<paragraph id="par_id07927750" role="paragraph" xml-lang="en"> Sometimes generated code is not executable without modifications.  MRI can be called from UNO components, a scripting code, menu entries  and so on, and MRI does not know how to be called.  So, it is difficult to generate complete code. </paragraph>
+<section id="sec_id10348254"><paragraph id="hd_id41818178" level="2" role="heading" xml-lang="en">Code Menu </paragraph>
+<paragraph id="par_id10986766" role="paragraph" xml-lang="en">You can find the Code menu in the Tools menu entry.  Check in Tools - Code - Code entry to show the code text field.  The code text field is shown below the information text field and  it can be resized by the dragging the border.  Or double click with the right click of your mouse  at the right bottom corner of the information text field.  Or push Ctrl + H keys on the information edit. </paragraph>
+</section>
+<section id="sec_id85780785"><paragraph id="hd_id31322810" level="2" role="heading" xml-lang="en">Code Type </paragraph>
+<paragraph id="par_id38216870" role="paragraph" xml-lang="en">A few kind of code can be chose from Tools - Code menu. </paragraph>
+</section>
+<section id="sec_id93768520"><paragraph id="hd_id61559967" level="2" role="heading" xml-lang="en">Pseud Property </paragraph>
+<paragraph id="par_id93495161" role="paragraph" xml-lang="en">If selected language biding supports pseud-property,  the code is generated with pseud-property call. </paragraph>
+</section>
+<section id="sec_id27963609"><paragraph id="hd_id31391516" level="2" role="heading" xml-lang="en">Notices </paragraph>
+<paragraph id="par_id25463285" role="paragraph" xml-lang="en">MRI tries to get the type of the value from Type information,  css.reflection.XMethodIdl interface and Reflection API,  but sometimes there are less-typed values like an Any type of UNO.  Typically, com.sun.star.beans.PropertyValue struct has string Name value,  any Value and so on, the value retained by Value element  is not well defined by the object.  Sometimes they are defined by the other service like com.sun.star.document.MediaDescriptor etc.  So, you need to check their type of values taken from any type.  The same problems are there at methods return any type value. </paragraph>
+<paragraph id="par_id26578547" role="paragraph" xml-lang="en">Sometimes numerical values taken as an Any type values are miss typed. </paragraph>
+</section>
+<section id="sec_id54248448"><paragraph id="hd_id63578585" level="2" role="heading" xml-lang="en">Adding New Code Generator </paragraph>
+<paragraph id="par_id94967499" role="paragraph" xml-lang="en">You can add new code generator. </paragraph>
+<paragraph id="par_id31850036" role="paragraph" xml-lang="en">Open the extension installed directory and goto the pythonpath/mytools_Mri/generators directory.  Make a new code generator according to "code_generator.py"  file and add new generator definition to "generators.py" file. New generator will be shown in the Tools - Code menu. </paragraph>
+<paragraph id="par_id10024839" role="paragraph" xml-lang="en">Additional informations about code generators: </paragraph>
+<list format="1" type="unordered"><listitem> You needs to know type mappings between UNO and your desired language like a listed <link href="mytools.mri/TypeMappings.xhp" name="link to...">TypeMappings</link>
+. </listitem>
+<listitem> Creation on your desired language like structs, enums, services and so on. </listitem>
+</list>
+</section>
+</body>
+
+</helpdocument>

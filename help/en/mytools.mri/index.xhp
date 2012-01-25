@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/index.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id38904503" level="1" role="heading" xml-lang="en">MRI Documentation</paragraph>
+<bookmark branch="index" id="id_id42119399" xml-lang="en"><bookmark_value>MRI Documentation</bookmark_value>
+</bookmark>
+<list format="1" type="unordered"><listitem><link href="mytools.mri/Overview.xhp" name="link to...">Overview</link>
+</listitem>
+<listitem><link href="mytools.mri/Installation.xhp" name="link to...">Installation</link>
+</listitem>
+<listitem><link href="mytools.mri/RunMRI.xhp" name="link to...">How to Run MRI</link>
+</listitem>
+<listitem><link href="mytools.mri/UI.xhp" name="link to...">User Interface</link>
+ / <link href="mytools.mri/Keys.xhp" name="link to...">Keys</link>
+</listitem>
+<listitem><link href="mytools.mri/Configuration.xhp" name="link to...">Configuration</link>
+</listitem>
+<listitem><link href="mytools.mri/Code.xhp" name="link to...">Code</link>
+</listitem>
+<listitem><link href="mytools.mri/Macros.xhp" name="link to...">Macros</link>
+</listitem>
+</list>
+<list format="1" type="unordered"><listitem><link href="mytools.mri/Properties.xhp" name="link to...">Properties</link>
+</listitem>
+<listitem><link href="mytools.mri/Methods.xhp" name="link to...">Methods</link>
+</listitem>
+<listitem><link href="mytools.mri/Interfaces.xhp" name="link to...">Interfaces</link>
+</listitem>
+<listitem><link href="mytools.mri/Services.xhp" name="link to...">Services</link>
+</listitem>
+<listitem><link href="mytools.mri/Structs.xhp" name="link to...">Structs</link>
+</listitem>
+</list>
+<list format="1" type="unordered"><listitem><link href="mytools.mri/TypeMappings.xhp" name="link to...">Type Mappings</link>
+</listitem>
+</list>
+</body>
+
+</helpdocument>

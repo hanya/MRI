@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Methods.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id04656524" level="1" role="heading" xml-lang="en">Methods</paragraph>
+<bookmark branch="index" id="id_id82405457" xml-lang="en"><bookmark_value>Methods</bookmark_value>
+</bookmark>
+<section id="sec_id52657952"><paragraph id="hd_id58124750" level="2" role="heading" xml-lang="en">Looking at Method Information </paragraph>
+<paragraph id="par_id38320141" role="paragraph" xml-lang="en">An example of methods information is shown like a list below. </paragraph>
+<table id="tab_id57432429"><tablerow><tablecell>Name</tablecell>
+<tablecell>Arguments</tablecell>
+<tablecell>Return Type</tablecell>
+<tablecell>Exceptions </tablecell>
+</tablerow>
+<tablerow><tablecell>getName</tablecell>
+<tablecell>()</tablecell>
+<tablecell>string</tablecell>
+<tablecell />
+</tablerow>
+<tablerow><tablecell>supportsService</tablecell>
+<tablecell>( [in] string ServiceName )</tablecell>
+<tablecell>boolean</tablecell>
+<tablecell />
+</tablerow>
+</table>
+<paragraph id="par_id28740788" role="paragraph" xml-lang="en">getName can be called with no arguments and returns string type value. And supportsService method needs a string type argument and its type of returned value is boolean. </paragraph>
+<paragraph id="par_id01102798" role="paragraph" xml-lang="en">You can invoke a method by double clicking the line that it is indicated. But some methods need one or more arguments and it is difficult to pass arguments from MRI to methods. Therefore many methods can not be called, which needs non string, numerical, boolean or enum arguments.  </paragraph>
+<paragraph id="par_id17014949" role="paragraph" xml-lang="en">You want to open IDL Reference written about a method you want to see, click the line (don't have to select hole line only, carret position is used to get which method is selected) and push "Ref." button. </paragraph>
+</section>
+<section id="sec_id42324037"><paragraph id="hd_id76568387" level="2" role="heading" xml-lang="en">Calling Special Methods </paragraph>
+<paragraph id="par_id71792372" role="paragraph" xml-lang="en">There are a few important interfaces and their methods are sometimes needed to get something. In the most case, the interface is the one from the container module. </paragraph>
+</section>
+<section id="sec_id59025118"><paragraph id="hd_id89936812" level="2" role="heading" xml-lang="en">getByIndex </paragraph>
+<paragraph id="par_id44479381" role="paragraph" xml-lang="en">Sometimes objects are collected into com.sun.star.container.XIndexContainer and we can get an element from it using com.sun.star.container.XIndexAccess interface. When you call getByIndex method through MRI, MRI calls getCount method to get the number of items in the XIndexContainer and let user select an index you want to get a value before invoking getByIndex method.  </paragraph>
+<paragraph id="par_id74217504" role="paragraph" xml-lang="en">Select an item listed in the dialog is shown when you call getByIndex method of the target. MRI uses selected item as the argument to invoke getByIndex method. If a container with no element, empty list box is shown. </paragraph>
+</section>
+<section id="sec_id05937221"><paragraph id="hd_id65076699" level="2" role="heading" xml-lang="en">getByName </paragraph>
+<paragraph id="par_id42004650" role="paragraph" xml-lang="en">com.sun.star.container.XNameContainer is used to manage elements and getByName method availabled from com.sun.star.container.XNameAccess is used to get an element from its container. MRI calls getElementNames method to make user select a name of element. Select an item listed in the listbox on the dialog. MRI uses the selected item to call getByName method. If no elements are there in a container, empty list box is shown. </paragraph>
+</section>
+<section id="sec_id05290875"><paragraph id="hd_id47458186" level="2" role="heading" xml-lang="en">Calling Methods with Arguments </paragraph>
+<paragraph id="par_id64614966" role="paragraph" xml-lang="en">MRI can call a method that needs only numerical, string or boolean type arguments. For example, these methods can be called. </paragraph>
+<paragraph id="par_id43772842" role="paragraph" xml-lang="en" />
+<paragraph id="par_id32153965" role="code" xml-lang="en">getCellByPosition( [in] long nColumn, [in] long nRow )<br />
+setName( [in] string aName )<br />
+goRight( [in] short nCount, [in] boolean bExpand )<br />
+</paragraph>
+<paragraph id="par_id11167518" role="paragraph" xml-lang="en" />
+<paragraph id="par_id86675207" role="paragraph" xml-lang="en">But these methods can not be called because they need structs or interfaces as their arguments . </paragraph>
+<paragraph id="par_id46136328" role="code" xml-lang="en">insertDocumentFromURL( [in] string aURL, [in] [].beans.PropertyValue aOptions )<br />
+findAll( [in] .util.XSearchDescriptor xDesc )<br />
+</paragraph>
+<paragraph id="par_id23831504" role="paragraph" xml-lang="en" />
+<paragraph id="par_id36409876" role="paragraph" xml-lang="en">When you call a method taking only numerical, string or boolean type arguments, the dialog box is shown and input arguments.  </paragraph>
+<paragraph id="par_id68478468" role="paragraph" xml-lang="en">You can open your IDL Reference to push the Ref. button on the dialog. </paragraph>
+</section>
+</body>
+
+</helpdocument>

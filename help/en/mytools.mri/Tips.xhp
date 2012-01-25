@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Tips.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:18:22"></created>
+      <lastedited date="2011-11-13T18:18:22"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id05552382" level="1" role="heading" xml-lang="en">Tips</paragraph>
+<bookmark branch="index" id="id_id62656985" xml-lang="en"><bookmark_value>Tips</bookmark_value>
+</bookmark>
+<paragraph id="par_id82897940" role="paragraph" xml-lang="en"> The way to use MRI. </paragraph>
+<section id="sec_id68122211"><paragraph id="hd_id55447795" level="2" role="heading" xml-lang="en">Detect Changing of Property Value </paragraph>
+<paragraph id="par_id62013781" role="paragraph" xml-lang="en">If you want to change property of the object but you do not know its name of the property. However you can change it through UI. Try the following instruction to know changes of the property values. </paragraph>
+<paragraph id="par_id82729273" role="paragraph" xml-lang="en">For example, a way to know changes of the cell property on Calc, using Diff function of MRI. </paragraph>
+<paragraph id="par_id56208570" role="paragraph" xml-lang="en">There is an optional setting for Asian Typography on Format Cells dialog. Now "Apply list of forbidden characters to the beginning and end of lines" is choosen for the target to find its property name. (This setting can be seen if you enabled Asian languages to use.) </paragraph>
+<list bullet="disc" type="ordered"><listitem> Create new Calc spreadsheet document. </listitem>
+<listitem> Put cell cursor on A1 cell. </listitem>
+<listitem> Choose Tools - Add-Ons - MRI &lt;- selection from the main menu. </listitem>
+<listitem> MRI window is opened, stay it on there opened. </listitem>
+<listitem> Right click and choose Format Cells entry from the context menu. </listitem>
+<listitem> Open "Asian Typography" tab and change the state of "Apply list of forbidden characters to the beginning and end of lines" check box. </listitem>
+<listitem> Push OK button to apply the change. </listitem>
+<listitem> Choose Tools - Add-Ons - MRI &lt;- selection from the main menu one more time. </listitem>
+<listitem> Choose File - Diff entry on newly opened MRI window. </listitem>
+<listitem> The list box is shown which shows list of opened MRI window, choose the window which is opened previously. </listitem>
+<listitem> Writer document is created, which shows differences about these properties. </listitem>
+<listitem> Difference is shown with red marker. </listitem>
+<listitem> The property ParaIsForbiddenRules is changed. </listitem>
+</list>
+</section>
+</body>
+
+</helpdocument>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/RunMRI.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id85017435" level="1" role="heading" xml-lang="en">How to Run MRI</paragraph>
+<bookmark branch="index" id="id_id60241330" xml-lang="en"><bookmark_value>How to Run MRI</bookmark_value>
+</bookmark>
+<paragraph id="par_id60644764" role="paragraph" xml-lang="en"> MRI can be called from any languages and Add-Ons menu entries. </paragraph>
+<paragraph id="par_id24071481" role="paragraph" xml-lang="en">This help system does not allow to keep indentation in code, please see following page: <link href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOo%2FExt%2FMRI%2FDocumentation%2FRunMRI"> RunMRI</link>
+</paragraph>
+<section id="sec_id61484541"><paragraph id="hd_id81129051" level="2" role="heading" xml-lang="en">Run MRI from Add-Ons Menu </paragraph>
+<paragraph id="par_id73315082" role="paragraph" xml-lang="en">MRI can be run from Add-Ons menu entry, choose Tools - Add-Ons - MRI entry,  then the MRI window opens with its target as return  value of the getCurrentComponent method of the com.sun.star.frame.XDesktop  interface of the com.sun.star.frame.Desktop service. </paragraph>
+<paragraph id="par_id91170513" role="paragraph" xml-lang="en">In this case, MRI is executed with the current document as its target and  it can be written in OOo Basic like the following: </paragraph>
+<paragraph id="par_id62964105" role="paragraph" xml-lang="en" />
+<paragraph id="par_id11579690" role="code" xml-lang="en">oTarget = StarDesktop.getCurrentComponent()<br />
+Mri oTarget<br />
+</paragraph>
+<paragraph id="par_id32834584" role="paragraph" xml-lang="en" />
+<paragraph id="par_id37014884" role="paragraph" xml-lang="en">oTarget may be the same as the return value of the ThisComponent function. </paragraph>
+</section>
+<section id="sec_id92518005"><paragraph id="hd_id64987047" level="2" role="heading" xml-lang="en">Run MRI from Add-Ons Menu with the Current Selection </paragraph>
+<paragraph id="par_id94087883" role="paragraph" xml-lang="en">Choose Tools - Add-Ons - MRI &lt;- selection menu entry to run MRI  with its target with current selected object in the current document. In the OOo Basic, you can write like below: </paragraph>
+<paragraph id="par_id50437891" role="paragraph" xml-lang="en" />
+<paragraph id="par_id95479555" role="code" xml-lang="en">oTarget = StarDesktop.getCurrentComponent().getCurrentSelection()<br />
+Mri oTarget<br />
+</paragraph>
+<paragraph id="par_id08564931" role="paragraph" xml-lang="en" />
+<paragraph id="par_id21474914" role="tip" xml-lang="en">You can use this menu to get information of an object that  can be selected which is placed on the document (e.g. Writer: text,  text objects or and so on, Calc: a cell, a cell range, cell ranges,  drawing objects or ... </paragraph>
+<paragraph id="par_id11400472" role="note" xml-lang="en">When you select a drawing object and then call MRI with the selection,  drawing objects are collected in com.sun.star.drawing.ShapeCollection service. Therefore you need to get a desired object from it using getByIndex method.  Some selectable objects are the same as it. </paragraph>
+</section>
+<section id="sec_id82332114"><paragraph id="hd_id53335740" level="2" role="heading" xml-lang="en">Run MRI from Languages </paragraph>
+<paragraph id="par_id69146158" role="paragraph" xml-lang="en">If you want to use MRI from languages that you want to use, instantiate "mytools.Mri" service. And call inspect method with a target as its argument. </paragraph>
+<paragraph id="par_id16956439" role="paragraph" xml-lang="en">inspect is a method of com.sun.star.beans.XIntrospection interface and you may query this interface depending on the language that you use. Normal inspect method returns com.sun.star.beans.XIntrospectionAccess interface and MRI's it returns the same interface taken from com.sun.star.beans.Introspection service. </paragraph>
+<paragraph id="par_id87302585" role="paragraph" xml-lang="en">If you pass non-UNO objects to inspect method, MRI does not work correctly. </paragraph>
+<paragraph id="par_id35922742" role="paragraph" xml-lang="en" />
+<paragraph id="par_id80489714" role="code" xml-lang="en">com.sun.star.beans.XIntrospectionAccess inspect( [in] any aObject )<br />
+</paragraph>
+<paragraph id="par_id61012413" role="paragraph" xml-lang="en" />
+<paragraph id="par_id61371992" role="paragraph" xml-lang="en">Since 0.8.0, MRI is supported to instantiate with createInstanceWithArgumentsAndContext method of css.lang.XSingleComponentFactory interface. You can inspect without calling the inspect method at creation time of the MRI instance. Put a target as first element into the sequence of the argument for the method. </paragraph>
+<section id="sec_id29912316"><paragraph id="hd_id58181261" level="3" role="heading" xml-lang="en">OpenOffice.org Basic </paragraph>
+<paragraph id="par_id61003261" role="paragraph" xml-lang="en">The extension includes "MRILib" library of OOo Basic. And Mri subroutine placed in the MRILib library helps you to call MRI from OOo Basic easily. Pass an object to the Mri like written below (in this case, ThisComponent is passed as a target). </paragraph>
+<paragraph id="par_id98594059" role="paragraph" xml-lang="en" />
+<paragraph id="par_id13083238" role="code" xml-lang="en">Mri ThisComponent<br />
+</paragraph>
+<paragraph id="par_id10032685" role="paragraph" xml-lang="en" />
+<paragraph id="par_id89563897" role="paragraph" xml-lang="en">An argument of Mri subroutine is optional. When Mri called without an argument, Mri subroutine passes StarDesktop to MRI as a target using OOo Basic runtime function. </paragraph>
+<paragraph id="par_id33384829" role="paragraph" xml-lang="en" />
+<paragraph id="par_id86385115" role="code" xml-lang="en">Mri  ' StarDesktop is passed to MRI by Mri subroutine<br />
+</paragraph>
+<paragraph id="par_id79687514" role="paragraph" xml-lang="en" />
+<paragraph id="par_id39375407" role="paragraph" xml-lang="en">Before you call Mri first time, need MRILib loaded. </paragraph>
+<paragraph id="par_id14160925" role="paragraph" xml-lang="en" />
+<paragraph id="par_id28450565" role="code" xml-lang="en">Globalscope.BasicLibraries.LoadLibrary( "MRILib" )<br />
+</paragraph>
+<paragraph id="par_id80337016" role="paragraph" xml-lang="en" />
+<paragraph id="par_id40048375" role="paragraph" xml-lang="en">Then you can call MRI like written below from OOo Basic without the Mri helper subroutine. </paragraph>
+<paragraph id="par_id84763674" role="paragraph" xml-lang="en" />
+<paragraph id="par_id08932176" role="code" xml-lang="en">oMRI = CreateUnoService( "mytools.Mri" )<br />
+oMRI.inspect( MriTargetObject )<br />
+</paragraph>
+<paragraph id="par_id04720313" role="paragraph" xml-lang="en" />
+<paragraph id="par_id66347019" role="paragraph" xml-lang="en">Or like the followoing:  </paragraph>
+<paragraph id="par_id60502134" role="paragraph" xml-lang="en" />
+<paragraph id="par_id43250885" role="code" xml-lang="en">CreateUnoServiceWithArguments( "mytools.Mri", Array( MriTargetObject ) )<br />
+</paragraph>
+<paragraph id="par_id92108667" role="paragraph" xml-lang="en" />
+<paragraph id="par_id91206379" role="paragraph" xml-lang="en">The control of the program is returned after Mri subroutine passes to service of MRI. Therefore you need to breakpoints of Basic IDE debugger if you want to inspect a object temporary created or you want to inspect the target well. </paragraph>
+<paragraph id="par_id19904538" role="paragraph" xml-lang="en">If you passed to a target to Mri that is part of a document opened on the StarDesktop and it lives after your Basic code finished, you can travel in it (passed value is a copy of the target but references are the same them of the original target). </paragraph>
+</section>
+<section id="sec_id67680073"><paragraph id="hd_id61594092" level="3" role="heading" xml-lang="en">BeanShell </paragraph>
+<paragraph id="par_id20147080" role="paragraph" xml-lang="en">This is an example of how to use MRI from BeanShell macros. </paragraph>
+<paragraph id="par_id30217841" role="paragraph" xml-lang="en" />
+<paragraph id="par_id60237619" role="code" xml-lang="en">import com.sun.star.uno.UnoRuntime;<br />
+import com.sun.star.uno.XComponentContext;<br />
+import com.sun.star.lang.XMultiComponentFactory;<br />
+import com.sun.star.beans.XIntrospection;<br />
+//import com.sun.star.beans.XIntrospectionAccess;<br />
+</paragraph>
+<paragraph id="par_id28473305" role="paragraph" xml-lang="en" />
+<paragraph id="par_id87964379" role="paragraph" xml-lang="en" />
+<paragraph id="par_id33089294" role="code" xml-lang="en">XComponentContext xContext = XSCRIPTCONTEXT.getComponentContext();<br />
+XMultiComponentFactory xMCF = xContext.getServiceManager();<br />
+try {<br />
+  oMRI = xMCF.createInstanceWithContext( "mytools.Mri", xContext );<br />
+} catch (com.sun.star.uno.Exception e) {<br />
+  System.out.println( e.Message );<br />
+}<br />
+XIntrospection xIntrospection = (XIntrospection) UnoRuntime.queryInterface( <br />
+                                      XIntrospection.class, oMRI );<br />
+Object oDoc = XSCRIPTCONTEXT.getDocument();<br />
+Object oIAccess= xIntrospection.inspect(oDoc);<br />
+</paragraph>
+<paragraph id="par_id09118578" role="paragraph" xml-lang="en" />
+</section>
+<section id="sec_id05416842"><paragraph id="hd_id51586909" level="3" role="heading" xml-lang="en">JavaScript </paragraph>
+<paragraph id="par_id80188826" role="paragraph" xml-lang="en">This code is an example to run MRI from Javascript macro. </paragraph>
+<paragraph id="par_id71875977" role="paragraph" xml-lang="en" />
+<paragraph id="par_id70931946" role="code" xml-lang="en">importClass(Packages.com.sun.star.uno.UnoRuntime);<br />
+importClass(Packages.com.sun.star.beans.XIntrospection);<br />
+<br />
+oDoc = XSCRIPTCONTEXT.getDocument();<br />
+<br />
+xContext = XSCRIPTCONTEXT.getComponentContext();<br />
+xMCF = xContext.getServiceManager();<br />
+oMRI = xMCF.createInstanceWithContext("mytools.Mri", xContext);<br />
+xIntrospection = UnoRuntime.queryInterface(XIntrospection, oMRI);<br />
+xIntrospection.inspect(oDoc);<br />
+</paragraph>
+<paragraph id="par_id75262244" role="paragraph" xml-lang="en" />
+</section>
+<section id="sec_id82204466"><paragraph id="hd_id46259425" level="3" role="heading" xml-lang="en">Java </paragraph>
+<paragraph id="par_id70364225" role="paragraph" xml-lang="en" />
+<paragraph id="par_id07984398" role="code" xml-lang="en">import com.sun.star.beans.XIntrospection;<br />
+<br />
+try {<br />
+ Object oMRI = xMultComponentFactory.createInstanceWithContext( <br />
+     "mytools.Mri", xContext );<br />
+ XIntrospection xIntrospection = (XIntrospection) UnoRuntime.queryInterface(<br />
+    XIntrospection.class, oMRI);<br />
+<br />
+ xIntrospection.inspect(oShape);<br />
+} catch (com.sun.star.uno.Exception e) {<br />
+  System.err.println();<br />
+}<br />
+</paragraph>
+<paragraph id="par_id90101879" role="paragraph" xml-lang="en" />
+</section>
+<section id="sec_id63325414"><paragraph id="hd_id45481323" level="3" role="heading" xml-lang="en">Python </paragraph>
+<paragraph id="par_id79542290" role="paragraph" xml-lang="en">This example shows how to use MRI from Python macro. </paragraph>
+<paragraph id="par_id50139204" role="paragraph" xml-lang="en" />
+<paragraph id="par_id19643954" role="code" xml-lang="en">def Mri_test():<br />
+   ctx = XSCRIPTCONTEXT.getComponentContext()<br />
+   document = XSCRIPTCONTEXT.getDocument()<br />
+<br />
+   mri(ctx,document)<br />
+<br />
+def mri(ctx, target):<br />
+   mri = ctx.ServiceManager.createInstanceWithContext(<br />
+       "mytools.Mri",ctx)<br />
+   mri.inspect(target)<br />
+</paragraph>
+<paragraph id="par_id40951106" role="paragraph" xml-lang="en" />
+<paragraph id="par_id18018337" role="paragraph" xml-lang="en">And you can also use MRI through Python-bridge. </paragraph>
+<paragraph id="par_id29600274" role="paragraph" xml-lang="en" />
+<paragraph id="par_id27392935" role="code" xml-lang="en">import uno<br />
+<br />
+def connect():<br />
+   try:<br />
+       localctx = uno.getComponentContext()<br />
+       resolver = localctx.ServiceManager.createInstanceWithContext(<br />
+           "com.sun.star.bridge.UnoUrlResolver",localctx)<br />
+       ctx = resolver.resolve(<br />
+          "uno:socket,host=localhost,port=2002;urp;StarOffice.ComponentContext")<br />
+   except:<br />
+       return None<br />
+   return ctx<br />
+<br />
+def mri(ctx, target):<br />
+   mri = ctx.ServiceManager.createInstanceWithContext(<br />
+       "mytools.Mri",ctx)<br />
+   mri.inspect(target)<br />
+</paragraph>
+<paragraph id="par_id34015086" role="paragraph" xml-lang="en" />
+<paragraph id="par_id99238404" role="paragraph" xml-lang="en" />
+<paragraph id="par_id31114547" role="code" xml-lang="en">if __name__=="__main__":<br />
+   ctx = connect()<br />
+   if ctx == None:<br />
+       print "Failed to connect."<br />
+       import sys<br />
+       sys.exit()<br />
+   smgr = ctx.ServiceManager<br />
+   desktop = smgr.createInstanceWithContext("com.sun.star.frame.Desktop",ctx)<br />
+   model = desktop.loadComponentFromURL("private:factory/scalc","_default",0,())<br />
+   mri(ctx,model)<br />
+   ctx.ServiceManager<br />
+</paragraph>
+<paragraph id="par_id72545250" role="paragraph" xml-lang="en" />
+</section>
+<section id="sec_id03385363"><paragraph id="hd_id85599257" level="3" role="heading" xml-lang="en">VB Script </paragraph>
+<paragraph id="par_id30209364" role="paragraph" xml-lang="en">MRI easily can be run from automation. </paragraph>
+<paragraph id="par_id99265387" role="paragraph" xml-lang="en" />
+<paragraph id="par_id74142164" role="code" xml-lang="en">Set oSM = WScript.CreateObject("com.sun.star.ServiceManager")<br />
+Set oDesktop = oSM.createInstance("com.sun.star.frame.Desktop")<br />
+<br />
+Dim aArgs() <br />
+Set oDoc = oDesktop.loadComponentFromURL("private:factory/scalc","_blank",0,aArgs)<br />
+<br />
+Set oMRI = oSM.createInstance("mytools.Mri") <br />
+oMRI.inspect(oDoc)<br />
+</paragraph>
+<paragraph id="par_id91219246" role="paragraph" xml-lang="en" />
+</section>
+<section id="sec_id97125444"><paragraph id="hd_id75411909" level="3" role="heading" xml-lang="en">ooRexx </paragraph>
+<paragraph id="par_id71556328" role="paragraph" xml-lang="en">ooRexx (with Vienna BSF4Rexx). </paragraph>
+<paragraph id="par_id61800098" role="paragraph" xml-lang="en" />
+<paragraph id="par_id77264982" role="code" xml-lang="en">/*  */<br />
+xScriptContext = uno.getScriptContext()<br />
+xContext = xScriptContext~getComponentContext()<br />
+xServiceManager = xContext~getServiceManager()<br />
+<br />
+oDoc = xScriptContext~getDocument<br />
+<br />
+oMRI = xServiceManager~createInstanceWithContext("mytools.Mri", xContext)<br />
+oMRI~XIntrospection~inspect(oDoc)<br />
+<br />
+::requires UNO.CLS<br />
+</paragraph>
+<paragraph id="par_id35054569" role="paragraph" xml-lang="en" />
+</section>
+</section>
+<section id="sec_id05216549"><paragraph id="hd_id31871269" level="2" role="heading" xml-lang="en">Creating Custom Menu Entries </paragraph>
+<paragraph id="par_id85903095" role="paragraph" xml-lang="en">If you want to add menu entries or toolbar buttons of MRI, use this URL. </paragraph>
+<paragraph id="par_id98343068" role="paragraph" xml-lang="en" />
+<paragraph id="par_id55060126" role="code" xml-lang="en">service:mytools.Mri?current<br />
+</paragraph>
+<paragraph id="par_id15833077" role="paragraph" xml-lang="en" />
+<paragraph id="par_id44959247" role="paragraph" xml-lang="en">If current argument is passed, MRI gets CurrentComponent of Desktop as its target. MRI run with a selection of a CurrentComponent of the Desktop. </paragraph>
+<paragraph id="par_id83094080" role="paragraph" xml-lang="en" />
+<paragraph id="par_id44130276" role="code" xml-lang="en">service:mytools.Mri?selection<br />
+</paragraph>
+<paragraph id="par_id94460627" role="paragraph" xml-lang="en" />
+</section>
+</body>
+
+</helpdocument>

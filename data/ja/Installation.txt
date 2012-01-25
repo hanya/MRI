@@ -1,0 +1,21 @@
+
+拡張機能パッケージを拡張機能マネージャからインストールしてください。メニューからツール - 拡張機能を選択します。
+
+インストール後、正しく動作させるためにオフィースを再起動してください。クイックスターターを利用しているのであれば、それも一度停止させてください。
+
+
+{{Warning|Python-UNO ブリッジがインストールされていなければ、次のようなエラーが表示されます。Python-UNO ブリッジをインストールしてください。<br /><br />
+"ImplementationRegistration::registerImplementation() - The service com.sun.star.loader.Python cannot be instantiated"
+}}
+
+{{Warning|次のようなエラーが表示された場合、{{OOo}} のインストールに不具合があります。<br /><br />
+"(com.sun.star.uno.RuntimeException){{Message = "pythonloader: couldn't find core element pythonloader.Loader", Contex = (com.sun.star.uno.XInterface) @0}}
+}}
+
+== アップデート ==
+
+MRI をアップデートするには、拡張機能マネージャから新しいパッケージをインストールしてください。
+
+== 削除 ==
+
+拡張機能マネージャから削除してください。

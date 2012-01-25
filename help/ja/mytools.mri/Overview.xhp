@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="ja" id="tit"></title>
+      <filename>/mytools.mri/Overview.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-14T02:06:44"></created>
+      <lastedited date="2011-11-14T02:06:44"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id87249111" level="1" role="heading" xml-lang="ja">MRI Overview</paragraph>
+<bookmark branch="index" id="id_id16033274" xml-lang="ja"><bookmark_value>MRI Overview</bookmark_value>
+</bookmark>
+<paragraph id="par_id67865177" role="paragraph" xml-lang="ja"> MRI (My Reflection and Introspection) は UNO オブジェクトのオブジェクトブラウザです。 オブジェクトのプロパティ、メソッド、インターフェース、サービスの情報を表示します。 全ての型情報は UNO の型で表示されます。 </paragraph>
+<list format="1" type="unordered"><listitem> プロパティ値を取得、設定できます。 </listitem>
+<listitem> メソッドを引数付きで呼ぶことができます。引数が文字列で表現できるときのみ。 </listitem>
+<listitem> 表示されている情報から容易にリファレンスマニュアルの該当ページを開くこともできます。 </listitem>
+<listitem> MRI はサービスとして実装されており、様々な言語から容易に実行できます。MRI 自体は Python で書かれています。 </listitem>
+<listitem> コードジェネレータがメソッド呼び出しやプロパティの取得を記録します。 </listitem>
+</list>
+</body>
+
+</helpdocument>

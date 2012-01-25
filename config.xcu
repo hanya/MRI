@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data 
+xmlns:oor="http://openoffice.org/2001/registry" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+oor:name="Configuration" 
+oor:package="mytools.Mri">
+	<node oor:name="Settings">
+		<prop oor:name="MRIOrigin" oor:type="xs:string">
+			<value>%origin%</value>
+		</prop>
+		<prop oor:name="SDKDirectory" oor:type="xs:string">
+			<value>http://api.openoffice.org/</value>
+		</prop>
+		<prop oor:name="Browser" oor:type="xs:string">
+			<value>firefox</value>
+		</prop>
+		<prop oor:name="WindowPosSize" oor:type="xs:string">
+			<value>100,100,410,450</value>
+		</prop>
+		<prop oor:name="CharFontName" oor:type="xs:string">
+			<value>DejaVu Sans Mono</value>
+		</prop>
+		<prop oor:name="CharHeight" oor:type="xs:double">
+			<value>10.0</value>
+		</prop>
+		<prop oor:name="Sorted" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="Abbreviated" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="Detailed" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="ShowLabels" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="ShowCode" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="UsePseudProperty" oor:type="xs:boolean">
+			<value>true</value>
+		</prop>
+		<prop oor:name="CodeType" oor:type="xs:string">
+			<value>Basic</value>
+		</prop>
+		<prop oor:name="UseGrid" oor:type="xs:boolean">
+			<value>false</value>
+		</prop>
+		<prop oor:name="UseTab" oor:type="xs:boolean">
+			<value>false</value>
+		</prop>
+		<prop oor:name="Macros" oor:type="xs:string">
+			<value>$(user)/Scripts/python/pythonpath/mri</value>
+		</prop>
+	</node>
+</oor:component-data>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Installation.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id58027720" level="1" role="heading" xml-lang="en">Installation</paragraph>
+<bookmark branch="index" id="id_id08041296" xml-lang="en"><bookmark_value>Installation</bookmark_value>
+</bookmark>
+<paragraph id="par_id63764817" role="paragraph" xml-lang="en"> Install MRI extension package using Extension Manager from Tools - Extension Manager entry of main menu bar. </paragraph>
+<paragraph id="par_id53006169" role="paragraph" xml-lang="en">After the installation, you have to restart your office to function well.  If you using the quick starter, stop it once. </paragraph>
+<paragraph id="par_id12709237" role="warning" xml-lang="en">If you do not have Python-UNO bridge installation, you see the following error. You need to install it.<br />
+<br />
+ "ImplementationRegistration::registerImplementation() - The service com.sun.star.loader.Python cannot be instantiated"  </paragraph>
+<paragraph id="par_id96599682" role="warning" xml-lang="en">If you get the error shown below, you have an problem in your %PRODUCTNAME installation.<br />
+<br />
+ "(com.sun.star.uno.RuntimeException){{Message = "pythonloader: couldn't find core element pythonloader.Loader", Contex = (com.sun.star.uno.XInterface) @0}}  </paragraph>
+<section id="sec_id05524959"><paragraph id="hd_id64234496" level="2" role="heading" xml-lang="en">Updating </paragraph>
+<paragraph id="par_id23752149" role="paragraph" xml-lang="en">If you want to upgrade MRI, install new one from Extension Manager. </paragraph>
+</section>
+<section id="sec_id99229895"><paragraph id="hd_id07015697" level="2" role="heading" xml-lang="en">Remove </paragraph>
+<paragraph id="par_id23356000" role="paragraph" xml-lang="en">Remove the package using Extension Manager from Tools - Extension Manager of the menu bar. </paragraph>
+</section>
+</body>
+
+</helpdocument>

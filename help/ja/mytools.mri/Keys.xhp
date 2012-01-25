@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="ja" id="tit"></title>
+      <filename>/mytools.mri/Keys.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-14T02:06:44"></created>
+      <lastedited date="2011-11-14T02:06:44"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id36617172" level="1" role="heading" xml-lang="ja">ショートカットキー</paragraph>
+<bookmark branch="index" id="id_id94107474" xml-lang="ja"><bookmark_value>ショートカットキー</bookmark_value>
+</bookmark>
+<paragraph id="par_id45053849" role="paragraph" xml-lang="ja"> 次のショートカットキーが利用できます。 </paragraph>
+<table id="tab_id26100613"><tablerow><tablecell><emph>キー</emph>
+</tablecell>
+<tablecell><emph>説明</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Enter </tablecell>
+<tablecell>値を取得/設定またはメソッドを呼び出します </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt + LEFT </tablecell>
+<tablecell>履歴を一つ戻ります </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt + RIGHT </tablecell>
+<tablecell>履歴を一つ進めます </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + P </tablecell>
+<tablecell>Properties スコープ </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + M </tablecell>
+<tablecell>Methods スコープ </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + I </tablecell>
+<tablecell>Interfaces スコープ </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + S </tablecell>
+<tablecell>Services スコープ </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + R </tablecell>
+<tablecell>IDL リファレンスを開きます </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + F </tablecell>
+<tablecell>Change the focus to the search edit </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + Q </tablecell>
+<tablecell>現在のカーソル行を選択します (グリッドモードでは不可) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + W </tablecell>
+<tablecell>現在のカーソル位置の単語を選択します (グリッドモードでは不可) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + A </tablecell>
+<tablecell>全選択 (グリッドモードでは不可) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + V </tablecell>
+<tablecell>Sort の切り替え </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + B </tablecell>
+<tablecell>Abbreviated の切り替え </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + H </tablecell>
+<tablecell>コードフィールドの表示/非表示 </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + J </tablecell>
+<tablecell>右クリックメニュー </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + U </tablecell>
+<tablecell>index ショートカット </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + N </tablecell>
+<tablecell>name ショートカット </tablecell>
+</tablerow>
+</table>
+<paragraph id="par_id88943114" role="paragraph" xml-lang="ja">いくつかのショートカットキーはウィンドウ環境によっては動作しません。 </paragraph>
+<paragraph id="par_id23842727" role="paragraph" xml-lang="ja">グリッドモードのときコンテキストメニューが利用できます。 </paragraph>
+<section id="sec_id75484870"><paragraph id="hd_id66740502" level="2" role="heading" xml-lang="ja">修飾キー </paragraph>
+<paragraph id="par_id36727307" role="paragraph" xml-lang="ja">MRI ウィンドウの情報エディットをダブルクリックするとき次の修飾キーが利用できます。 </paragraph>
+<table id="tab_id75499089"><tablerow><tablecell><emph>キー</emph>
+</tablecell>
+<tablecell><emph>説明</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl </tablecell>
+<tablecell>別のウィンドウでオブジェクトを開きます  (インターフェースもしくは struct を取得するときのみ) </tablecell>
+</tablerow>
+<tablerow><tablecell>Shift </tablecell>
+<tablecell>ダブルクリック動作を無効化します </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt or Ctrl + Shift </tablecell>
+<tablecell>Properties スコープでの動作モードを一時的に切り替えます </tablecell>
+</tablerow>
+</table>
+<bookmark branch="hid/mytools.Mri:ShortcutKeys" id="bk_id44317024" xml-lang="ja"><bookmark_value xml-lang="ja">MRI ショートカットキー</bookmark_value></bookmark>
+</section>
+<section id="sec_id05061041"><paragraph id="hd_id42164084" level="2" role="heading" xml-lang="ja">ショートカットキーのカスタマイズ </paragraph>
+<paragraph id="par_id46123697" role="paragraph" xml-lang="ja">Tools - Configuration メニューから MRI のショートカットキーを変更できます。Configuration ダイアログの Shortcut Keys ボタンを押して、Shortcut Keys ダイアログを表示します。 </paragraph>
+<paragraph id="par_id53895380" role="paragraph" xml-lang="ja">ショートカットキーの設定は $(user)/config/mrikeys.pickle ファイルに保存されます。不要になったり、全てのキー設定をデフォルトに戻したければ削除してください。 </paragraph>
+<section id="sec_id39294659"><paragraph id="hd_id95807503" level="3" role="heading" xml-lang="ja">割り当て </paragraph>
+<paragraph id="par_id21677191" role="paragraph" xml-lang="ja">リストからコマンドを選択、テキストフィールドにフォーカスを移します。割り当てたいキーの組み合わせを押してください。そして、Assign ボタンを押して割り当ててください。 </paragraph>
+</section>
+<section id="sec_id38497087"><paragraph id="hd_id66825237" level="3" role="heading" xml-lang="ja">削除 </paragraph>
+<paragraph id="par_id97830140" role="paragraph" xml-lang="ja">リストからコマンドを選択、Delete ボタンを押してください。テキストフィールドが空になるので、Assign ボタンを押して項目に反映させてください。 </paragraph>
+</section>
+<section id="sec_id84022823"><paragraph id="hd_id24878448" level="3" role="heading" xml-lang="ja">マクロ </paragraph>
+<paragraph id="par_id14688397" role="paragraph" xml-lang="ja">マクロもショートカットキーで実行できます。Macros ボタンを押してマクロの項目を追加してください。マクロは拡張機能に含まれているファイル、またはユーザーのマクロディレクトリのファイルから表示されます。 </paragraph>
+<paragraph id="par_id12914070" role="paragraph" xml-lang="ja">追加したいマクロの項目を Macros ダイアログで選択してください。その後、ショートカットキーを割り当ててください。 </paragraph>
+</section>
+<section id="sec_id91032241"><paragraph id="hd_id28099826" level="3" role="heading" xml-lang="ja">デフォルト </paragraph>
+<paragraph id="par_id21336239" role="paragraph" xml-lang="ja">デフォルト設定に戻したい項目を選択して Default ボタンを押してください。その後、Assign ボタンを押して割り当ててください。 </paragraph>
+</section>
+<section id="sec_id13218419"><paragraph id="hd_id55952483" level="3" role="heading" xml-lang="ja">追加 </paragraph>
+<paragraph id="par_id09357372" role="paragraph" xml-lang="ja">リストにある各項目はそれぞれ一つしかショートカットキーを割り当てられません。同じコマンドに二つ以上のキーを割り当てたければ、Add New ボタンを押してください。 </paragraph>
+<paragraph id="par_id25921286" role="paragraph" xml-lang="ja">追加した項目を削除したければ、Delete ボタンを押してから Assign ボタンを押してください。追加された項目のうち、キーの割り当てがない項目は保存時に削除されます。 </paragraph>
+</section>
+<section id="sec_id75614860"><paragraph id="hd_id70022873" level="3" role="heading" xml-lang="ja">保存 </paragraph>
+<paragraph id="par_id82732054" role="paragraph" xml-lang="ja">変更したショートカットキーを保存、反映させるときに Store ボタンを押してください。 </paragraph>
+</section>
+</section>
+</body>
+
+</helpdocument>

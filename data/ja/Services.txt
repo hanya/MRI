@@ -1,0 +1,5 @@
+
+UNO オブジェクトにサポートされているサービス名および利用できるサービス名が表示されます。
+サポートされているサービス名はターゲットの UNO オブジェクトが com.sun.star.lang.XServiceInfo インターフェースをサポートしているときのみ表示されます。また、利用可能なサービス名はターゲットが com.sun.star.lang.XMultiServiceFactory、com.sun.star.lang.XMultiComponentFactory、com.sun.star.container.XContentEnumerationAccess のうち一つ以上のインターフェースをサポートしているときにのみ表示されます。
+
+IDL Ref. ボタンはインターフェーススコープと同じように動作します。

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="ja" id="tit"></title>
+      <filename>/mytools.mri/Installation.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-14T02:06:44"></created>
+      <lastedited date="2011-11-14T02:06:44"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id50925757" level="1" role="heading" xml-lang="ja">インストール</paragraph>
+<bookmark branch="index" id="id_id27488274" xml-lang="ja"><bookmark_value>インストール</bookmark_value>
+</bookmark>
+<paragraph id="par_id79991768" role="paragraph" xml-lang="ja"> 拡張機能パッケージを拡張機能マネージャからインストールしてください。メニューからツール - 拡張機能を選択します。 </paragraph>
+<paragraph id="par_id57867158" role="paragraph" xml-lang="ja">インストール後、正しく動作させるためにオフィースを再起動してください。クイックスターターを利用しているのであれば、それも一度停止させてください。 </paragraph>
+<paragraph id="par_id10312798" role="warning" xml-lang="ja">Python-UNO ブリッジがインストールされていなければ、次のようなエラーが表示されます。Python-UNO ブリッジをインストールしてください。<br />
+<br />
+ "ImplementationRegistration::registerImplementation() - The service com.sun.star.loader.Python cannot be instantiated"  </paragraph>
+<paragraph id="par_id99190487" role="warning" xml-lang="ja">次のようなエラーが表示された場合、%PRODUCTNAME のインストールに不具合があります。<br />
+<br />
+ "(com.sun.star.uno.RuntimeException){{Message = "pythonloader: couldn't find core element pythonloader.Loader", Contex = (com.sun.star.uno.XInterface) @0}}  </paragraph>
+<section id="sec_id35427841"><paragraph id="hd_id67060650" level="2" role="heading" xml-lang="ja">アップデート </paragraph>
+<paragraph id="par_id38761899" role="paragraph" xml-lang="ja">MRI をアップデートするには、拡張機能マネージャから新しいパッケージをインストールしてください。 </paragraph>
+</section>
+<section id="sec_id61044507"><paragraph id="hd_id45703375" level="2" role="heading" xml-lang="ja">削除 </paragraph>
+<paragraph id="par_id30242308" role="paragraph" xml-lang="ja">拡張機能マネージャから削除してください。 </paragraph>
+</section>
+</body>
+
+</helpdocument>

@@ -1,0 +1,103 @@
+
+body
+{
+    font-size: 80%;
+    line-height: 130%;
+}
+
+
+div.history, div.properties, div.methods, div.interfaces, div.services, div.elements, div.struct_name
+{
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-bottom: 2em;
+	margin-top: 1em;
+}
+
+table.methods
+{
+	padding-right: 1em;
+}
+
+table.methods td
+{
+	border: 1px solid #aaaaaa;
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+table.properties td
+{
+	border: 1px solid #aaaaaa;
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+table.elements td
+{
+	border: 1px solid #aaaaaa;
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+td.label
+{
+	font-weight: bold;
+}
+
+.tbl_head
+{
+	font-size: small;
+	font-weight: bold;
+}
+
+h2.category
+{
+	font-size: large;
+}
+
+.names
+{
+	list-style-type: disc;
+}
+
+.name
+{
+	font-size: small;
+	padding-left: 0.5em;
+	padding-right: 1em;
+	white-space: pre;
+}
+
+span.category
+{
+	font-family: monospace;
+}
+
+.categories
+{
+	text-align: center;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+.type_name, .impl_name
+{
+	font-size: small;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+a:link
+{
+	text-decoration: none;
+	color: #6600CC;
+}
+
+a:visited
+{
+	text-decoration: none;
+	color: #CC3333;
+}
+
+

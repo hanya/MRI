@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="Config" dlg:left="92" dlg:top="109" dlg:width="176" dlg:height="250" dlg:closeable="true" dlg:moveable="true" dlg:title="Configuration">
+ <dlg:bulletinboard>
+  <dlg:fixedline dlg:id="line1" dlg:tab-index="0" dlg:left="3" dlg:top="3" dlg:width="170" dlg:height="12" dlg:value="OpenOffice.org SDK Directory"/>
+  <dlg:textfield dlg:id="edit_sdk" dlg:tab-index="1" dlg:left="3" dlg:top="17" dlg:width="137" dlg:height="13" dlg:help-text="Choose top directory of the SDK." dlg:help-url="mytools.Mri:cfg_edit_idl"/>
+  <dlg:button dlg:id="btn_sdk" dlg:tab-index="2" dlg:left="143" dlg:top="16" dlg:width="30" dlg:height="14" dlg:help-url="mytools.Mri:cfg_btn_idl" dlg:value="~Select"/>
+  
+  <dlg:fixedline dlg:id="line2" dlg:tab-index="3" dlg:left="3" dlg:top="33" dlg:width="170" dlg:height="12" dlg:value="Browser Path"/>
+  <dlg:textfield dlg:id="edit_browser" dlg:tab-index="4" dlg:left="3" dlg:top="47" dlg:width="137" dlg:height="13" dlg:help-url="mytools.Mri:cfg_edit_browser"/>
+  <dlg:button dlg:id="btn_browser" dlg:tab-index="5" dlg:left="143" dlg:top="46" dlg:width="30" dlg:height="14" dlg:help-url="mytools.Mri:cfg_btn_browser" dlg:value="~Select"/>
+  
+  <dlg:fixedline dlg:id="line3" dlg:tab-index="6" dlg:left="3" dlg:top="63" dlg:width="170" dlg:height="12" dlg:value="Font Name and Character Size of the Information"/>
+  <dlg:textfield dlg:id="edit_fontname" dlg:tab-index="7" dlg:left="3" dlg:top="77" dlg:width="90" dlg:height="13" dlg:help-url="mytools.Mri:cfg_edit_fontname"/>
+  <dlg:textfield dlg:id="edit_charsize" dlg:tab-index="8" dlg:left="96" dlg:top="77" dlg:width="41" dlg:height="13" dlg:help-url="mytools.Mri:cfg_edit_charsize"/>
+  
+  <dlg:fixedline dlg:id="line4" dlg:tab-index="9" dlg:left="3" dlg:top="93" dlg:width="170" dlg:height="12" dlg:value="Window Size and Position (x, y, width, height)"/>
+  <dlg:textfield dlg:id="edit_possize" dlg:tab-index="10" dlg:left="3" dlg:top="107" dlg:width="76" dlg:height="13" dlg:help-url="mytools.Mri:cfg_edit_possize"/>
+  <dlg:checkbox dlg:id="check_possize" dlg:tab-index="11" dlg:left="83" dlg:top="106" dlg:width="88" dlg:height="20" dlg:help-url="mytools.Mri:cfg_check_possize" dlg:value="Save the ~window position and size." dlg:multiline="true" dlg:checked="false"/>
+  
+  <dlg:fixedline dlg:id="line5" dlg:tab-index="12" dlg:left="3" dlg:top="123" dlg:width="170" dlg:height="12" dlg:value="Options"/>
+  <dlg:checkbox dlg:id="check_options" dlg:tab-index="13" dlg:left="3" dlg:top="137" dlg:width="168" dlg:height="13" dlg:help-url="mytools.Mri:cfg_check_options" dlg:value="~Save states of &quot;Tools&quot; options." dlg:multiline="true" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="check_grid" dlg:tab-index="14" dlg:left="3" dlg:top="152" dlg:width="168" dlg:height="13" dlg:disabled="false" dlg:help-url="mytools.Mri:cfg_check_options" dlg:value="~Use Grid (enabled after restarting)" dlg:multiline="true" dlg:checked="false"/>
+  <dlg:checkbox dlg:id="check_tab" dlg:tab-index="15" dlg:left="3" dlg:top="167" dlg:width="168" dlg:height="13" dlg:disabled="false" dlg:help-url="mytools.Mri:cfg_check_options" dlg:value="Use ~Tab (enabled after restarting)" dlg:multiline="true" dlg:checked="false"/>
+  <dlg:button dlg:id="btn_keyconfig" dlg:tab-index="16" dlg:left="3" dlg:top="181" dlg:width="60" dlg:height="14" dlg:help-url="mytools.Mri:cfg_key_config" dlg:value="~Shortcut keys"/>
+  
+  <dlg:fixedline dlg:id="line6" dlg:tab-index="17" dlg:left="3" dlg:top="196" dlg:width="170" dlg:height="12" dlg:value="Macros Directory"/>
+  <dlg:textfield dlg:id="edit_macros" dlg:tab-index="18" dlg:left="3" dlg:top="210" dlg:width="137" dlg:height="13" dlg:help-text="User's macros directory." dlg:help-url="mytools.Mri:cfg_edit_macros"/>
+  <dlg:button dlg:id="btn_macros" dlg:tab-index="19" dlg:left="143" dlg:top="209" dlg:width="30" dlg:height="14" dlg:help-url="mytools.Mri:cfg_btn_macros" dlg:value="~Select"/>
+
+  <dlg:fixedline dlg:id="line7" dlg:tab-index="20" dlg:left="0" dlg:top="228" dlg:width="176" dlg:height="1"/>
+  <dlg:button dlg:id="btn_cancel" dlg:tab-index="21" dlg:left="138" dlg:top="233" dlg:width="35" dlg:height="14" dlg:help-url="mytools.Mri:cfg_cbtn" dlg:default="true" dlg:value="~Cancel" dlg:button-type="cancel"/>
+  <dlg:button dlg:id="btn_ok" dlg:tab-index="22" dlg:left="98" dlg:top="233" dlg:width="35" dlg:height="14" dlg:help-url="mytools.Mri:cfg_obtn" dlg:value="~OK" dlg:button-type="ok"/>
+  <dlg:button dlg:id="btn_help" dlg:tab-index="23" dlg:left="3" dlg:top="233" dlg:width="35" dlg:height="14" dlg:help-url="mytools.Mri:ConfigurationPage" dlg:value="~Help" dlg:button-type="help"/>
+ </dlg:bulletinboard>
+</dlg:window>

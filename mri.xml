@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wiki2xhp version="2">
+	<meta>
+		<identifier>
+			mytools.mri
+		</identifier>
+		<share_images>
+			True
+		</share_images>
+		<mode>
+			raw
+		</mode>
+		<file_extension>
+			.txt
+		</file_extension>
+		<wiki/>
+		<out>
+			./help
+		</out>
+		<data>
+			./data
+		</data>
+		<html>
+			./html
+		</html>
+	</meta>
+	<pages>
+		<node application="mri">
+			<item lang="en" title="MRI"/>
+			<item lang="ja" title="MRI"/>
+			<page file_name="index">
+				<item lang="en" name="index" page_title="" title="MRI Documentation"/>
+				<item lang="ja" name="index" page_title="" title="MRI ドキュメント"/>
+			</page>
+			<node>
+				<item lang="en" title="All Pages"/>
+				<item lang="ja" title="All Pages"/>
+				<page file_name="index">
+					<item lang="en" name="" page_title="" title="Index Page"/>
+					<item lang="ja" name="" page_title="" title="インデックス"/>
+				</page>
+				<page file_name="Overview">
+					<item lang="en" name="Overview" page_title="MRI Overview" title="Overview"/>
+					<item lang="ja" name="Overview" page_title="MRI Overview" title="概要"/>
+				</page>
+				<page file_name="Installation">
+					<item lang="en" name="Installation" page_title="" title="Installation"/>
+					<item lang="ja" name="Installation" page_title="" title="インストール"/>
+				</page>
+				<page file_name="RunMRI">
+					<item lang="en" name="RunMRI" page_title="" title="How to Run MRI"/>
+					<item lang="ja" name="RunMRI" page_title="" title="MRI の起動"/>
+				</page>
+				<page file_name="UI">
+					<item lang="en" name="UI" page_title="" title="User Interface"/>
+					<item lang="ja" name="UI" page_title="" title="ユーザーインターフェース"/>
+				</page>
+				<page file_name="Keys">
+					<item lang="en" name="Keys" page_title="" title="Shortcut Keys"/>
+					<item lang="ja" name="Keys" page_title="" title="ショートカットキー"/>
+				</page>
+				<page file_name="Configuration">
+					<item lang="en" name="Configuration" page_title="" title="Configuration"/>
+					<item lang="ja" name="Configuration" page_title="" title="設定"/>
+				</page>
+				<page file_name="Properties">
+					<item lang="en" name="Properties" page_title="" title="Properties"/>
+					<item lang="ja" name="Properties" page_title="" title="プロパティ"/>
+				</page>
+				<page file_name="Methods">
+					<item lang="en" name="Methods" page_title="" title="Methods"/>
+					<item lang="ja" name="Methods" page_title="" title="メソッド"/>
+				</page>
+				<page file_name="Interfaces">
+					<item lang="en" name="Interfaces" page_title="" title="Interfaces"/>
+					<item lang="ja" name="Interfaces" page_title="" title="インターフェース"/>
+				</page>
+				<page file_name="Services">
+					<item lang="en" name="Services" page_title="" title="Services"/>
+					<item lang="ja" name="Services" page_title="" title="サービス"/>
+				</page>
+				<page file_name="Structs">
+					<item lang="en" name="Structs" page_title="" title="Structs"/>
+					<item lang="ja" name="Structs" page_title="" title="Structs"/>
+				</page>
+				<page file_name="Code">
+					<item lang="en" name="Code" page_title="" title="Code"/>
+					<item lang="ja" name="Code" page_title="" title="コード"/>
+				</page>
+				<page file_name="TypeMappings">
+					<item lang="en" name="TypeMappings" page_title="" title="Type Mappings"/>
+					<item lang="ja" name="TypeMappings" page_title="" title="Type Mappings"/>
+				</page>
+				<page file_name="Macros">
+					<item lang="en" name="Macros" page_title="Macros" title="Macros"/>
+					<item lang="ja" name="Macros" page_title="Macros" title="マクロ"/>
+				</page>
+			</node>
+		</node>
+	</pages>
+</wiki2xhp>

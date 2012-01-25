@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-schema  
+oor:name="Configuration" 
+oor:package="mytools.Mri" xml:lang="en-US" 
+xmlns:oor="http://openoffice.org/2001/registry" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<templates/>
+	<component>
+		<group oor:name="Settings">
+			<info>
+				<desc>MRI settings.</desc>
+			</info>
+			<prop oor:name="MRIOrigin" oor:type="xs:string">
+				<info>
+					<desc>Origin of MRI.</desc>
+				</info>
+			</prop>
+			<prop oor:name="SDKDirectory" oor:type="xs:string">
+				<info>
+					<desc>URL of a OpenOffice.org SDK Directory.</desc>
+				</info>
+			</prop>
+			<prop oor:name="Browser" oor:type="xs:string">
+				<info>
+					<desc>URL of a browser.</desc>
+				</info>
+			</prop>
+			<prop oor:name="WindowPosSize" oor:type="xs:string">
+				<info>
+					<desc>Window position and size. X,Y,Width,Height</desc>
+				</info>
+			</prop>
+			<prop oor:name="CharFontName" oor:type="xs:string">
+				<info>
+					<desc>Font name of information edit.</desc>
+				</info>
+			</prop>
+			<prop oor:name="CharHeight" oor:type="xs:double">
+				<info>
+					<desc>Font height of information edit.</desc>
+				</info>
+			</prop>
+			<prop oor:name="Sorted" oor:type="xs:boolean">
+				<info>
+					<desc>Information is sorted.</desc>
+				</info>
+			</prop>
+			<prop oor:name="Abbreviated" oor:type="xs:boolean">
+				<info>
+					<desc>Information is bbreviated.</desc>
+				</info>
+			</prop>
+			<prop oor:name="Detailed" oor:type="xs:boolean">
+				<info>
+					<desc>Detailed information.</desc>
+				</info>
+			</prop>
+			<prop oor:name="ShowLabels" oor:type="xs:boolean">
+				<info>
+					<desc>Show title labels.</desc>
+				</info>
+			</prop>
+			<prop oor:name="ShowCode" oor:type="xs:boolean">
+				<info>
+					<desc>Show code.</desc>
+				</info>
+			</prop>
+			<prop oor:name="UsePseudProperty" oor:type="xs:boolean">
+				<info>
+					<desc>Using pseud property in the generated code.</desc>
+				</info>
+			</prop>
+			<prop oor:name="CodeType" oor:type="xs:string">
+				<info>
+					<desc>Language of the code generated.</desc>
+				</info>
+			</prop>
+			<prop oor:name="UseGrid" oor:type="xs:boolean">
+				<info>
+					<desc>Use grid control.</desc>
+				</info>
+			</prop>
+			<prop oor:name="UseTab" oor:type="xs:boolean">
+				<info>
+					<desc>Use tab control.</desc>
+				</info>
+			</prop>
+			<prop oor:name="Macros" oor:type="xs:string">
+				<info>
+					<desc>URL to User's macros directory.</desc>
+				</info>
+			</prop>
+		</group>
+	</component>
+</oor:component-schema>

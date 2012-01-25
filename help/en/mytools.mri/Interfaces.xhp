@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Interfaces.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id24277533" level="1" role="heading" xml-lang="en">Interfaces</paragraph>
+<bookmark branch="index" id="id_id83953967" xml-lang="en"><bookmark_value>Interfaces</bookmark_value>
+</bookmark>
+<paragraph id="par_id58176818" role="paragraph" xml-lang="en"> Informations about interfaces of UNO objects are taken using the introspection and the type description manager because of the com.sun.star.lang.XTypeProvider interface does not provide complete information of the interfaces supported by the target. </paragraph>
+<paragraph id="par_id29057977" role="paragraph" xml-lang="en">If you push IDL Ref. button of the MRI window, MRI tries to open IDL Reference of the interface at the caret position of the information edit. </paragraph>
+<paragraph id="par_id35331058" role="paragraph" xml-lang="en">And listeners supported by the target are listed with supported interfaces. </paragraph>
+</body>
+
+</helpdocument>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Configuration.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id09215431" level="1" role="heading" xml-lang="en">Configuration</paragraph>
+<bookmark branch="index" id="id_id60326679" xml-lang="en"><bookmark_value>Configuration</bookmark_value>
+</bookmark>
+<bookmark branch="hid/mytools.Mri:ConfigurationPage" id="bk_id95882482" xml-lang="en"><bookmark_value xml-lang="en">MRI Configuration</bookmark_value></bookmark>
+<paragraph id="par_id99791797" role="paragraph" xml-lang="en">Choose the Configuration... entry of the Tools menu. When you select it,  the configuration dialog is opened. Change settings and  push OK button to save settings and to enable new settings.  If you push cancel button, MRI does nothing. </paragraph>
+<section id="howtoget" xml-lang="en"><paragraph id="par_id00138536" role="paragraph" xml-lang="en">Menu - Tools - Configuration... </paragraph></section>
+<section id="sec_id19850722"><paragraph id="hd_id70029363" level="2" role="heading" xml-lang="en">SDK Directory </paragraph>
+<paragraph id="par_id79081378" role="paragraph" xml-lang="en">If you have the OpenOffice.org SDK installation, select its top most  directory (there is docs directory inside in it). For example:  </paragraph>
+<paragraph id="par_id45662420" role="paragraph" xml-lang="en" />
+<paragraph id="par_id75129781" role="code" xml-lang="en">file:///C:/Program%2FFiles/OpenOffice.org%2FSDK<br />
+file:///opt/openoffice.org/basis3.2/sdk<br />
+</paragraph>
+<paragraph id="par_id16070601" role="paragraph" xml-lang="en" />
+<paragraph id="par_id91923541" role="paragraph" xml-lang="en">If you do not have it, input like the following: http://api.openoffice.org </paragraph>
+</section>
+<section id="sec_id34807263"><paragraph id="hd_id47529784" level="2" role="heading" xml-lang="en">Web Browser Path </paragraph>
+<paragraph id="par_id25625820" role="paragraph" xml-lang="en">You have to set your web browser path, if you want to open IDL Reference  from MRI. Push the Select button and select your web browser path.  Input your browser executable path in an URL notation. </paragraph>
+<paragraph id="par_id65057341" role="paragraph" xml-lang="en">If you want to use Konqueror as your web browser, input the command written  below instead of the browser path:  </paragraph>
+<paragraph id="par_id79930968" role="paragraph" xml-lang="en" />
+<paragraph id="par_id40023618" role="code" xml-lang="en">kfmclient openProfile webbrowsing<br />
+</paragraph>
+<paragraph id="par_id01106499" role="paragraph" xml-lang="en" />
+<paragraph id="par_id14433919" role="paragraph" xml-lang="en">Now Firefox is widely used on Linux environment and if you have, input simply firefox. </paragraph>
+</section>
+<section id="sec_id15005922"><paragraph id="hd_id44567989" level="2" role="heading" xml-lang="en">Font Name and Character Size of the Information Edit </paragraph>
+<paragraph id="par_id73806158" role="paragraph" xml-lang="en">Input a font name and character size which you want to use in the information edit.  Non proportional fonts are recommended, like "Courier" and "DejaVu Sans Mono" font. MRI do not mention the font name is valid that you input in, therefore input a correct font name. </paragraph>
+<paragraph id="par_id61229119" role="paragraph" xml-lang="en">This setting is not work with grid mode. </paragraph>
+</section>
+<section id="sec_id51247738"><paragraph id="hd_id83209505" level="2" role="heading" xml-lang="en">Window Size and Position </paragraph>
+<paragraph id="par_id55390172" role="paragraph" xml-lang="en">MRI can store initial position and size of the MRI window. When the configuration  dialog is opened, there is the edit box showing comma separated values.  These values mean the position and size of the current MRI window in the order  of x, y, width, height. If you want to store these values as the initial position  and size of the MRI window, check the check box placed in right side of the edit box (its label shows "Save position and size of the window"). </paragraph>
+</section>
+<section id="sec_id20471504"><paragraph id="hd_id19393740" level="2" role="heading" xml-lang="en">Save States of Tools Options </paragraph>
+<paragraph id="par_id24957274" role="paragraph" xml-lang="en">If this check box is checked when you push the OK button of the MRI configuration dialog, Sorted and Abbreviated options' states are stored. </paragraph>
+</section>
+<section id="sec_id98184137"><paragraph id="hd_id67495790" level="2" role="heading" xml-lang="en">Use Grid Control </paragraph>
+<paragraph id="par_id28287136" role="paragraph" xml-lang="en">Use grid control as information view. This option is enabled after the restarting MRI. This option can be chose on MRI 0.8 or later (needs OpenOffice.org 3.3). </paragraph>
+</section>
+<section id="sec_id84337671"><paragraph id="hd_id22280005" level="2" role="heading" xml-lang="en">Use Tab Control </paragraph>
+<paragraph id="par_id56129289" role="paragraph" xml-lang="en">Using tab control to switch informations. This option works on OpenOffice.org 3.4 or later. </paragraph>
+</section>
+<section id="sec_id74246132"><paragraph id="hd_id35052458" level="2" role="heading" xml-lang="en">Shortcut Keys </paragraph>
+<paragraph id="par_id17573481" role="paragraph" xml-lang="en">Now shortcut keys are customizable. Push Shortcut Keys button on the configuration dialog to modify them. </paragraph>
+</section>
+<section id="sec_id62010104"><paragraph id="hd_id54166453" level="2" role="heading" xml-lang="en">Macros Directory </paragraph>
+<paragraph id="par_id46897667" role="paragraph" xml-lang="en">User's macros are loaded from the directory specified and shown in Macros menu. You can use variables substituted by com.sun.star.util.PasthSubstitution service in the directory notation. </paragraph>
+</section>
+</body>
+
+</helpdocument>

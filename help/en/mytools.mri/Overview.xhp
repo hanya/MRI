@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Overview.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id59182823" level="1" role="heading" xml-lang="en">MRI Overview</paragraph>
+<bookmark branch="index" id="id_id37199088" xml-lang="en"><bookmark_value>MRI Overview</bookmark_value>
+</bookmark>
+<paragraph id="par_id64459425" role="paragraph" xml-lang="en"> MRI (My Reflection and Introspection) is an UNO object browser. Properties, Methods, Interfaces and Services information are shown about a passed target of an UNO object. All value types are shown in UNO type.  </paragraph>
+<list format="1" type="unordered"><listitem> Properties can be get and set. </listitem>
+<listitem> You can call method directly with its arguments which can be described in string type. </listitem>
+<listitem> You can open the related page of the IDL Reference manual according to the information. </listitem>
+<listitem> MRI is implemented as a service in order to run from any languages, written in Python.  </listitem>
+<listitem> The code generator of the MRI generates code including interface queries.  </listitem>
+</list>
+</body>
+
+</helpdocument>

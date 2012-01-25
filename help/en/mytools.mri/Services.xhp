@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Services.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id98598635" level="1" role="heading" xml-lang="en">Services</paragraph>
+<bookmark branch="index" id="id_id58244446" xml-lang="en"><bookmark_value>Services</bookmark_value>
+</bookmark>
+<paragraph id="par_id79242419" role="paragraph" xml-lang="en"> Supported service names and available service names of the target are listed if the Services scope seleted. </paragraph>
+<paragraph id="par_id16051934" role="paragraph" xml-lang="en">Supported service names are shown if the target supports com.sun.star.lang.XServiceInfo. Available service names are shown only the target supports com.sun.star.lang.XMultiServiceFactory, com.sun.star.lang.XMultiComponentFactory or com.sun.star.container.XContentEnumerationAccess interface. </paragraph>
+<paragraph id="par_id36058604" role="paragraph" xml-lang="en">IDL Ref. button works the same as Interfaces scope. </paragraph>
+</body>
+
+</helpdocument>

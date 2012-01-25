@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Keys.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id79863169" level="1" role="heading" xml-lang="en">Shortcut Keys</paragraph>
+<bookmark branch="index" id="id_id81491542" xml-lang="en"><bookmark_value>Shortcut Keys</bookmark_value>
+</bookmark>
+<paragraph id="par_id39247229" role="paragraph" xml-lang="en"> These shortcut keys can be used in the information edit. </paragraph>
+<table id="tab_id27626008"><tablerow><tablecell><emph>Keys</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Enter </tablecell>
+<tablecell>Get/Set a value or call a method </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt + LEFT </tablecell>
+<tablecell>Go back </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt + RIGHT </tablecell>
+<tablecell>Go forward </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + P </tablecell>
+<tablecell>Properties scope </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + M </tablecell>
+<tablecell>Methods scope </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + I </tablecell>
+<tablecell>Interfaces scope </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + S </tablecell>
+<tablecell>Services scope </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + R </tablecell>
+<tablecell>Open IDL Reference </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + F </tablecell>
+<tablecell>Change the focus to the search edit </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + Q </tablecell>
+<tablecell>Select a whole current line (only text mode) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + W </tablecell>
+<tablecell>Select the current word (text mode only) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + A </tablecell>
+<tablecell>Select all (text mode only) </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + V </tablecell>
+<tablecell>Sort </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + B </tablecell>
+<tablecell>Abbreviated </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + H </tablecell>
+<tablecell>Show/Hide code field </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + J </tablecell>
+<tablecell>Context menu on the grid control </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + U </tablecell>
+<tablecell>index short cut </tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl + N </tablecell>
+<tablecell>name short cut </tablecell>
+</tablerow>
+</table>
+<paragraph id="par_id37074792" role="paragraph" xml-lang="en">A few shortcut keys do not work depends on your window environment. </paragraph>
+<paragraph id="par_id89494486" role="paragraph" xml-lang="en">If MRI is in the grid mode, the context menu of the grid control provides few functions. </paragraph>
+<section id="sec_id86904265"><paragraph id="hd_id26803261" level="2" role="heading" xml-lang="en">Modifier Keys </paragraph>
+<paragraph id="par_id97202029" role="paragraph" xml-lang="en">When you double click the information edit of the MRI window,  the following keys can be used: </paragraph>
+<table id="tab_id38659665"><tablerow><tablecell><emph>Modifier</emph>
+</tablecell>
+<tablecell><emph>Description</emph>
+</tablecell>
+</tablerow>
+<tablerow><tablecell>Ctrl </tablecell>
+<tablecell>Open the object that will be taken by the operation (only interfaces and structs) in new MRI window. </tablecell>
+</tablerow>
+<tablerow><tablecell>Shift </tablecell>
+<tablecell>Invalid the double click action. </tablecell>
+</tablerow>
+<tablerow><tablecell>Alt or Ctrl + Shift </tablecell>
+<tablecell>Change the mode to do something about properties temporary. </tablecell>
+</tablerow>
+</table>
+<bookmark branch="hid/mytools.Mri:ShortcutKeys" id="bk_id13200569" xml-lang="en"><bookmark_value xml-lang="en">MRI Shortcut Keys</bookmark_value></bookmark>
+</section>
+<section id="sec_id64939530"><paragraph id="hd_id70558687" level="2" role="heading" xml-lang="en">Customize Shortcut Keys </paragraph>
+<paragraph id="par_id44766336" role="paragraph" xml-lang="en">Now shotcut keys of MRI can be changed through Tools - Configuration... dialog. Push Shortcut Keys button on the Configuration dialog to open Shortcut Keys dialog which allows to modify shortcut keys. </paragraph>
+<paragraph id="par_id71519561" role="paragraph" xml-lang="en">The settings for configured keys are stored in $(user)/config/mrikeys.pickle. Remove it if you do not need it anymore or if you want to back to all keys to default settings. </paragraph>
+<section id="sec_id74789936"><paragraph id="hd_id46806052" level="3" role="heading" xml-lang="en">Assign </paragraph>
+<paragraph id="par_id11714995" role="paragraph" xml-lang="en">Choose an entry from the list of commands and move focus in edit box, and then push key combinations. Push Assign button to bind the key to selected command.  </paragraph>
+</section>
+<section id="sec_id08593720"><paragraph id="hd_id60128336" level="3" role="heading" xml-lang="en">Delete </paragraph>
+<paragraph id="par_id41647776" role="paragraph" xml-lang="en">Choose an entry in the list of commands and push Delete button on the dialog. Now the edit box is empty, push Assign button to reflect the current value to selected entry. </paragraph>
+</section>
+<section id="sec_id94672201"><paragraph id="hd_id77042888" level="3" role="heading" xml-lang="en">Macros </paragraph>
+<paragraph id="par_id94185380" role="paragraph" xml-lang="en">Macro can be executed by to push key combinations. Push Macros button to add new entry for a macro. Macros should be stored under the directory of MRI macros or user's directory of macros, see Configuration page for more information. </paragraph>
+<paragraph id="par_id33493464" role="paragraph" xml-lang="en">Choose a macro entry on Macros dialog which is opened when you push Macros button of Shortcut keys dialog. After that, assign key combination to it according to assign section. </paragraph>
+</section>
+<section id="sec_id98924934"><paragraph id="hd_id20466450" level="3" role="heading" xml-lang="en">Default </paragraph>
+<paragraph id="par_id67322089" role="paragraph" xml-lang="en">Push Default button to restore selected entry, and then push Assign button to bind to it. </paragraph>
+</section>
+<section id="sec_id98207695"><paragraph id="hd_id91703759" level="3" role="heading" xml-lang="en">Add New </paragraph>
+<paragraph id="par_id50951241" role="paragraph" xml-lang="en">The list of entried allow only one key combination for each entries. If you want to bind the command to another key combination, push Add New button and choose a command to add it as new entry. </paragraph>
+<paragraph id="par_id61252852" role="paragraph" xml-lang="en">If you want to remove added entry, choose it and push Delete button and then push Assign button on the dialog. It will removed at the time to store the settings. </paragraph>
+</section>
+<section id="sec_id16645425"><paragraph id="hd_id68780857" level="3" role="heading" xml-lang="en">Store </paragraph>
+<paragraph id="par_id15812845" role="paragraph" xml-lang="en">Push Store button to reflect your new key combinations and to store it in setting file. </paragraph>
+</section>
+</section>
+</body>
+
+</helpdocument>

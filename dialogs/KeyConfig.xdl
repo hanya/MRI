@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="KeyConfig" dlg:left="32" dlg:top="22" dlg:width="210" dlg:height="183" dlg:closeable="true" dlg:moveable="true" dlg:title="Shortcut Keys">
+ <dlg:bulletinboard>
+  <dlg:text dlg:id="labelShortcutKeys" dlg:tab-index="9" dlg:left="6" dlg:top="3" dlg:width="153" dlg:height="12" dlg:valign="bottom" dlg:value="Shortcut keys"/>
+  <dlg:textfield dlg:id="editKeys" dlg:tab-index="0" dlg:left="6" dlg:top="17" dlg:width="153" dlg:height="14"/>
+  <dlg:menulist dlg:id="listKeys" dlg:tab-index="1" dlg:left="6" dlg:top="33" dlg:width="153" dlg:height="143"/>
+  <dlg:button dlg:id="btnAssign" dlg:tab-index="2" dlg:left="163" dlg:top="17" dlg:width="43" dlg:height="14" dlg:value="Assign"/>
+  <dlg:button dlg:id="btnDelete" dlg:tab-index="3" dlg:left="163" dlg:top="39" dlg:width="43" dlg:height="14" dlg:value="Delete"/>
+  <dlg:button dlg:id="btnMacros" dlg:tab-index="4" dlg:left="163" dlg:top="60" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Macros"/>
+  <dlg:button dlg:id="btnDefault" dlg:tab-index="5" dlg:left="163" dlg:top="82" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Default"/>
+  <dlg:button dlg:id="btnAdd" dlg:tab-index="10" dlg:left="163" dlg:top="104" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Add New"/>
+  <dlg:button dlg:id="btnHelp" dlg:tab-index="6" dlg:left="163" dlg:top="126" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Help" dlg:button-type="help" dlg:help-url="mytools.Mri:ShortcutKeys"/>
+  <dlg:button dlg:id="btnStore" dlg:tab-index="7" dlg:left="163" dlg:top="145" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Store"/>
+  <dlg:button dlg:id="btnClose" dlg:tab-index="8" dlg:left="163" dlg:top="163" dlg:width="43" dlg:height="14" dlg:help-text="Add macro entry" dlg:value="Close"/>
+ </dlg:bulletinboard>
+</dlg:window>

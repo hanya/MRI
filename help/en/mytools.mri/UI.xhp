@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/UI.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id31981114" level="1" role="heading" xml-lang="en">User Interface</paragraph>
+<bookmark branch="index" id="id_id18785131" xml-lang="en"><bookmark_value>User Interface</bookmark_value>
+</bookmark>
+<paragraph id="par_id84046418" role="paragraph" xml-lang="en"> The MRI window has some controls and the menubar. </paragraph>
+<section id="sec_id52158524"><paragraph id="hd_id37844185" level="2" role="heading" xml-lang="en">Controls </paragraph>
+<paragraph id="par_id38284864" role="paragraph" xml-lang="en"><emph>MRI Window </emph>
+<br />
+ You can resize the MRI window. And you can use multiple MRI windows at a time. MRI can change initial position and inilial size of MRI window, use Configuration Button for this purpose. See Configuration section in detail. <br />
+<emph>Menubar </emph>
+<br />
+ You can access to some functions from menu entries. Each entry is described in Menubar section. <br />
+<emph>Scope Listbox </emph>
+<br />
+ Select an item from scope list you want to take a kind of information about the current target. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:list_category" id="bk_id19334876" xml-lang="en"><bookmark_value xml-lang="en">Scope list box</bookmark_value></bookmark>
+<paragraph id="par_id27559412" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:list_category" visibility="hidden">Information category</ahelp> </paragraph>
+<paragraph id="par_id90542216" role="paragraph" xml-lang="en"><emph>Implementation Name Text Field </emph>
+<br />
+ This control is placed at the bottom part of the window. This edit box shows ImplementationName of the target. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:edit_in" id="bk_id15447975" xml-lang="en"><bookmark_value xml-lang="en">Implemenation Name Field</bookmark_value></bookmark>
+<paragraph id="par_id97300545" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:edit_in" visibility="hidden">Implementation name of the current target</ahelp> </paragraph>
+<paragraph id="par_id73985933" role="paragraph" xml-lang="en"><emph>Object Type Name Text Field </emph>
+<br />
+ Object type indicates the type of the target. This value is taken from com.sun.star.reflection.CoreReflection service. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:edit_type" id="bk_id64548238" xml-lang="en"><bookmark_value xml-lang="en">Object type field</bookmark_value></bookmark>
+<paragraph id="par_id24557473" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:edit_type" visibility="hidden">Type name of the target</ahelp> </paragraph>
+<paragraph id="par_id35319731" role="paragraph" xml-lang="en"><emph>History Listbox </emph>
+<br />
+ History Listbox have a list of targets. Histories are updated when you call properties or methods returns an object. You can change the target using this listbox. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:list_hist" id="bk_id64614142" xml-lang="en"><bookmark_value xml-lang="en">History listbox</bookmark_value></bookmark>
+<paragraph id="par_id44065793" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:list_hist" visibility="hidden">Targets histories</ahelp> </paragraph>
+<paragraph id="par_id59502145" role="paragraph" xml-lang="en"><emph>Go Back Button </emph>
+<br />
+ Show previous target form the history now selected. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_back" id="bk_id82324148" xml-lang="en"><bookmark_value xml-lang="en">Go Back Button</bookmark_value></bookmark>
+<paragraph id="par_id89781177" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_back" visibility="hidden">Go back to the previous target</ahelp> </paragraph>
+<paragraph id="par_id72003367" role="paragraph" xml-lang="en"><emph>Go Forward Button </emph>
+<br />
+ Show previous target form the history now selected. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_forward" id="bk_id35230240" xml-lang="en"><bookmark_value xml-lang="en">Go Forward Button</bookmark_value></bookmark>
+<paragraph id="par_id41030214" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_forward" visibility="hidden">Go to the next target</ahelp> </paragraph>
+<paragraph id="par_id75181499" role="paragraph" xml-lang="en"><emph>Search Text Edit </emph>
+<br />
+ You want to search text inside the information edit. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:edit_search" id="bk_id99043074" xml-lang="en"><bookmark_value xml-lang="en">Search field</bookmark_value></bookmark>
+<paragraph id="par_id18326772" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:edit_search" visibility="hidden">Search text</ahelp> </paragraph>
+<paragraph id="par_id11674782" role="paragraph" xml-lang="en"><emph>Search Button </emph>
+<br />
+ Start searching from ending of the cursor position of the information edit. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_search" id="bk_id11528845" xml-lang="en"><bookmark_value xml-lang="en">Search Button</bookmark_value></bookmark>
+<paragraph id="par_id16510551" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_search" visibility="hidden">Start to search</ahelp> </paragraph>
+<paragraph id="par_id11830865" role="paragraph" xml-lang="en"><emph>Open IDL Reference Button </emph>
+<br />
+ Open the IDL Reference page according to the selected scope. If you want to use this button to open IDL Reference, see Configuration section and configure the settings. If Properties or Methods scope is selected and selection begins "." in information edit, MRI ascribes a selected text connected with "com.sun.star". If Methods scope selected and not selected in information edit, IDL reference page of the interface of a method shown in carret line. A carret line text is used as IDL Reference page if Interfaces or Services scope is selected. You may not to select texts that you want to open the page of IDL Reference. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_ref" id="bk_id62911157" xml-lang="en"><bookmark_value xml-lang="en">Open IDL Reference Button</bookmark_value></bookmark>
+<paragraph id="par_id78409110" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_ref" visibility="hidden">Push to open IDL Reference</ahelp> </paragraph>
+<paragraph id="par_id56667776" role="paragraph" xml-lang="en"><emph>Information Edit </emph>
+<br />
+ All information about the target shown here. Double click a line of the displayed text, you can get property value if Properties scope selected or invoke method and get its return value if Methods scope selected. A font name and a character size used in this edit can be changed using Configuration button. See Configuration section. <br />
+If this control is focused on, some shortcut keys are used. See Shortcut Keys section about them. </paragraph>
+<bookmark branch="hid/mytools.Mri:edit_info" id="bk_id64859574" xml-lang="en"><bookmark_value xml-lang="en">Information Edit</bookmark_value></bookmark>
+<paragraph id="par_id50506797" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:edit_info" visibility="hidden">Information of the target</ahelp> </paragraph>
+<paragraph id="par_id38848611" role="paragraph" xml-lang="en"><emph>Information Label </emph>
+<br />
+ MRI shows information here. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:label_status" id="bk_id05853165" xml-lang="en"><bookmark_value xml-lang="en">Information Label</bookmark_value></bookmark>
+<paragraph id="par_id60506282" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:label_status" visibility="hidden">Status</ahelp> </paragraph>
+<paragraph id="par_id69310994" role="paragraph" xml-lang="en"><emph>Code Edit </emph>
+<br />
+ Code is shown on this area. The type of code can be chose from Tools - Code. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:edit_code" id="bk_id72075430" xml-lang="en"><bookmark_value xml-lang="en">Code Edit</bookmark_value></bookmark>
+<paragraph id="par_id41953250" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:edit_code" visibility="hidden">Shows piece of code</ahelp> </paragraph>
+<paragraph id="par_id59630393" role="paragraph" xml-lang="en"><emph>Splitter </emph>
+<br />
+ Double-click on this control to show/hide code edit. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:splitter" id="bk_id70558771" xml-lang="en"><bookmark_value xml-lang="en">Splitter</bookmark_value></bookmark>
+<paragraph id="par_id56971015" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:splitter" visibility="hidden">Splitter for code edit</ahelp> </paragraph>
+<paragraph id="par_id20215663" role="paragraph" xml-lang="en"><emph>index button </emph>
+<br />
+ This button provides shortcut to call getByIndex method if the current target supports com.sun.star.container.XIndexAccess interface. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_index" id="bk_id08740812" xml-lang="en"><bookmark_value xml-lang="en">Index Button</bookmark_value></bookmark>
+<paragraph id="par_id45639724" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_index" visibility="hidden">Shortcut to getByIndex method.</ahelp> </paragraph>
+<paragraph id="par_id44859284" role="paragraph" xml-lang="en"><emph>name button </emph>
+<br />
+ This button allows you to call getByName method directory if com.sun.star.container.XNameAccess interface is supported by the target. <br />
+</paragraph>
+<bookmark branch="hid/mytools.Mri:btn_name" id="bk_id86837228" xml-lang="en"><bookmark_value xml-lang="en">Name Button</bookmark_value></bookmark>
+<paragraph id="par_id76404472" role="paragraph" xml-lang="en"><ahelp hid="mytools.Mri:btn_name" visibility="hidden">Shortcut to getByName method.</ahelp> </paragraph>
+</section>
+<section id="sec_id45104086"><paragraph id="hd_id78518897" level="2" role="heading" xml-lang="en">Menubar </paragraph>
+<paragraph id="par_id58847616" role="paragraph" xml-lang="en">Descriptions of the menubar of the MRI window. </paragraph>
+<section id="sec_id24225936"><paragraph id="hd_id28470900" level="3" role="heading" xml-lang="en">File Menu </paragraph>
+<section id="sec_id98954076"><paragraph id="hd_id71664908" level="4" role="heading" xml-lang="en">New </paragraph>
+ Creates a new document and its model object is opened as a target for MRI. </section>
+<section id="sec_id12650899"><paragraph id="hd_id45891628" level="4" role="heading" xml-lang="en">Output </paragraph>
+ Makes a document about information of current target. </section>
+<section id="sec_id12677208"><paragraph id="hd_id75343861" level="4" role="heading" xml-lang="en">Rename </paragraph>
+ Changes title name of the current MRI window. </section>
+<section id="sec_id62779308"><paragraph id="hd_id69474184" level="4" role="heading" xml-lang="en">Diff </paragraph>
+<paragraph id="par_id78347186" role="paragraph" xml-lang="en"> Compare two object about property values. </paragraph>
+</section>
+</section>
+<section id="sec_id51579793"><paragraph id="hd_id72834548" level="3" role="heading" xml-lang="en">Tools Menu </paragraph>
+ States of these checkable options in Tools menu are stored in the settings (see <link href="mytools.mri/Configuration.xhp" name="link to...">Configuration</link>
+ section). <section id="sec_id29248969"><paragraph id="hd_id15996438" level="4" role="heading" xml-lang="en">Sort A-z </paragraph>
+ When this menu checked, information lines are sorted by A-Z, a-z order. </section>
+<section id="sec_id53589910"><paragraph id="hd_id99552238" level="4" role="heading" xml-lang="en">Abbreviated </paragraph>
+ If this menu checked, "com.sun.star." is replaced with "." (comma). For example, "com.sun.star.lang.XComponent" is shown like ".lang.XComponent".  </section>
+<section id="sec_id02577944"><paragraph id="hd_id07166199" level="4" role="heading" xml-lang="en">Show Labels </paragraph>
+ If checked this menu entry, labels are displayed in the infromation edit. </section>
+<section id="sec_id44163018"><paragraph id="hd_id35681971" level="4" role="heading" xml-lang="en">Code </paragraph>
+ Code generation menu. See <link href="mytools.mri/Code.xhp" name="link to...">Code</link>
+. </section>
+<section id="sec_id77022947"><paragraph id="hd_id33659899" level="4" role="heading" xml-lang="en">Configuration... </paragraph>
+<paragraph id="par_id53582866" role="paragraph" xml-lang="en"> If you want to set your IDL Reference directory and your browser path, choose this entry. Configuration dialog opens when this menu is selected. And you can set initial position and size of MRI window. Configuration of MRI is described in Configuration section. </paragraph>
+</section>
+</section>
+<section id="sec_id54884489"><paragraph id="hd_id90558916" level="3" role="heading" xml-lang="en">Targets Menu </paragraph>
+ The Desktop, ServiceManager, new service and new structs are accessed directly as a target from this menu entries. And all frames attached to Desktop are accessed too. <section id="sec_id66427707"><paragraph id="hd_id66890208" level="4" role="heading" xml-lang="en">Desktop </paragraph>
+ If you select Desktop entry, new instance of com.sun.star.frame.Desktop service is created as a target. </section>
+<section id="sec_id01936309"><paragraph id="hd_id86738974" level="4" role="heading" xml-lang="en">ServiceManager </paragraph>
+ If ServiceManager entry is selected, com.sun.star.lang.XMultiComponentFactory interface is taken as a taraget from default context. </section>
+<section id="sec_id07787854"><paragraph id="hd_id69690702" level="4" role="heading" xml-lang="en">Services </paragraph>
+ If you select this entry, dialog box having the edit control is open and input a service name that you want to instantiate as a target. </section>
+<section id="sec_id53550492"><paragraph id="hd_id32543931" level="4" role="heading" xml-lang="en">Structs </paragraph>
+ You can create new struct as a target like the service. </section>
+<section id="sec_id24507095"><paragraph id="hd_id53557376" level="4" role="heading" xml-lang="en">Frames </paragraph>
+<paragraph id="par_id32283160" role="paragraph" xml-lang="en"> General application frames are attached using append method of com.sun.star.frame.XFrames interface accessed through getFrames method of com.sun.star.frame.XFramesSupplier interface supported by com.sun.star.frame.Desktop service. We can access to frames contained into its frames container through the Desktop. And we have no way to access to frames are not appended to its container. Child frames are accessed through its parent frames container. So, MRI can access frames attached to the Desktop. When you select a frame from menu entries, MRI tries to get it as a target. If the frame that you selected is not exist, MRI fails to get it. These entries are updeated automatically when you select the Targets menu. If you select a name from this list, MRI gets frame object having it from Desktop. After you select a frame object, the target is com.sun.star.frame.XFrame interface. If you want to see its model object, choose Controller property and next Model property of its controller (or use getController method and getModel method). See about how to get values of the target, Properties subsection. </paragraph>
+</section>
+</section>
+<section id="sec_id90133325"><paragraph id="hd_id11234161" level="3" role="heading" xml-lang="en">Mode Menu </paragraph>
+ This menu depends on only the property scope is selected. These Get and Set entries are radio type items. <section id="sec_id32715094"><paragraph id="hd_id89146349" level="4" role="heading" xml-lang="en">Get </paragraph>
+ If Get mode selected, property values are got from the target and MRI shows them. </section>
+<section id="sec_id06632745"><paragraph id="hd_id14288487" level="4" role="heading" xml-lang="en">Set </paragraph>
+ Properties having numerical, string or boolean type value can be set their value. </section>
+</section>
+<section id="sec_id02615357"><paragraph id="hd_id76835115" level="3" role="heading" xml-lang="en">Window </paragraph>
+<paragraph id="par_id57648029" role="paragraph" xml-lang="en"> Window changer like a normal Window menu of the general OpenOffice.org document window. </paragraph>
+</section>
+<section id="sec_id01685899"><paragraph id="hd_id96161960" level="3" role="heading" xml-lang="en">Macros Menu </paragraph>
+<paragraph id="par_id58411480" role="paragraph" xml-lang="en"> This menu shows macro entries. </paragraph>
+</section>
+<section id="sec_id33847962"><paragraph id="hd_id94361732" level="3" role="heading" xml-lang="en">Help Menu </paragraph>
+ Help about MRI. <section id="sec_id11736219"><paragraph id="hd_id23459750" level="4" role="heading" xml-lang="en">MRI Help </paragraph>
+ Open this help file. </section>
+<section id="sec_id60009900"><paragraph id="hd_id77927687" level="4" role="heading" xml-lang="en">What's This? </paragraph>
+ Show extended tool tip of the control. </section>
+<section id="sec_id47300562"><paragraph id="hd_id82101037" level="4" role="heading" xml-lang="en">About MRI </paragraph>
+ About MRI and its version information. </section>
+</section>
+</section>
+</body>
+
+</helpdocument>

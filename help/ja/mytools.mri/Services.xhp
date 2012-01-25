@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="ja" id="tit"></title>
+      <filename>/mytools.mri/Services.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-14T02:06:44"></created>
+      <lastedited date="2011-11-14T02:06:44"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id42809376" level="1" role="heading" xml-lang="ja">サービス</paragraph>
+<bookmark branch="index" id="id_id97915911" xml-lang="ja"><bookmark_value>サービス</bookmark_value>
+</bookmark>
+<paragraph id="par_id63981752" role="paragraph" xml-lang="ja"> UNO オブジェクトにサポートされているサービス名および利用できるサービス名が表示されます。 サポートされているサービス名はターゲットの UNO オブジェクトが com.sun.star.lang.XServiceInfo インターフェースをサポートしているときのみ表示されます。また、利用可能なサービス名はターゲットが com.sun.star.lang.XMultiServiceFactory、com.sun.star.lang.XMultiComponentFactory、com.sun.star.container.XContentEnumerationAccess のうち一つ以上のインターフェースをサポートしているときにのみ表示されます。 </paragraph>
+<paragraph id="par_id86732836" role="paragraph" xml-lang="ja">IDL Ref. ボタンはインターフェーススコープと同じように動作します。 </paragraph>
+</body>
+
+</helpdocument>

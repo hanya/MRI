@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Structs.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id67411213" level="1" role="heading" xml-lang="en">Structs</paragraph>
+<bookmark branch="index" id="id_id16544619" xml-lang="en"><bookmark_value>Structs</bookmark_value>
+</bookmark>
+<paragraph id="par_id85203716" role="paragraph" xml-lang="en"> MRI can show elements of a struct and gets their value. </paragraph>
+<section id="sec_id73720619"><paragraph id="hd_id00346596" level="2" role="heading" xml-lang="en">Properties Scope </paragraph>
+<paragraph id="par_id71414249" role="paragraph" xml-lang="en">Structs is not UNO object and they have only element attribute. So, MRI shows structs' element in the Properties scope. </paragraph>
+<paragraph id="par_id66307149" role="paragraph" xml-lang="en">For example, com.sun.star.lang.Locale struct is shown like this below. </paragraph>
+<table id="tab_id72195405"><tablerow><tablecell>Name</tablecell>
+<tablecell>Value Type</tablecell>
+<tablecell>Value</tablecell>
+<tablecell>Mode </tablecell>
+</tablerow>
+<tablerow><tablecell>Country</tablecell>
+<tablecell>string</tablecell>
+<tablecell>US</tablecell>
+<tablecell />
+</tablerow>
+<tablerow><tablecell>Language</tablecell>
+<tablecell>string</tablecell>
+<tablecell>en</tablecell>
+<tablecell />
+</tablerow>
+<tablerow><tablecell>Variant</tablecell>
+<tablecell>string</tablecell>
+<tablecell>""</tablecell>
+<tablecell />
+</tablerow>
+</table>
+<paragraph id="par_id44876006" role="paragraph" xml-lang="en">You can get a value of an element by the double clicking on the information edit. </paragraph>
+</section>
+<section id="sec_id21106723"><paragraph id="hd_id57216481" level="2" role="heading" xml-lang="en">Services Scope </paragraph>
+<paragraph id="par_id82990023" role="paragraph" xml-lang="en">Structs do not supports any services but MRI shows structs name in the information edit at the Services scope. This behavior allows to open its IDL Reference page. </paragraph>
+</section>
+</body>
+
+</helpdocument>

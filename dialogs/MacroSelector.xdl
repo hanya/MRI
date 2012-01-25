@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="MacroSelector" dlg:left="49" dlg:top="69" dlg:width="162" dlg:height="202" dlg:closeable="true" dlg:moveable="true" dlg:title="Macros">
+ <dlg:bulletinboard>
+  <dlg:text dlg:id="labelMacros" dlg:tab-index="3" dlg:left="7" dlg:top="5" dlg:width="55" dlg:height="14" dlg:valign="bottom" dlg:value="Macros"/>
+  <dlg:button dlg:id="btnOk" dlg:tab-index="2" dlg:left="115" dlg:top="5" dlg:width="43" dlg:height="14" dlg:value="OK" dlg:button-type="ok"/>
+  <dlg:button dlg:id="btnCancel" dlg:tab-index="1" dlg:left="65" dlg:top="5" dlg:width="43" dlg:height="14" dlg:value="Cancel" dlg:button-type="cancel"/>
+  <dlg:fixedline dlg:id="lineDescription" dlg:tab-index="4" dlg:left="8" dlg:top="162" dlg:width="147" dlg:height="12" dlg:value="Description"/>
+  <dlg:text dlg:id="labelDescription" dlg:tab-index="5" dlg:left="8" dlg:top="175" dlg:width="147" dlg:height="22" dlg:multiline="true"/>
+  <dlg:treecontrol dlg:id="treeMacros" dlg:tab-index="0" dlg:left="6" dlg:top="21" dlg:width="150" dlg:height="139" dlg:tabstop="true"/>
+ </dlg:bulletinboard>
+</dlg:window>

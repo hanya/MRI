@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="ja" id="tit"></title>
+      <filename>/mytools.mri/Code.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-14T02:06:44"></created>
+      <lastedited date="2011-11-14T02:06:44"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id09995466" level="1" role="heading" xml-lang="ja">コード</paragraph>
+<bookmark branch="index" id="id_id75990828" xml-lang="ja"><bookmark_value>コード</bookmark_value>
+</bookmark>
+<paragraph id="par_id32037251" role="paragraph" xml-lang="ja">生成されたコードはそのままでは実行できないことがあります。MRI は様々なところから実行できるため、場合によっては完全なコードを生成できません。 </paragraph>
+<section id="sec_id16701944"><paragraph id="hd_id15769102" level="2" role="heading" xml-lang="ja">Code メニュー </paragraph>
+<paragraph id="par_id14333318" role="paragraph" xml-lang="ja">Tools メニューから Code メニューへアクセスできます。コードを表示するテキストフィールドを表示するにはメニューの Tools - Code - Code 項目にチェックを入れてください。 コードテキストフィールドは情報テキストフィールドの下に表示されます。枠線をドラッグしてサイズを調整できます。また、情報テキストフィールドの右下でマウスの右ボタンをダブルクリックしてください。または Ctrl + H キーを押します。 </paragraph>
+</section>
+<section id="sec_id87788614"><paragraph id="hd_id19726574" level="2" role="heading" xml-lang="ja">Code の種類 </paragraph>
+<paragraph id="par_id21905161" role="paragraph" xml-lang="ja">Tools - Code メニューで表示するコードの種類を選択できます。 </paragraph>
+</section>
+<section id="sec_id21047315"><paragraph id="hd_id06583053" level="2" role="heading" xml-lang="ja">Pseud Property </paragraph>
+<paragraph id="par_id27058721" role="paragraph" xml-lang="ja">選択した言語のブリッジが Pseud プロパティをサポートしている場合にはコードが Pseud プロパティを利用するように生成されます。 </paragraph>
+</section>
+<section id="sec_id56091915"><paragraph id="hd_id68281446" level="2" role="heading" xml-lang="ja">注意 </paragraph>
+<paragraph id="par_id57527311" role="paragraph" xml-lang="ja">MRI は Type や XMethodIdl インターフェース、リフレクション API などを利用して型情報を取得しようとしますが、値の型が any のときには予期せぬ値の型になることがあります。たとえば、com.sun.star.beans.PropertyValue 構造体では Value 要素が any 型の値を保持していますが、その値の型の定義はそのオブジェクトから提供されません。大抵その情報は他のサービスにより定義されています。たとえば、com.sun.star.document.MediaDescriptor サービスなどです。any 型の値を取得した場合には値の型が正しくなっているか確認してください。 多くの場合、any 型として戻された数値型の値の型は間違ったものになっていることがあります。 </paragraph>
+</section>
+<section id="sec_id05499817"><paragraph id="hd_id36021806" level="2" role="heading" xml-lang="ja">新しいコードジェネレータの追加 </paragraph>
+<paragraph id="par_id30896635" role="paragraph" xml-lang="ja">新しい言語のコードジェネレータを追加できます。 </paragraph>
+<paragraph id="par_id93058707" role="paragraph" xml-lang="ja">拡張機能がインストールされているディレクトリへ移動して、pythonpath/mytools_Mri/generators ディレクトリを開いてください。新しいコードジェネレータを "code_generator.py" ファイルに従って作成、"generators.py" ファイルに新しいコードジェネレータの定義を書き込みます。 </paragraph>
+<paragraph id="par_id02381393" role="paragraph" xml-lang="ja">追加されたジェネレータは Tools - Code メニューに自動的に表示されます。 </paragraph>
+<list format="1" type="unordered"><listitem> UNO と追加したい言語間の Type Mapping が必要です。 </listitem>
+<listitem> 追加したい言語での struct、enum、サービスなどの値の作成方法。 </listitem>
+</list>
+</section>
+</body>
+
+</helpdocument>

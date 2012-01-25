@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<helpdocument version="1.0">
+  <meta>
+    <topic id="mytools_mri_" indexer="include">
+      <title xml-lang="en" id="tit"></title>
+      <filename>/mytools.mri/Macros.xhp</filename>
+    </topic>
+    <history>
+      <created date="2011-11-13T18:20:08"></created>
+      <lastedited date="2011-11-13T18:20:08"></lastedited>
+    </history>
+  </meta><body><paragraph id="hd_id09423125" level="1" role="heading" xml-lang="en">Macros</paragraph>
+<bookmark branch="index" id="id_id80489310" xml-lang="en"><bookmark_value>Macros</bookmark_value>
+</bookmark>
+<paragraph id="par_id47191600" role="paragraph" xml-lang="en"> MRI has macro function to control MRI itself. They can be written by users in Python. </paragraph>
+<paragraph id="par_id13905964" role="paragraph" xml-lang="en">This file has problem about indentation in Python code. See  <link href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOo%2FExt%2FMRI%2FDocumentation%2FMacros"> Macros</link>
+. </paragraph>
+</body>
+
+</helpdocument>

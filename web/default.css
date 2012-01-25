@@ -1,0 +1,226 @@
+
+body
+{
+	font-size: 80%;
+	font-family: monospace;
+	line-height: 130%;
+	margin: 2em 2em 2em 2em;
+}
+
+a:link
+{
+	color: #000000;
+	text-decoration: none;
+}
+a:visited
+{
+	color: #222222;
+	text-decoration: none;
+}
+
+.action { cursor: default; }
+
+div.data
+{
+	border: 1px solid #aaaaaa;
+	padding: 1em;
+	margin-top: -2px;
+	color: #000000;
+}
+
+div.inner_data
+{
+	position: fixed;
+	visibility: hidden;
+}
+
+div.inner_data_active
+{
+	position: static;
+	visibility: visible;
+}
+
+div.title
+{
+	float: left;
+	margin-bottom: -1em;
+}
+
+span.mri_title
+{
+	color: #dddddd;
+}
+
+div#page_data
+{
+	visibility: hidden;
+}
+div#g
+{
+	float: right;
+}
+
+td.type
+{
+	border: 1px solid #aaaaaa;
+	padding: 2px 8px;
+	text-align: right;
+}
+
+div.tab
+{
+	margin-top: -1em;
+	padding-top: 3em;
+}
+
+table
+{
+	font: inherit;
+}
+p
+{
+	margin-left: 1em;
+}
+table td
+{
+	border: 0px;
+	border-color: #eeeeee #eeeeee #eeeeee #eeeeee;
+	margin: 1px 2px;
+	padding: 1px 2px;
+}
+tr.even_row
+{
+	border: 0px;
+	/* border-top: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #eeeeee #eeeeee #eeeeee #eeeeee; */
+	background-color: #f6f6f6;
+}
+tr.title_row
+{
+	background-color: #eeeeee;
+	font-weight: bold;
+}
+table.tab td
+{
+	border: 1px solid #aaaaaa;
+	border-bottom: 0px none;
+	padding: 2px 6px;
+	margin: 3px;
+	margin-bottom: -1px;
+	cursor: default;
+}
+table.code_tab td
+{
+	border: 1px solid #aaaaaa;
+	padding: 2px 6px;
+	cursor: default;
+}
+td.active
+{
+	background-color: #ffffff;
+}
+td.nonactive
+{
+	background-color: #eeeeee;
+}
+input.tab
+{
+	font-family: inherit;
+	border: 0px;
+	background-color: transparent;
+	margin: 0px;
+	padding: 0px;
+}
+
+span.history
+{
+	/* background-color: #eeeeee; */
+	padding: 2px 6px;
+}
+span.current_history
+{
+	text-decoration: underline;
+	padding: 2px 6px;
+}
+
+div.code_type
+{
+	float:right;
+	margin-top: -1em;
+}
+
+td.code_type
+{
+	border: 1px solid #aaaaaa;
+	padding: 2px 4px;
+}
+
+div.msg_title
+{
+	border: 1px solid #f0f0f0;
+	margin-bottom: 1em;
+}
+
+div.msg_value
+{
+	border: 0px;
+}
+
+div.message_back
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	visibility: hidden;
+	/* background-color: #ffffff; */
+	/* opacity: 0.05; */
+	z-index: 9;
+}
+
+div.message
+{
+	visibility: hidden;
+	position: absolute;
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding: 1em;
+	top: 0px;
+	left: 0px;
+	/* width: 250px;
+	height: 200px; */
+	z-index: 10;
+}
+textarea.msg_value
+{
+	border: 1px solid #ffffff;
+	font-size: inherit;
+	height: 170px;
+}
+select.select_box
+{
+	border: 1px solid #ffffff;
+	font-size: inherit;
+	height: 170px;
+}
+div.select_box_lower
+{
+	margin-top: 1em;
+	float: right;
+}
+input.button
+{
+	border: 1px solid #aaaaaa;
+	background-color: #ffffff;
+	width: 50px;
+}
+input.input_box
+{
+	border: 1px solid #aaaaaa;
+	background-color: #ffffff;
+}
+p.input_box
+{
+	margin-left: 0em;
+}
+

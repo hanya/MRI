@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Module1" script:language="StarBasic">REM  *****  BASIC  *****
+REM Mri is part of MRI.
+
+&apos; You want to pass a object to MRI from OpenOffice.org Basic,
+&apos; use &quot;Mri&quot; subroutine.
+
+Sub Mri( ByVal Optional MriTargetObject )
+  On Error GoTo Handler
+  Dim oMRI As Object
+  If IsMissing( MriTargetObject ) Then MriTargetObject = StarDesktop
+  oMRI = CreateUnoService( &quot;mytools.Mri&quot; )
+  oMRI.inspect( MriTargetObject )
+  Exit Sub
+  Handler:
+    msgbox &quot;Error: &quot; &amp; Error
+End Sub
+
+
+REM if you want to load MRILib, write like below.
+
+Sub LoadMriLibrary()
+  Globalscope.BasicLibraries.LoadLibrary( &quot;MRILib&quot; )
+End Sub
+
+
+
+
+</script:module>

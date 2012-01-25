@@ -1,0 +1,24 @@
+
+構造体の要素を表示、それらの値を取得できます。
+
+== Properties Scope ==
+
+Structs は element 属性を持ちます。MRI はプロパティスコープにそれらの情報を表示します。
+
+たとえば、com.sun.star.lang.Locale struct は次のように表示されます。
+
+{|
+|Name||Value Type||Value||Mode
+|-
+|Country||string||US||
+|-
+|Language||string||en||
+|-
+|Variant||string||""||
+|}
+
+各行をダブルクリックして値を取得できます。
+
+== Services Scope ==
+
+Structs はサービスをサポートしていませんが、struct 名をサービススコープに表示します。IDL リファレンスを表示するときなどに利用してください。

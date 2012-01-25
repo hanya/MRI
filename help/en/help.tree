@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tree_view version="13-11-2011">
+<help_section application="mri" id="23757218" title="MRI">
+<topic id="mri/mytools.mri/index.xhp">MRI Documentation</topic>
+<node id="49531917" title="All Pages">
+<topic id="mri/mytools.mri/index.xhp">Index Page</topic>
+<topic id="mri/mytools.mri/Overview.xhp">Overview</topic>
+<topic id="mri/mytools.mri/Installation.xhp">Installation</topic>
+<topic id="mri/mytools.mri/RunMRI.xhp">How to Run MRI</topic>
+<topic id="mri/mytools.mri/UI.xhp">User Interface</topic>
+<topic id="mri/mytools.mri/Keys.xhp">Shortcut Keys</topic>
+<topic id="mri/mytools.mri/Configuration.xhp">Configuration</topic>
+<topic id="mri/mytools.mri/Properties.xhp">Properties</topic>
+<topic id="mri/mytools.mri/Methods.xhp">Methods</topic>
+<topic id="mri/mytools.mri/Interfaces.xhp">Interfaces</topic>
+<topic id="mri/mytools.mri/Services.xhp">Services</topic>
+<topic id="mri/mytools.mri/Structs.xhp">Structs</topic>
+<topic id="mri/mytools.mri/Code.xhp">Code</topic>
+<topic id="mri/mytools.mri/TypeMappings.xhp">Type Mappings</topic>
+<topic id="mri/mytools.mri/Macros.xhp">Macros</topic>
+</node>
+</help_section>
+</tree_view>

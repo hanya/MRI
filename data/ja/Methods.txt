@@ -1,0 +1,48 @@
+
+== メソッド情報を参照 ==
+
+メソッドの情報は次のような形で表示されます。
+
+{|
+|Name||Arguments||Return Type||Exceptions
+|-
+|getName||()||string||
+|-
+|supportsService||( [in] string ServiceName )||boolean||
+|}
+
+getName は引数をとらず、戻り値の型は string 型。そして、supportsService メソッドは文字列の型の値をとり、真偽型の値を戻します。
+
+メソッドはメソッド名が表示されている行をダブルクリックしてメソッドを呼び出せます。多くのメソッドは引数が必要なため呼び出すのは難しいです
+
+カーソル位置の行にリストされたメソッドを定義しているインターフェースの IDL リファレンスページを開くことができます。
+
+== 特殊なメソッドの利用 ==
+
+There are a few important interfaces and their methods are sometimes needed to get something. In the most case, the interface is the one from the container module.
+
+== getByIndex ==
+
+オブジェクトが com.sun.star.container.XIndexContainer にまとめられているとき、 com.sun.star.container.XIndexAccess インターフェースのメソッドを利用して各オブジェクトにアクセスします。MRI を通じて getByIndex メソッドを呼び出したとき、MRI はgetCount メソッドを呼び出して XIndexContainer に含まれている要素数を取得してユーザーに取得したい要素のインデックスを選択させます。このとき選択したインデックスを引数として getByIndex メソッドを呼び出します。
+getByIndex メソッドを呼び出すと、リストボックスを持つダイアログが表示されます。取得したいインデックスを選択してください。要素数がゼロのときには空のリストボックスをもつダイアログが表示されます。
+
+== getByName ==
+
+com.sun.star.container.XNameContainer は com.sun.star.container.XNameAccess から提供されている getByName メソッドを利用してコンテナ内の要素を管理されます。 MRI は要素名を取得するために getElementNames メソッドを呼び出します。ユーザーに選択させるダイアログを表示し、選択された名前を getByName メソッドの引数とします。
+
+== 引数つきでメソッドを呼び出す ==
+
+MRI は数値、文字列、enum、真偽型の値のみを引数とするメソッドを呼び出すことができます。たとえば、次のようなメソッドを利用できます。
+
+ getCellByPosition( [in] long nColumn, [in] long nRow )
+ setName( [in] string aName )
+ goRight( [in] short nCount, [in] boolean bExpand )
+
+一方、次のメソッドは引数に struct またはインタフェースを必要とするため呼び出すことはできません。
+
+ insertDocumentFromURL( [in] string aURL, [in] [].beans.PropertyValue aOptions )
+ findAll( [in] .util.XSearchDescriptor xDesc )
+
+メソッドの各行をダブルクリックするとき、引数が必要であれば次のようなダイアログが表示されます。引数をコンマ "," で区切って入力します。引数の順番と数を守って入力してください。文字列型の値を入力するときに "," を含めることはできません。
+
+このダイアログでは Ref. ボタンでメソッドの IDL リファレンスのページを開くことができます。

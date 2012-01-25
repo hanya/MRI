@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="Addons" oor:package="org.openoffice.Office">
+<node oor:name="AddonUI">
+	<node oor:name="AddonMenu">
+		<node oor:name="mytools.mri201" oor:op="fuse">
+			<prop oor:name="Title" oor:type="xs:string">
+				<value xml:lang="en-US">~MRI</value>
+				<value xml:lang="ja">~MRI</value>
+			</prop>
+			<prop oor:name="URL" oor:type="xs:string">
+				<value>service:mytools.Mri?current</value>
+			</prop>
+			<prop oor:name="Target" oor:type="xs:string">
+				<value>_self</value>
+			</prop>
+			<prop oor:name="Context" oor:type="xs:string">
+				<value></value>
+			</prop>
+			<prop oor:name="ImageIdentifier" oor:type="xs:string">
+				<value>%origin%/icons/current</value>
+			</prop>
+		</node>
+		<node oor:name="mytools.mri202" oor:op="fuse">
+			<prop oor:name="Title" oor:type="xs:string">
+				<value xml:lang="en-US">~MRI &lt;- selection</value>
+				<value xml:lang="ja">~MRI &lt;- selection</value>
+			</prop>
+			<prop oor:name="URL" oor:type="xs:string">
+				<value>service:mytools.Mri?selection</value>
+			</prop>
+			<prop oor:name="Target" oor:type="xs:string">
+				<value>_self</value>
+			</prop>
+			<prop oor:name="Context" oor:type="xs:string">
+				<value></value>
+			</prop>
+			<prop oor:name="ImageIdentifier" oor:type="xs:string">
+				<value>%origin%/icons/selection</value>
+			</prop>
+		</node>
+	</node>
+</node>
+</oor:component-data> 
