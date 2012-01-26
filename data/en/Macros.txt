@@ -2,4 +2,4 @@
 MRI has macro function to control MRI itself. They can be written by users in Python.
 
 This file has problem about indentation in Python code. See 
-[http://hermione.s41.xrea.com/pukiwiki/index.php?OOo%2FExt%2FMRI%2FDocumentation%2FMacros Macros].
+[https://github.com/hanya/MRI/wiki/Macros Macros].
