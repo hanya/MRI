@@ -13,7 +13,7 @@
 <bookmark branch="index" id="id_id80489310" xml-lang="en"><bookmark_value>Macros</bookmark_value>
 </bookmark>
 <paragraph id="par_id47191600" role="paragraph" xml-lang="en"> MRI has macro function to control MRI itself. They can be written by users in Python. </paragraph>
-<paragraph id="par_id13905964" role="paragraph" xml-lang="en">This file has problem about indentation in Python code. See  <link href="https://github.com/hanya/MRI/wiki/Macros"> Macros</link>
+<paragraph id="par_id13905964" role="paragraph" xml-lang="en">This file has problem about indentation in Python code. See  <link href="https://github.com/hanya/MRI/wiki/Macros">https://github.com/hanya/MRI/wiki/Macros</link>
 . </paragraph>
 </body>
 
