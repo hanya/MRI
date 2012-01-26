@@ -18,7 +18,7 @@ except:
     from sets import Set as set
 
 MRINAME = 'MRI'
-MRIVERSION = '1.0.0'
+MRIVERSION = '1.1.0'
 MRI_HOME = 'http://extensions.services.openoffice.org/project/MRI'
 MRI_ID = 'mytools.mri'
 MRI_DIR = None
