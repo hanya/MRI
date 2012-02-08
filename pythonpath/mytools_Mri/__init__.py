@@ -379,6 +379,9 @@ class MRI(object):
                 self.engine.has_interface2(self.current, "com.sun.star.container.XElementAccess"):
                 _type = self.current.target.getElementType()
                 ret_type = self.engine.for_name(_type.typeName)
+                # added to solve problem on new configuration
+                if ret_type.getTypeClass() == TypeClass.VOID:
+                    ret_type = self.engine.get_type(entry)
             
             entry.type = ret_type
             value_type = ExtAnyType2(entry, self.engine, ret_type.getName(), ret_type.getTypeClass())
