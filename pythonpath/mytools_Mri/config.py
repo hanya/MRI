@@ -59,7 +59,7 @@ class Config(object):
         version = get_configvalue(self.ctx, nodepath, "ooSetupVersion")
         name = get_configvalue(self.ctx, nodepath, "ooName")
         if version >= "3.3":
-            if name == "OpenOffice.org":
+            if name == "OpenOffice.org" or name == "OOo-dev":
                 if version == "3.3":
                     Config.TAB = 0
                     Config.GRID = 1
