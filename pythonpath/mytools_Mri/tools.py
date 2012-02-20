@@ -73,3 +73,38 @@ def open_help(desktop, url):
     if not help_frame: return None
     
     return help_frame
+
+def get_package_info(ctx, ext_id):
+    """ Get package information for extension id. """
+    repositories = ("user", "shared", "bundle")
+    manager_name = "/singletons/com.sun.star.deployment.ExtensionManager"
+    factory_name = "/singletons/com.sun.star.deployment.thePackageManagerFactory"
+    older = False
+    if ctx.hasByName(manager_name):
+        # 3.3 required
+        manager = ctx.getByName(manager_name)
+        
+    elif ctx.hasByName(factory_name):
+        factory = ctx.getByName(factory_name)
+        older = True
+    package = None
+    for repository in repositories:
+        if older:
+            try:
+                manager = factory.getPackageManager(repository)
+                package = manager.getDeployedPackage(ext_id, "", None)
+            except:
+                pass
+        else:
+            package = manager.getDeployedExtension(repository, ext_id, "", None)
+        if package:
+            break
+    return package
+
+
+def get_package_version(ctx, ext_id):
+    """ Get package version number. """
+    package = get_package_info(ctx, ext_id)
+    if package:
+        return package.getVersion()
+    return ""
