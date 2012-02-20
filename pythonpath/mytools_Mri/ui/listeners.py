@@ -647,9 +647,11 @@ class MenuListener(unohelper.Base, XMenuListener):
     
     def about_MRI(self):
         """ Show about message. """
-        from mytools_Mri.values import MRINAME, MRI_HOME, MRIVERSION
+        from mytools_Mri.values import MRINAME, MRI_HOME, MRI_ID
+        from mytools_Mri.tools import get_package_version
+        version = get_package_version(self.cast.ctx, MRI_ID)
         txt = []
-        txt.append("%s\tversion: %s \n" % (MRINAME,MRIVERSION))
+        txt.append("%s\tversion: %s \n" % (MRINAME, version))
         txt.append("Home:\n%s" % MRI_HOME)
         txt.append("\n\nPython %s" % sys.version)
         self.cast.message("\n".join(txt), MRINAME)
