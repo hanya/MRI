@@ -763,4 +763,15 @@ class MRIEngine(object):
         if self.tdm.hasByHierarchicalName(name):
             return self.tdm.getByHierarchicalName(name)
         return None
-
+    
+    def check_method_from_container(self, method):
+        def check_super_klass(klass):
+            for k in klass.getSuperclasses():
+                if k.getName() == "com.sun.star.container.XElementAccess":
+                    return True
+                else:
+                    r = check_super_klass(k)
+                    if r:
+                        return True
+            return False
+        return check_super_klass(method.getDeclaringClass())
