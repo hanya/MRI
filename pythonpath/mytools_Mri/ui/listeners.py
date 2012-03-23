@@ -692,6 +692,12 @@ class ComponentWindowListener(unohelper.Base, XEventListener):
             removeListeners(cast, config.grid, config.use_tab)
             cast.listeners = None
             cast.splitter.dispose()
+            if config.use_tab:
+                subcont = self.cast.cont.getControl("subcont")
+                try:
+                    self.cast.cont.removeControl(subcont)
+                except Exception, e:
+                    print(e)
             cast.config = None
             cast.engine = None
             cast.cont = None
