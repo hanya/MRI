@@ -195,8 +195,8 @@ def _create_controls(ctx, smgr, cont, ps, use_tab):
         (1,2,8,'Type of target','mytools.Mri:edit_type',True,True,False,))
     edit_in = cctrl( #show implementationName
         smgr,ctx, 'Edit', width -315, height-20, 200, 20,
-        ('Align','Border','FontHeight','HelpText','HelpURL','ReadOnly','Tabstop',),
-        (1,0,8,'Implementation name of the target.','mytools.Mri:edit_in',True,False,))
+        ('Align','Border','FontHeight','HelpText','HelpURL','PaintTransparent','ReadOnly','Tabstop',),
+        (1,0,8,'Implementation name of the target.','mytools.Mri:edit_in',True,True,False,))
     list_hist = cctrl( 
         smgr,ctx, 'ListBox', 85 + x_corr,35,175,25, 
         ('Dropdown','FontHeight','HelpText','HelpURL','LineCount','MultiSelection',), 
