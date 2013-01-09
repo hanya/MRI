@@ -1,9 +1,9 @@
 #! /bin/sh
 
 NAME=MRI
-VERSION=1.1.3
+VERSION=`cat "VERSION"`
 
-zip -9 -r -n pyc -o ${NAME}-${VERSION}.oxt \
+zip -9 -r -n pyc -o files/${NAME}-${VERSION}.oxt \
  META-INF/* *.xcu *.xcs *.py description.xml MRILib/* \
  descriptions/* dialogs/* help/* icons/* \
  notices/* web/* pythonpath/mytools_Mri/*.py \
