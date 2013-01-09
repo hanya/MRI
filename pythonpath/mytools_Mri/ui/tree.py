@@ -253,13 +253,18 @@ class TreeComponentWindowListener(unohelper.Base, XEventListener):
         del self.cast.listeners["tree_mouse"]
 
 from com.sun.star.awt.MouseButton import RIGHT as MB_RIGHT
-from com.sun.star.awt import Rectangle
+from com.sun.star.awt import Point, Rectangle
 
 from com.sun.star.awt import XMouseListener
 class TreeMouseListener(unohelper.Base, XMouseListener):
     def __init__(self, cast):
         self.cast = cast
         self.popup = None
+        
+        import mytools_Mri.tools
+        self.use_point = mytools_Mri.tools.check_method_parameter(self.cast.ctx, 
+            "com.sun.star.awt.XPopupMenu", "execute", 1, "com.sun.star.awt.Point")
+        
     def disposing(self, ev):
         self.cast = cast
     def mouseEntered(self, ev): pass
@@ -271,8 +276,11 @@ class TreeMouseListener(unohelper.Base, XMouseListener):
                 self.popup = self._create_popup()
                 if not self.popup: return
             pos = ev.Source.getPosSize()
-            n = self.popup.execute(ev.Source.getPeer(), 
-                    Rectangle(pos.X + ev.X, pos.Y + ev.Y, 0, 0), 0)
+            if self.use_point:
+                _pos = Point(pos.X + ev.X, pos.Y + ev.Y)
+            else:
+                _pos = Rectangle(pos.X + ev.X, pos.Y + ev.Y, 0, 0)
+            n = self.popup.execute(ev.Source.getPeer(), _pos, 0)
             if n > 0:
                 self.do_command(ev, n)
     

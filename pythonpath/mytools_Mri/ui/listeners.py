@@ -417,10 +417,21 @@ class MenuListener(unohelper.Base, XMenuListener):
             's_': self.macros_menu, "e_": self.execute_macro}
     
     def disposing(self,ev): pass
+    
     def activate(self,ev): pass
     def deactivate(self,ev): pass
     
+    def highlight(self,ev):
+        self.itemHighlighted(ev)
+    
     def select(self, ev):
+        self.itemSelected(ev)
+    
+    # since AOO 4.0
+    def itemActivated(self, ev): pass
+    def itemDeactivated(self, ev): pass
+    
+    def itemSelected(self, ev):
         menu = ev.Source
         mid = ev.MenuId
         cmd = menu.getCommand(mid)[12:]
@@ -431,7 +442,7 @@ class MenuListener(unohelper.Base, XMenuListener):
             except Exception, e:
                 print(e)
     
-    def highlight(self,ev):
+    def itemHighlighted(self, ev):
         cmd = ev.Source.getCommand(ev.MenuId)
         
         if cmd == 'targets':

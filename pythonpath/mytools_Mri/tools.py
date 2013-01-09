@@ -108,3 +108,41 @@ def get_package_version(ctx, ext_id):
     if package:
         return package.getVersion()
     return ""
+
+
+def create_service(ctx, name, args=None):
+    """ Create service with args if required. """
+    smgr = ctx.getServiceManager()
+    if args:
+        return smgr.createInstanceWithArgumentsAndContext(name, args, ctx)
+    else:
+        return smgr.createInstanceWithContext(name, ctx)
+
+
+def check_interface(ctx, interface_name, method_names):
+    """ Check the interface is implemented or methods are implemented. """
+    cr = create_service(ctx, "com.sun.star.reflection.CoreReflection")
+    try:
+        idl = cr.forName(interface_name)
+        for name in method_names:
+            r = idl.getMethod(name)
+            if r is None:
+                return False
+    except:
+        return False
+    return True
+
+
+def check_method_parameter(ctx, interface_name, method_name, param_index, param_type):
+    """ Check the method has specific type parameter at the specific position. """
+    cr = create_service(ctx, "com.sun.star.reflection.CoreReflection")
+    try:
+        idl = cr.forName(interface_name)
+        m = idl.getMethod(method_name)
+        if m:
+            info = m.getParameterInfos()[param_index]
+            return info.aType.getName() == param_type
+    except:
+        pass
+    return False
+

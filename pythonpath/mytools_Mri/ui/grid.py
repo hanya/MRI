@@ -14,7 +14,7 @@
 
 import unohelper
 
-from com.sun.star.awt import XMouseListener, KeyEvent, Rectangle
+from com.sun.star.awt import XMouseListener, KeyEvent, Point, Rectangle
 from com.sun.star.awt.MouseButton import RIGHT as MB_RIGHT, LEFT as MB_LEFT
 from mytools_Mri.ui import transferable
 
@@ -68,6 +68,11 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
     def __init__(self, cast):
         self.cast = cast
         self.popup = None
+        
+        import mytools_Mri.tools
+        self.use_point = mytools_Mri.tools.check_method_parameter(self.cast.ctx, 
+            "com.sun.star.awt.XPopupMenu", "execute", 1, "com.sun.star.awt.Point")
+        
     def disposing(self,ev): pass
     def mouseReleased(self,ev): pass
     def mouseEntered(self,ev): pass
@@ -107,8 +112,11 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
                     self._update_popup_states(((2, False), (4, False), (8, False), (512, False)))
                 
                 pos = ev.Source.getPosSize()
-                n = self.popup.execute(ev.Source.getPeer(), 
-                        Rectangle(pos.X + ev.X, pos.Y + ev.Y, 0, 0), 0)
+                if not self.use_point:
+                    _pos = Point(pos.X + ev.X, pos.Y + ev.Y)
+                else:
+                    _pos = Rectangle(pos.X + ev.X, pos.Y + ev.Y, 0, 0)
+                n = self.popup.execute(ev.Source.getPeer(), pos, 0)
                 if n > 0:
                     self.do_command(n)
             except Exception, e:
