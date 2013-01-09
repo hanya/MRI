@@ -1,7 +1,7 @@
 #! /bin/sh
 
 NAME=MRI
-VERSION=1.1.1
+VERSION=1.1.3
 
 zip -9 -r -n pyc -o ${NAME}-${VERSION}.oxt \
  META-INF/* *.xcu *.xcs *.py description.xml MRILib/* \
