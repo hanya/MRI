@@ -3,7 +3,7 @@ MRI is an object introspection tool for OpenOffice.org.
 
 Requirements
  Current version supports OpenOffice.org version 3.0-3.3 and 
-Apache OpenOffice 3.4-4.0. And also LibreOffice 3.3-3.5. 
+Apache OpenOffice 3.4-4.0. And also LibreOffice 3.3-4.0. 
  MRI is written in Python, which is required to execute PyUNO bridge 
 installation.
 
