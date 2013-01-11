@@ -119,7 +119,7 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
                 n = self.popup.execute(ev.Source.getPeer(), pos, 0)
                 if n > 0:
                     self.do_command(n)
-            except Exception, e:
+            except Exception as e:
                 print(e)
     
     def do_command(self, n):
@@ -149,7 +149,7 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
                 return
             try:
                 transferable.set_text_to_clipboard(self.cast.ctx, word)
-            except Exception, e:
+            except Exception as e:
                 print(e)
     
     def _update_popup_states(self, states):
@@ -215,7 +215,7 @@ class GridInfoListener(SimpleGridInfoListener):
                     self.cast.info_action(category)
             elif ev.Buttons == MB_RIGHT and ev.ClickCount == 1:
                 SimpleGridInfoListener.mousePressed(self, ev)
-        except Exception, e:
+        except Exception as e:
             print(e)
             import traceback
             traceback.print_exc()
@@ -261,7 +261,7 @@ class GridPagesBase(PagesBase):
             ctrl.deselectAllRows()
             ctrl.selectRow(row_index)
             self.show_row(index, row_index)
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def show_row(self, index, row_index):
@@ -346,7 +346,7 @@ class GridPages(GridPagesBase):
                 data_model.removeAll()
                 for row in rows:
                     data_model.addRow('', tuple(row))
-            except Exception, e:
+            except Exception as e:
                 print(e)
         
         def _get_count(self, data_model):

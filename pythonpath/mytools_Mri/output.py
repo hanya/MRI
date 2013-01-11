@@ -17,7 +17,7 @@ import os
 import re
 import operator
 
-from values import PSEUDPORP, NONSTRVAL, ABBROLD, ABBRNEW
+from mytools_Mri.values import PSEUDPORP, NONSTRVAL, ABBROLD, ABBRNEW
 from mytools_Mri.unovalues import TypeClass
 
 from mytools_Mri import engine
@@ -36,7 +36,7 @@ class Mri_output_calc(object):
         self._check_sheets(doc)
         try:
             self.parse_entry(self.main.main.current, doc)
-        except Exception, e:
+        except Exception as e:
             print(e)
         doc.unlockControllers()
     
@@ -184,8 +184,8 @@ class Mri_output_html(object):
         self.engine = engine.MRIEngine(self.main.ctx)
         
         # set css
-        from tools import get_extension_dirurl
-        from values import MRI_ID
+        from mytools_Mri.tools import get_extension_dirurl
+        from mytools_Mri.values import MRI_ID
         ext_dir = get_extension_dirurl(self.main.ctx, MRI_ID) 
         css_url = "%s/web/history.css" % ext_dir
         js_url = "%s/web/mri.js" % ext_dir
@@ -220,7 +220,7 @@ class Mri_output_html(object):
             for child in self.main.history.get_children():
                 #print("'%s'" % child)
                 txt.append(self.parse_children(child, 0))
-        except Exception, e:
+        except Exception as e:
             print(e)
         #print "\n".join(txt)
         #print(self.make_interfaces(self.main.current_entry))
@@ -256,7 +256,7 @@ class Mri_output_html(object):
             #print(child.name)
             try:
                 txt.append(self.parse_children(child, level))
-            except Exception, e:
+            except Exception as e:
                 print(e)
         return ''.join(txt)
     
@@ -396,7 +396,7 @@ class Mri_output_html(object):
             try:
                 txt.append("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (
                 item, self.make_idl_link(p[1]), p[2], p[3], p[4]))
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 print(item)
         
@@ -528,7 +528,7 @@ class Mri_output_html(object):
                     '</td><td>' + element[2] + \
                     '</td><td>' + element[3] + '</td></tr>')
             return "\n".join(txt)
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def make_struct_sequence(self, entry):
@@ -539,7 +539,7 @@ class Mri_output_html(object):
         type_name = ttype.getName()
         
         n = type_name.count('[]')
-        l = range(len(entry.target))
+        l = list(range(len(entry.target)))
         b = entry.target[:]
         if n > 1:
             for i in range(n -1):

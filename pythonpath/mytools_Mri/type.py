@@ -14,8 +14,8 @@
 
 import uno
 
-from unovalues import TypeClass, TypeClassGroups
-from engine import EntryBase
+from mytools_Mri.unovalues import TypeClass, TypeClassGroups
+from mytools_Mri.engine import EntryBase
 
 
 class ExtType2(uno.Type):
@@ -95,7 +95,7 @@ class ExtAnyType2(uno.Type):
                     self.ComponentType = ExtAnyType2(elemental_entry, engine, comp_type.getName(), comp_type.getTypeClass())
                     self.typeName = "[]%s" % self.ComponentType.getName()
                     self.Name = self.typeName
-                except Exception, e:
+                except Exception as e:
                     print(e)
             else:
                 self.ComponentType = engine.for_name(type_name)

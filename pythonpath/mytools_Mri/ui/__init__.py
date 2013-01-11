@@ -52,7 +52,7 @@ class MRIUi(info.ExtendedInfo):
                 self.config, self.config.grid, self.config.use_tab)
             mytools_Mri.ui.listeners.set_listeners(
                 self, self.config.grid, self.config.use_tab)
-        except Exception, e:
+        except Exception as e:
             print(e)
             traceback.print_exc()
         self._init_ui()
@@ -117,8 +117,8 @@ class MRIUi(info.ExtendedInfo):
                     pages.enable_name_button(
                         self.engine.has_interface2(self.main.current, 
                             'com.sun.star.container.XNameAccess'))
-            except Exception, e:
-                print("Exception: reload_entry INTERFACE\n%s" + str(e))
+            except Exception as e:
+                print(("Exception: reload_entry INTERFACE\n%s" + str(e)))
                 traceback.print_exc()
         elif type_class == TypeClass.STRUCT or \
                 type_class == TypeClass.SEQUENCE:
@@ -132,7 +132,7 @@ class MRIUi(info.ExtendedInfo):
         
         try:
             self.update_info(index)
-        except Exception, e:
+        except Exception as e:
             print(e)
             traceback.print_exc()
             self.error("Error during to update: %s" % str(e))
@@ -190,7 +190,7 @@ class MRIUi(info.ExtendedInfo):
                 index = self.pages.get_active()
             self.update_info(index)
             self.pages.activate(index)
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def update_config(self):
@@ -222,7 +222,7 @@ class MRIUi(info.ExtendedInfo):
         if word:
             try:
                 self.pages.search(word)
-            except Exception, e:
+            except Exception as e:
                 self.status(str(e))
     
     def show_history_tree(self, ev=None):
@@ -235,8 +235,8 @@ class MRIUi(info.ExtendedInfo):
                 from mytools_Mri.ui import tree
                 tree_frame = tree.create_tree_window(self, self.ctx, self.window, ev)
                 self.tree = tree.HistoryTreeUi(self, tree_frame)
-            except Exception, e:
-                print("Error: show_tree, " + str(e))
+            except Exception as e:
+                print(("Error: show_tree, " + str(e)))
                 traceback.print_exc()
     
     def history_change(self, index, update_tree=True):
@@ -306,7 +306,7 @@ class MRIUi(info.ExtendedInfo):
                         if not n is None:
                             try:
                                 self.main.manage_sequence(entry, int(n))
-                            except Exception, e:
+                            except Exception as e:
                                 print(e)
                                 traceback.print_exc()
                 else:
@@ -316,7 +316,7 @@ class MRIUi(info.ExtendedInfo):
                         if not n is None:
                             try:
                                 self.main.manage_sequence(entry, int(n))
-                            except Exception, e:
+                            except Exception as e:
                                 print(e)
                                 traceback.print_exc()
                         return
@@ -326,7 +326,7 @@ class MRIUi(info.ExtendedInfo):
                         if False in [i.isdigit() for i in index]: return
                         try:
                             self.get_field_from_struct_sequence(word, [int(i) for i in index])
-                        except Exception, e:
+                        except Exception as e:
                             print(e)
                             traceback.print_exc()
         elif category == 1:
@@ -364,7 +364,7 @@ class MRIUi(info.ExtendedInfo):
                 target = self.pages.get_current_line()
         
             self.main.web.open_idl_reference(target, word)
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def execute_macro(self, file_name, func_name, context=None, *args):
@@ -383,7 +383,7 @@ class MRIUi(info.ExtendedInfo):
                     self.main.set_mode(False)
             #else:
             #   self.main.current = _current
-        except Exception, e:
+        except Exception as e:
             print("Error at execute_macro")
             error = "".join((e.__class__.__name__, ": ", str(e), "\n\n", 
                 "\n".join(traceback.format_tb(sys.exc_info()[2]))))

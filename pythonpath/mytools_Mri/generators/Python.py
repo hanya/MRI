@@ -74,7 +74,7 @@ class GeneratorForPython(GeneratorBase):
             excepts = []
             aexcepts = excepts.append
             
-            for e in self.exceptions.iteritems():
+            for e in self.exceptions.items():
                 aexcepts('%sexcept %s as e:' % (indent, self.get_last_part(e[0]) ))
                 aexcepts('%s# %s' % (indent *2, ', '.join(e[1])) )
                 aexcepts('%sprint(e)' % (indent *2))
@@ -102,8 +102,8 @@ class GeneratorForPython(GeneratorBase):
         if func:
             try:
                 func(entry)
-            except Exception, e:
-                print("Error on cg#add: " + str(e))
+            except Exception as e:
+                print(("Error on cg#add: " + str(e)))
                 traceback.print_exc()
         elif entry.type == CGType.NONE:
             key = entry.key

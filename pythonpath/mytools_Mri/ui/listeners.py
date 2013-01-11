@@ -66,7 +66,7 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
             if not (ev.Buttons == MB_RIGHT and ev.ClickCount == 2): return
         try:
             self.expand_code_edit()
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def expand_code_edit(self):
@@ -203,7 +203,7 @@ class KeyListener(unohelper.Base, XKeyListener):
         if fn:
             try:
                 fn()
-            except Exception, e:
+            except Exception as e:
                 print(e)
         elif cmd == "execute" or cmd == "opennew":
             self.open(cmd, mod)
@@ -266,7 +266,7 @@ class KeyListener(unohelper.Base, XKeyListener):
                 ps.Width / 2,  ps.Height / 4, 1, False)
             listener = self.cast.listeners['grid_info']
             listener.mousePressed(ev)
-        except Exception, e:
+        except Exception as e:
             print(e)
 
 class ListScopeListener(unohelper.Base, XItemListener):
@@ -400,8 +400,8 @@ class WindowListener(unohelper.Base, XWindowListener):
             edit_in.setPosSize(width - 315, stbar_Y, 0, 0, PS_Y + PS_X)
             edit_search.setPosSize(width - 109, stbar_Y, 0, 0, PS_Y + PS_X)
             btn_search.setPosSize(width - 39, stbar_Y, 0, 0, PS_Y + PS_X)
-        except Exception, e:
-            print("resize error: " + str(e))
+        except Exception as e:
+            print(("resize error: " + str(e)))
             traceback.print_exc()
 
 
@@ -439,7 +439,7 @@ class MenuListener(unohelper.Base, XMenuListener):
         if fn:
             try:
                 fn(menu, mid, cmd)
-            except Exception, e:
+            except Exception as e:
                 print(e)
     
     def itemHighlighted(self, ev):
@@ -486,7 +486,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 menu.removeItem(0, menu.getItemCount())
                 try:
                     names = self.cast.main.macros.get_macro_names()
-                except Exception, e:
+                except Exception as e:
                     return self.cast.status(str(e))
                 names.sort()
                 for i, name in enumerate(names):
@@ -499,7 +499,7 @@ class MenuListener(unohelper.Base, XMenuListener):
             if not menu.getPopupMenu(ev.MenuId):
                 try:
                     items = self.cast.main.macros.get_functions(file_name)
-                except Exception, e:
+                except Exception as e:
                     return self.cast.status(str(e))
                 if items:
                     ctx = self.cast.main.ctx
@@ -547,7 +547,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 if mytools_Mri.ui.config.ConfigDialog(self.cast).\
                     dialog_config(self.cast.config):
                     self.cast.update_config()
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 traceback.print_exc()
         elif cmd == 't_showcode':
@@ -559,7 +559,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                     self.cast.listeners['splitter'].open()
                 else:
                     self.cast.listeners['splitter'].close()
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 traceback.print_exc()
         elif cmd == 't_pseudproperty':
@@ -623,7 +623,7 @@ class MenuListener(unohelper.Base, XMenuListener):
             try:
                 status = call_dispatch(
                     self.cast.ctx, self.cast.frame, '.uno:CloseWin')
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 traceback.print_exc()
     
@@ -673,7 +673,7 @@ class MenuListener(unohelper.Base, XMenuListener):
         try:
             file_name, func_name = path.split("$", 2)
             if not func_name:
-                raise StandardError()
+                raise Exception()
         except:
             self.cast.status("function name is not specified: \n%s" % path)
             return
@@ -707,7 +707,7 @@ class ComponentWindowListener(unohelper.Base, XEventListener):
                 subcont = self.cast.cont.getControl("subcont")
                 try:
                     self.cast.cont.removeControl(subcont)
-                except Exception, e:
+                except Exception as e:
                     print(e)
             cast.config = None
             cast.engine = None
@@ -729,7 +729,7 @@ class ComponentWindowListener(unohelper.Base, XEventListener):
             self.cast = None
             if cast.status_eraser:
                 cast.status_eraser.cancel()
-        except Exception, e:
+        except Exception as e:
             print(e)
 
 
@@ -907,7 +907,7 @@ def removeListeners(self, use_grid=False, use_tab=False):
         menu.getPopupMenu(0).getPopupMenu(0).removeMenuListener(listener)
         menu.getPopupMenu(0).getPopupMenu(1).removeMenuListener(listener)
         menu.getPopupMenu(1).getPopupMenu(5).removeMenuListener(listener)
-    except Exception, e:
+    except Exception as e:
         print(e)
         traceback.print_exc()
 

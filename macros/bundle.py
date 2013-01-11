@@ -202,7 +202,7 @@ class MacroImportor(object):
             names.remove(self.README)
             for name in names:
                 a.extract(name, macros_path)
-        except Exception, e:
+        except Exception as e:
             print(e)
         a.close()
     
@@ -463,7 +463,7 @@ def reload_generator(mri):
         for name in name.split(".")[1:]:
             mod = getattr(mod, name)
         reload(mod)
-    except Exception, e:
+    except Exception as e:
         print(e)
     cg.set_enable(True)
 
@@ -500,7 +500,7 @@ def diff_from_history(mri):
                         self.engine.get_imple_name(obj) == self.imple_name:
                         state = True
                     ev.Source.getContext().getControl("btnOk").setEnable(state)
-            except Exception, e:
+            except Exception as e:
                 print(e)
     
     listener = TreeSelectionListener(engine, current, imple_name)
@@ -715,7 +715,7 @@ import sys
 
 # complement from the object
 
-class NoEntryExist(StandardError):
+class NoEntryExist(Exception):
     """ Any more entry exist. """
 
 
@@ -939,7 +939,7 @@ These variables are pre-defined:
             self.mri.set_mode(False)
             self.replace_out()
             self.leading = self.interpreter.runsource(s)
-        except Exception, e:
+        except Exception as e:
             print(e)
         self.mri.set_mode(True)
         self.restore_out()

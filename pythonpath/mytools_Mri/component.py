@@ -63,8 +63,8 @@ class Mri(unohelper.Base, XServiceInfo, XJobExecutor, XIntrospection):
             import mytools_Mri, mytools_Mri.ui
             mri = mytools_Mri.MRI(self.ctx, mytools_Mri.ui.MRIUi)
             return mri.inspect(name, target)
-        except Exception, e:
-            print("Exception %s" % e)
+        except Exception as e:
+            print(("Exception %s" % e))
             import traceback
             traceback.print_exc()
         return None

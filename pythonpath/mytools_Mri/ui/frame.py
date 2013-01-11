@@ -159,8 +159,8 @@ def _create_window(ctx, smgr, frame, window, toolkit):
         import mytools_Mri.ui.controller
         controller = mytools_Mri.ui.controller.MRIUIController(frame, None)
         frame.setComponent(cont,controller)
-    except Exception, e:
-        print("Error during to set controller: " + str(e))
+    except Exception as e:
+        print(("Error during to set controller: " + str(e)))
     return cont
 
 
@@ -341,7 +341,7 @@ def create_frame(self, ctx, smgr, config, use_grid=False, use_tab=False):
     """ Create main frame of the MRI window. """
     grid_type = config.__class__.GRID
     tab_type = config.__class__.TAB
-    ps = map(int, config.pos_size.split(','))
+    ps = list(map(int, config.pos_size.split(',')))
     
     frame, window = _create_frame(self, ctx, smgr, ps)
     toolkit = window.getToolkit()
@@ -444,8 +444,7 @@ def get_editvscrollbar(edit):
 
 def get_filler(edit):
     acedit = edit.getAccessibleContext()
-    indx = range(acedit.getAccessibleChildCount())
-    for idx in indx:
+    for idx in range(acedit.getAccessibleChildCount()):
         child = acedit.getAccessibleChild(idx)
         if has_interface(child,'com.sun.star.accessibility.XAccessible'):
             acc_child = child.getAccessibleContext()
@@ -457,7 +456,7 @@ def get_filler(edit):
 def create_popupmenu(smgr,ctx,items):
     menu = smgr.createInstanceWithContext('com.sun.star.awt.PopupMenu',ctx)
     for item in items:
-        if -1 < item[0]:
+        if (not item[0] is None) and -1 < item[0]:
             menu.insertItem(item[0],item[1],item[2],item[3])
             menu.setCommand(item[0],item[4])
         else:

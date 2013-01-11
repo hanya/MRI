@@ -90,7 +90,7 @@ class ActionListener(unohelper.Base, XActionListener):
                 self.act.store()
             elif cmd == "close":
                 ev.Source.getContext().endExecute()
-        except Exception, e:
+        except Exception as e:
             print(e)
             traceback.print_exc()
 
@@ -205,7 +205,7 @@ class KeyConfig(KeyConfigLoader):
         btn_store = dc("btnStore")
         btn_close = dc("btnClose")
         
-        for name, value in locals().iteritems():
+        for name, value in locals().items():
             if name.startswith("btn_"):
                 value.addActionListener(listener)
                 value.setActionCommand(name[4:].lower())
@@ -521,7 +521,7 @@ class KeyConfig(KeyConfigLoader):
     
     def add(self):
         commands = _commands
-        names = list(commands.itervalues())
+        names = list(commands.values())
         names.sort()
         dlg = self._create_dialog(self.COMMANDS_DIALOG)
         list_names = dlg.getControl("listCommands")
@@ -532,7 +532,7 @@ class KeyConfig(KeyConfigLoader):
             items = list_names.getSelectedItems()
             if len(items) > 0:
                 pairs = {}
-                for key, value in commands.iteritems():
+                for key, value in commands.items():
                     pairs[value] = key
                 for item in items:
                     entry = KeyEntry(pairs[item], item, 0, 0, "")
@@ -540,7 +540,10 @@ class KeyConfig(KeyConfigLoader):
         dlg.dispose()
     
     def store(self):
-        import cPickle as pickle
+        try:
+            import cPickle as pickle
+        except:
+            import pickle as pickle
         n = len(default_keys)
         a = []
         for i, entry in enumerate(self.entries):

@@ -25,6 +25,16 @@ from mytools_Mri.values import EMPTYSTR, VOIDVAL, NONSTRVAL, \
     ATTRIBUTE, ABBROLD, ABBRNEW, IGNORED_INTERFACES, IGNORED_PROPERTIES
 import mytools_Mri.node
 
+try:
+    basestring
+except:
+    basestring = str
+
+try:
+    long
+except:
+    long = int
+
 
 class MethodCallable(object):
     def __init__(self, entry, method, name):
@@ -62,8 +72,8 @@ class EntryBase(object):
             if self.type.getTypeClass() == TypeClass.SEQUENCE:
                 return uno.Any(self.type.getName(), 
                     self._convert_to_tuple(self.target))
-        except Exception, e:
-            print("get_target: " + str(e))
+        except Exception as e:
+            print(("get_target: " + str(e)))
         return self.target
     
     def has_interface(self, interface):
@@ -71,7 +81,7 @@ class EntryBase(object):
         try:
             #return interface in [t.typeName for t in self.target.Types]
             return self.mri.engine.has_interface2(self, interface)
-        except Exception, e:
+        except Exception as e:
             pass
         return False
     
@@ -103,7 +113,7 @@ class EntryBase(object):
         elif self.inspected.hasProperty(name, PropertyConcept.ALL):
             self.mri.change_history(0, self)
             type_class = self.type.getTypeClass()
-            print(type_class == TypeClass.STRUCT)
+            print((type_class == TypeClass.STRUCT))
             if type_class == TypeClass.INTERFACE:
                 return self.mri.get_property_value(name)
             elif type_class == TypeClass.STRUCT:
@@ -376,7 +386,7 @@ class MRIEngine(object):
                             value = self.get_string_value(typeclass, vvalue)
                             adinfo = ATTRIBUTE
                             rtype = None
-                        except Exception, e:
+                        except Exception as e:
                             value = ""
                             adinfo = NOTACCESSED
                             rtype = None
@@ -386,7 +396,7 @@ class MRIEngine(object):
                             value = self.get_string_value(typeclass, vvalue)
                             adinfo = ""
                             rtype = None
-                        except Exception, e:
+                        except Exception as e:
                             value = ""
                             adinfo = NOTACCESSED
                             rtype = None
@@ -427,7 +437,7 @@ class MRIEngine(object):
         try:
             for i in interfaces:
                 interfaces = interfaces | self.get_base_types(hier(i))
-        except Exception, e:
+        except Exception as e:
             print(e)
         return list(interfaces)
     
@@ -437,7 +447,7 @@ class MRIEngine(object):
         try:
             if hasattr(entry.target, 'getTypes'):
                 return [t.typeName for t in entry.target.getTypes()]
-        except Exception, e:
+        except Exception as e:
             print(e)
         return []
     
@@ -533,8 +543,8 @@ class MRIEngine(object):
                     value = self.get_string_value(type_class, vvalue)
                 else:
                     value = ''
-            except Exception, e:
-                print('error at struct info: %s' % e)
+            except Exception as e:
+                print(('error at struct info: %s' % e))
                 value = ''
             
             atxt((name, type_name, value, access_mode))
@@ -549,7 +559,7 @@ class MRIEngine(object):
         """check the interface is supported."""
         try:
             return interface in [t.typeName for t in target.Types]
-        except Exception, e:
+        except Exception as e:
             pass
         return False
     
@@ -566,7 +576,7 @@ class MRIEngine(object):
             types = [t.typeName for t in target.Types]
             for i in interfaces:
                 if i in types: return True
-        except Exception, e:
+        except Exception as e:
             pass
         return False
     
@@ -605,7 +615,7 @@ class MRIEngine(object):
                             else:
                                 return self.special_chars[ord(ch)]
                         else: return ""
-                    except Exception, e:
+                    except Exception as e:
                         print(e)
                     #return vvalue.value
                 elif type_class == TypeClass.TYPE:
@@ -718,8 +728,8 @@ class MRIEngine(object):
         for name in names:
             try:
                 servs.add(name)
-            except Exception, e:
-                print("Error on get_service_names: %s" % e)
+            except Exception as e:
+                print(("Error on get_service_names: %s" % e))
             if self.tdm.hasByHierarchicalName(name):
                 stdm = self.tdm.getByHierarchicalName(name)
                 servs = servs | self.get_included_service_names(stdm)

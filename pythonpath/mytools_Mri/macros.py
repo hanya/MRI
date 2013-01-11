@@ -79,7 +79,7 @@ class Macros(object):
                 Macros.FILE_NAMES = self.reload()
             self.loaded = True
             return Macros.FILE_NAMES
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def reload(self):

@@ -63,7 +63,10 @@ class KeyConfigLoader(object):
         if os.path.exists(path):
             f = None
             try:
-                import cPickle as pickle
+                try:
+                    import cPickle as pickle
+                except:
+                    import pickle as pickle
                 f = open(path, "rb")
                 data = pickle.load(f)
             except:

@@ -23,6 +23,10 @@ import mytools_Mri
 import mytools_Mri.values
 from mytools_Mri.unovalues import TypeClass, TypeClassGroups, ParamMode
 
+try:
+    long
+except:
+    long = int
 
 class Info(object):
     def __init__(self, engine, config):
@@ -64,7 +68,7 @@ class Info(object):
                     (t[0].ljust(mnlen), t[1].ljust(mtlen),
                     t[2].ljust(mvlen), t[3].ljust(8),
                     t[4].ljust(malen), t[5].rjust(3))) for t in txt])
-        except Exception, e:
+        except Exception as e:
             print(e)
         return "error"
     
@@ -102,7 +106,7 @@ class Info(object):
                 return ''.join([('%s  %s  %s  %s  %s  \n' % 
                     (i[0].ljust(mnlen), i[1].ljust(malen), i[2].ljust(mrlen),
                     i[3].ljust(mdlen), i[4])) for i in txt])
-        except Exception, e:
+        except Exception as e:
             print(e)
         return "error."
     
@@ -131,7 +135,7 @@ class Info(object):
         try:
             #return self.engine.get_interfaces_info(self.current_entry)
             return self.engine.all_interfaces_info(entry)
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     def get_listeners_info(self, entry, config):
@@ -207,8 +211,8 @@ class Info(object):
             else:
                 return ''.join(['%s  %s  %s %s\n' % (
                     t[0].ljust(mnlen), t[1].ljust(mtlen), t[2].ljust(mvlen), t[3]) for t in txt])
-        except Exception, e:
-            print("get_struct_info: " + str(e))
+        except Exception as e:
+            print(("get_struct_info: " + str(e)))
         return "error"
     
     def get_struct_sequence_info(self, entry, config):
@@ -223,7 +227,7 @@ class Info(object):
                 else:
                     return "empty"
             n = entry.type.getName().count('[]')
-            l = range(len(entry.target))
+            l = list(range(len(entry.target)))
             b = entry.target[:]
             if n > 1:
                 for i in range(n -1):
@@ -274,8 +278,8 @@ class Info(object):
                             i[0].ljust(mnlen), i[1].ljust(mtlen), 
                             i[2].ljust(mvlen), i[3]) for i in t[1]]
                         )) for t in elements]).lstrip()
-        except Exception, e:
-            print("get_struct_sequence_info: " + str(e))
+        except Exception as e:
+            print(("get_struct_sequence_info: " + str(e)))
         return ''
     
     
@@ -422,7 +426,7 @@ class ExtendedInfo(Info):
                 state = False
                 try:
                     state, arg, ttype, key = self.get_arguments_for_special_methods(method)
-                except Exception, e:
+                except Exception as e:
                     print(e)
                     traceback.print_exc()
                 if state:

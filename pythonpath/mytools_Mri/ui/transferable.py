@@ -62,6 +62,6 @@ def set_text_to_clipboard(ctx, text):
         if not trans:
             return
         set_clipboard_content(ctx, trans)
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
 

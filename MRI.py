@@ -18,7 +18,7 @@ def create(ctx, *args):
     try:
         import mytools_Mri.component
         return mytools_Mri.component.create(IMPLE_NAME, ctx, *args)
-    except Exception, e:
+    except Exception as e:
         print(e)
 
 # Registration

@@ -12,7 +12,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-class ParentExistsException(StandardError):
+class ParentExistsException(Exception):
     """causes if entry already has its parent."""
 
 
@@ -84,7 +84,7 @@ class Root(Node):
             else:
                 try:
                     found, m = self.counter(child, obj)
-                except Exception, e:
+                except Exception as e:
                     print(e)
                 n += m
             if found: break

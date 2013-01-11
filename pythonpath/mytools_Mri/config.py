@@ -38,7 +38,7 @@ class Config(object):
                 self.load()
                 self.check_version()
                 Config.LOADED = True
-        except Exception, e:
+        except Exception as e:
             print(e)
     
     

@@ -51,7 +51,7 @@ class ConfigButtonListener(unohelper.Base, XActionListener):
             try:
                 import mytools_Mri.ui.keyconfig
                 mytools_Mri.ui.keyconfig.KeyConfig(self.cast.cast.ctx).start()
-            except Exception, e:
+            except Exception as e:
                 print(e)
 
 # Mri configuration class
@@ -66,7 +66,7 @@ class ConfigDialog(object):
         ext_dir = mytools_Mri.values.MRI_DIR
         dlg_url = '%s/dialogs/Config.xdl' % ext_dir
         dlg = tools.create_dialog_from_url(self.ctx, dlg_url)
-        if not dlg: raise StandardError('configuration dialog not found.')
+        if not dlg: raise Exception('configuration dialog not found.')
         dlg_model = dlg.getModel()
         btn_listener = ConfigButtonListener(dlg_model, self)
         dc = dlg.getControl

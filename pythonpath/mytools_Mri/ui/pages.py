@@ -181,7 +181,7 @@ class Pages(PagesBase):
         
         try:
             result = self.regexp_search(txt, search_text, r.Max)
-        except Exception, e:
+        except Exception as e:
             raise e
         if result:
             self.select_pos(index=index, match=result)

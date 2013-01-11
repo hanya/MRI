@@ -19,7 +19,10 @@ try:
         Popen([path, url]).pid
 except:
     import os
-    import thread
+    try:
+        import thread
+    except:
+        import _thread as thread
     def execute(path, url):
         if os.sep == '\\':
             ctx = uno.getComponentContext()

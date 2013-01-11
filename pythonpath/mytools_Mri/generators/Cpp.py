@@ -87,7 +87,7 @@ class GeneratorForCpp(GeneratorBase):
             body_indent = '\n%s' % (indent * 2)
             
             catched = []
-            for e in self.exceptions.iteritems():
+            for e in self.exceptions.items():
                 catched.append('catch (%s &e)' % self.get_last_part(e[0]))
                 catched.append('{')
                 catched.append('%s// %s' % (indent, ', '.join(e[1])) )
@@ -117,8 +117,8 @@ class GeneratorForCpp(GeneratorBase):
         if func:
             try:
                 func(entry)
-            except Exception, e:
-                print("Error on cg#add: " + str(e))
+            except Exception as e:
+                print(("Error on cg#add: " + str(e)))
                 traceback.print_exc()
         elif entry.type == CGType.NONE:
             # initial element

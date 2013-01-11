@@ -61,19 +61,19 @@ class MRI(object):
                 type=CGType.NONE, key=name, 
                 value_type=entry.type, args="", parent="ROOT", idl=None)
             self.action_by_type(entry)
-        except Exception, e:
+        except Exception as e:
             print(e)
             traceback.print_exc()
     
     def code(self, *args, **kwds):
         try:
-            if not kwds.has_key("parent"):
+            if not "parent" in kwds:
                 kwds["parent"] = self.current.code_entry
             code_entry = self.cg.add(**kwds)
             if self.mode:
                 self.ui.code_updated()
             return code_entry
-        except Exception, e:
+        except Exception as e:
             print(e)
             traceback.print_exc()
         return None
@@ -151,7 +151,7 @@ class MRI(object):
                     entry.code_entry = self.code(
                         type=CGType.PROP ,mode=CGMode.GET, key=name, value_type=entry.type, idl=idl)
                     return self.action_by_type(entry)
-                except Exception, e:
+                except Exception as e:
                     self.error("Exception, to get property: %s, %s" % (name, str(e)))
                     traceback.print_exc()
                     if self.mode:
@@ -182,7 +182,7 @@ class MRI(object):
                 entry.code_entry = self.code(
                     type=CGType.ATTR, mode=CGMode.GET, key=name, value_type=entry.type, idl=attr_def)
                 return self.action_by_type(entry)
-            except Exception, e:
+            except Exception as e:
                 self.error("Exception, to get attribute: %s, %s" % (name, str(e)))
                 traceback.print_exc()
                 if self.mode:
@@ -200,7 +200,7 @@ class MRI(object):
                 entry = self.engine.create(self, name, value)
                 # ToDo code
                 return self.action_by_type(entry)
-            except Exception, e:
+            except Exception as e:
                 self.error("Exception, to get %s, %s" % (name, str(e)))
                 traceback.print_exc()
                 if self.mode:
@@ -224,7 +224,7 @@ class MRI(object):
                         arg = get_value(pinfo, old_value)
                     except CancelException:
                         return
-                    except Exception, e:
+                    except Exception as e:
                         self.status(str(e))
                         return
                 try:
@@ -242,16 +242,16 @@ class MRI(object):
                     entry.type = ext_type
                     entry.code_entry = self.code(
                         type=CGType.PROP, mode=CGMode.SET, key=name, value_type=entry.type, args=arg, idl=entry.type)
-                except WrappedTargetException, e:
+                except WrappedTargetException as e:
                     te = e.TargetException
                     self.error("Exception: %s" % te.Message)
-                except IllegalArgumentException, e:
+                except IllegalArgumentException as e:
                     self.error("Illegal value for %s property." % prop_name)
-                except PropertyVetoException, e:
+                except PropertyVetoException as e:
                     self.error("Veto to set the %s property value." % prop_name)
-                except UnknownPropertyException, e:
+                except UnknownPropertyException as e:
                     self.error("Unknown property! %s" % e)
-                except Exception, e:
+                except Exception as e:
                     self.error("Exception, to set %s property, %s" % (name, str(e)))
                     traceback.print_exc()
                 if self.mode:
@@ -267,7 +267,7 @@ class MRI(object):
                 try:
                     old_value = getattr(target, name)
                     arg = get_value(pinfo, old_value)
-                except Exception, e:
+                except Exception as e:
                     return
             try:
                 if self.mode:
@@ -287,8 +287,8 @@ class MRI(object):
                 if attr_def is False: attr_def = ""
                 entry.code_entry = self.code(
                     type=CGType.ATTR, mode=CGMode.SET, key=name, value_type=entry.type, args=arg, idl=attr_def)
-            except Exception, e:
-                print("Error to set attribute: " + str(e))
+            except Exception as e:
+                print(("Error to set attribute: " + str(e)))
                 traceback.print_exc()
             return None
         
@@ -317,7 +317,7 @@ class MRI(object):
                 return
             try:
                 return self.invoke_method(method, args, pseud=pseud)
-            except Exception, e:
+            except Exception as e:
                 self.status(str(e))
                 traceback.print_exc()
                 if self.mode:
@@ -409,12 +409,12 @@ class MRI(object):
                 return (ret,) + tuple(_d)
             else:
                 return self.action_by_type(entry)
-        except InvocationTargetException, e:
+        except InvocationTargetException as e:
             te = e.TargetException
             self.error("Method: %s invocation exception.\nError Message: \n%s" % (
                 method.getName(), te.Message))
             traceback.print_exc()
-        except Exception, e:
+        except Exception as e:
             self.error("Method: %s unknown exception.\nError Message: \n%s" % (
                 name, str(e)))
             traceback.print_exc()
@@ -444,8 +444,8 @@ class MRI(object):
             entry.code_entry = self.code(
                 type=CGType.FIELD, mode=CGMode.GET, key=name, value_type=entry.type, idl=self.engine.get_type(self.current))
             return self.action_by_type(entry)
-        except Exception, e:
-            print("Error: get_struct_element, " + str(e))
+        except Exception as e:
+            print(("Error: get_struct_element, " + str(e)))
             traceback.print_exc()
     
     def set_struct_element(self, name, value):
@@ -475,8 +475,8 @@ class MRI(object):
             entry.type = ext_type
             entry.code_entry = self.code(
                 type=CGType.FIELD, mode=CGMode.SET, key=name, value_type=entry.type, args=value, idl=self.engine.get_type(self.current))
-        except Exception, e:
-            print("Error: get_struct_element, " + str(e))
+        except Exception as e:
+            print(("Error: get_struct_element, " + str(e)))
             traceback.print_exc()
     
     def action_by_type(self, entry):
@@ -528,9 +528,9 @@ class MRI(object):
                     self.message(str(entry.target), "unknown type")
                 except:
                     self.error("Error: value to string conversion.")
-        except Exception, e:
+        except Exception as e:
             print(e)
-            print("%s, %s" % (type_name, type_class))
+            print(("%s, %s" % (type_name, type_class)))
             traceback.print_exc()
         return entry
     

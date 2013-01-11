@@ -86,8 +86,8 @@ class GeneratorForBasic(GeneratorBase):
         if func:
             try:
                 func(entry)
-            except Exception, e:
-                print("Error on cg#add: " + str(e))
+            except Exception as e:
+                print(("Error on cg#add: " + str(e)))
                 traceback.print_exc()
         elif entry.type == CGType.NONE:
             key = entry.key

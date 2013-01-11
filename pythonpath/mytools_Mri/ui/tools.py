@@ -30,7 +30,7 @@ def create_popupmenu(ctx, items):
                         menu.setAcceleratorKeyEvent(i[0], i[5])
                     except:
                         pass
-    except Exception, e:
+    except Exception as e:
         print(e)
     return menu
 

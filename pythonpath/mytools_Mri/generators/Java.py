@@ -103,7 +103,7 @@ class GeneratorForJava(GeneratorBase):
             body_indent = "\n%s" % (indent * 2)
             # ToDo
             catched = []
-            for i, e in enumerate(self.exceptions.iteritems()):
+            for i, e in enumerate(self.exceptions.items()):
                 n = i +1
                 catched.append("catch (%s e%s)" % (self.get_last_part(e[0]), n))
                 catched.append("{")
@@ -132,8 +132,8 @@ class GeneratorForJava(GeneratorBase):
         if func:
             try:
                 func(entry)
-            except Exception, e:
-                print("Error on cg#add: " + str(e))
+            except Exception as e:
+                print(("Error on cg#add: " + str(e)))
                 traceback.print_exc()
         elif entry.type == CGType.NONE:
             # initial target

@@ -35,8 +35,8 @@ class GeneratorFor(GeneratorBase):
         if func:
             try:
                 func(entry)
-            except Exception, e:
-                print("Error on cg#add: " + str(e))
+            except Exception as e:
+                print(("Error on cg#add: " + str(e)))
                 traceback.print_exc()
     
     def ad(self, line, breakable=True, _break=False):

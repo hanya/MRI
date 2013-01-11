@@ -134,7 +134,7 @@ class CustomTreeNode(unohelper.Base, XTreeNode):
             self.children.append(node)
             try:
                 self.data_model.changed(ChangeType.NodeInserted, self, (node,))
-            except Exception, e:
+            except Exception as e:
                 print(e)
         else:
             e = IllegalArgumentException()
@@ -221,8 +221,8 @@ class TreeSelectionListener(unohelper.Base, XSelectionChangeListener):
                 if node and not node == self.cast.main.current:
                     n = self.cast.main.history.get_history_index(node)
                     self.cast.history_change(n, update_tree=False)
-        except Exception, e:
-            print("selectionChanged: " + str(e))
+        except Exception as e:
+            print(("selectionChanged: " + str(e)))
             traceback.print_exc()
 
 from com.sun.star.awt import XWindowListener
@@ -380,7 +380,7 @@ def create_tree_window(self, ctx, parent, ev=None):
         listener = TreeMouseListener(self)
         self.listeners["tree_mouse"] = listener
         tree.addMouseListener(listener)
-    except Exception, e:
+    except Exception as e:
         print(e)
     return frame
 

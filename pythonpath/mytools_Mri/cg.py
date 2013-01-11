@@ -16,7 +16,7 @@ import traceback
 DEBUG = True
 def log(message):
     if DEBUG:
-        print(" LOG: " + message)
+        print((" LOG: " + message))
 
 class CGMode(object):
     GET = 1
@@ -124,7 +124,7 @@ class CodeGenerator(object):
                 mod = __import__(name = "mytools_Mri.generators.%s" % name)
                 mod = getattr(mod.generators, name)
                 generators.append((name, getattr(mod, self.CLASS_PREFIX + name).NAME))
-            except Exception, e:
+            except Exception as e:
                 print(e)
         return generators
     
@@ -138,7 +138,7 @@ class CodeGenerator(object):
         if self.enabled and self.generator:
             try:
                 self.generator.add(entry)
-            except Exception, e:
+            except Exception as e:
                 print(e)
                 traceback.print_exc()
         return entry
