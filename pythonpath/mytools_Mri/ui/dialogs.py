@@ -120,24 +120,24 @@ class Dialogs(object):
             'com.sun.star.awt.UnoControlDialogModel', self.ctx)
         dialog_model.setPropertyValues( 
             ('Height','HelpURL','PositionX','PositionY','Width',), 
-            (120,'mytools.Mri:d_select',30,50,120,) )
+            (150,'mytools.Mri:d_select',30,50,150,) )
         
         list_model = dialog_model.createInstance( 
             'com.sun.star.awt.UnoControlListBoxModel' )
         list_model.setPropertyValues( 
             ('Height','MultiSelection','PositionX','PositionY','Width',), 
-            (100,False,2,2,116,) )
+            (130,False,2,2,146,) )
         cbtn_model = dialog_model.createInstance( 
             'com.sun.star.awt.UnoControlButtonModel' )
         cbtn_model.setPropertyValues( 
             ('Height','Label','PositionX','PositionY','PushButtonType','Width',), 
-            (14,'~cancel',82,104,2,36,) )
+            (14,'~cancel',82,134,2,36,) )
         obtn_model = dialog_model.createInstance( 
             'com.sun.star.awt.UnoControlButtonModel' )
         obtn_model.setPropertyValues( 
             ('DefaultButton','Height','Label','PositionX',
             'PositionY','PushButtonType','Width',), 
-            (True,14,'~OK',42,104,1,36,) )
+            (True,14,'~OK',42,134,1,36,) )
         
         dialog_model.insertByName('list',list_model)
         dialog_model.insertByName('cbtn',cbtn_model)
