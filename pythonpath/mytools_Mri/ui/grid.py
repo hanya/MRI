@@ -34,9 +34,9 @@ def _create_grid2(ctx, smgr, page, name, help_url, title_id, grid_type):
     grid_model = model.createInstance(
         "com.sun.star.awt.grid.UnoControlGridModel")
     grid_model.setPropertyValues(
-        ("Border", "HScroll", "SelectionModel", 
+        ("BackgroundColor", "Border", "HScroll", "SelectionModel", 
         "ShowColumnHeader", "ShowRowHeader", "VScroll"), 
-        (0, True, 1, True, False, True))
+        (page.StyleSettings.DialogColor, 0, True, 1, True, False, True))
     #desc = FontDescriptor()
     #desc.Name = "DejaVu Sans Mono"
     #grid_model.FontDescriptor = desc
