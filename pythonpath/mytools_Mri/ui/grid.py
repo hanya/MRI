@@ -112,11 +112,11 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
                     self._update_popup_states(((2, False), (4, False), (8, False), (512, False)))
                 
                 pos = ev.Source.getPosSize()
-                if not self.use_point:
+                if self.use_point:
                     _pos = Point(pos.X + ev.X, pos.Y + ev.Y)
                 else:
                     _pos = Rectangle(pos.X + ev.X, pos.Y + ev.Y, 0, 0)
-                n = self.popup.execute(ev.Source.getPeer(), pos, 0)
+                n = self.popup.execute(ev.Source.getPeer(), _pos, 0)
                 if n > 0:
                     self.do_command(n)
             except Exception as e:
