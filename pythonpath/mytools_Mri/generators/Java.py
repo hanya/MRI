@@ -283,9 +283,7 @@ class GeneratorForJava(GeneratorBase):
                     return "UnoRuntime.queryInterface(%s.class, %s)" % (_type_name, var["name"])
                 else:
                     return var_name
-            else:
-                var = self.get_variable(value.code_entry)
-                return var["name"]
+            return var["name"]
         else:
             if type_class == TypeClass.STRING:
                 return '"%s"' % value
@@ -374,7 +372,6 @@ class GeneratorForJava(GeneratorBase):
                 for i, (arg, param_info) in enumerate(zip(args, param_infos)):
                     if i in out_params:
                         var_name, var_type = self.make_variable(param_info.aType.getName(), param_info.aType)
-                        print(arg)
                         _arg = self.value_to_string(arg, param_info.aType.getTypeClass(), param_info.aType)
                         self.ad("%s[] %s = new %s[]{%s};" % (var_type, var_name, var_type, _arg))
                         str_args.append(var_name)
