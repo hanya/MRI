@@ -487,12 +487,25 @@ class Dialogs(object):
     
     def message(self, message, title="", type="messbox", buttons=1):
         """ Message box, see css.awt.XMessageBoxFactory. """
+        import mytools_Mri.tools
+        
         desktop = self.smgr.createInstanceWithContext(
             "com.sun.star.frame.Desktop", self.ctx)
         frame = desktop.getActiveFrame()
         window = frame.getContainerWindow()
-        msgbox = window.getToolkit().createMessageBox(
-            window, Rectangle(), type, buttons, title, message)
+        if mytools_Mri.tools.check_method_parameter(
+            self.ctx, "com.sun.star.awt.XMessageBoxFactory", 
+            "createMessageBox", 1, "com.sun.star.awt.Rectangle"):
+            msgbox = window.getToolkit().createMessageBox(
+                window, Rectangle(), type, buttons, title, message)
+        else:
+            import uno
+            _type = uno.Enum("com.sun.star.awt.MessageBoxType", 
+                            {"messbox": "MESSAGEBOX", "infobox": "INFOBOX", 
+                             "warningbox": "WARNINGBOX", "errorbox": "ERRORBOX", 
+                             "querybox": "QUERYBOX"}[type])
+            msgbox = window.getToolkit().createMessageBox(
+                window, _type, buttons, title, message)
         n = msgbox.execute()
         msgbox.dispose()
         return n
