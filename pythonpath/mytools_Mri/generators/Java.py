@@ -108,7 +108,7 @@ class GeneratorForJava(GeneratorBase):
                 catched.append("catch (%s e%s)" % (self.get_last_part(e[0]), n))
                 catched.append("{")
                 catched.append("%s// %s" % (indent, ", ".join(e[1])))
-                catched.append("%se%s.printStackTrce();" % (indent, n))
+                catched.append("%se%s.printStackTrace();" % (indent, n))
                 catched.append("}")
             
             return "\n".join((
