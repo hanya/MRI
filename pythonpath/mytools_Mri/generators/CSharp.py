@@ -283,6 +283,15 @@ class GeneratorForCSharp(GeneratorBase):
         """Convert value to its string notation used in the code."""
         if isinstance(value, Entry):
             var = self.get_variable(value.code_entry)
+            if type_class == TypeClass.INTERFACE:
+                type_name = param_info.getName()
+                var_name = var["interfaces"].get(type_name, None)
+                if var_name is None:
+                    self.add_namespace(type_name)
+                    _type_name = self.get_last_part(type_name)
+                    return "(%s)%s" % (_type_name, var["name"])
+                else:
+                    return var_name
             return var["name"]
         else:
             if type_class == TypeClass.STRING:
