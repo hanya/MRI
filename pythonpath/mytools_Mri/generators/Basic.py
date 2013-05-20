@@ -339,7 +339,9 @@ class GeneratorForBasic(GeneratorBase):
     def get_component_context(self, entry):
         idl = entry.idl
         type_class = idl.getTypeClass()
-        self.ad("%s = GetDefaultContext()")
+        _name = self.get_last_part(entry.key)
+        var_name = self.make_variable(_name, type_class)
+        self.ad("%s = GetDefaultContext()" % var_name)
         self.declare_variable(var_name, idl.getName(), type_class)
         self.register_variable(entry, var_name, type_class)
     
