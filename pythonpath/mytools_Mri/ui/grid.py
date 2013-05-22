@@ -344,6 +344,8 @@ class GridPages(GridPagesBase):
             try:
                 data_model = self.ctrls[index].getModel().GridDataModel
                 data_model.removeAll()
+                if not isinstance(rows, (list, tuple)):
+                    rows = ((rows,),)
                 for row in rows:
                     data_model.addRow('', tuple(row))
             except Exception as e:
@@ -406,6 +408,8 @@ class GridPages(GridPagesBase):
             try:
                 data_model = self.ctrls[index].getModel().GridDataModel
                 data_model.removeAllRows()
+                if not isinstance(rows, (list, tuple)):
+                    rows = ((rows,),)
                 trows = tuple([tuple(row) for row in rows])
                 headings = tuple(["" for i in range(len(rows))])
                 data_model.addRows(headings, trows)

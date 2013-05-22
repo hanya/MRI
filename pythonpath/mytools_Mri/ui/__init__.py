@@ -406,8 +406,5 @@ class MRIUi(info.ExtendedInfo):
             text = "1 element."
         else:
             text = "%s elements." % length
-        if config.grid:
-            return (text, "", "", "", "")
-        else:
-            return text
+        return text
 
