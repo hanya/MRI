@@ -415,8 +415,9 @@ class GridPages(GridPagesBase):
                 data_model.addRows(headings, trows)
             except:
                 pass
-            self.ctrls[index].getContext().getPeer().invalidate(8)
-            self._re_set_size(index)
+            if mytools_Mri.config.Config.GRID_UPDATE:
+                self.ctrls[index].getContext().getPeer().invalidate(8)
+                self._re_set_size(index)
         
         def _get_count(self, data_model):
             return data_model.RowCount

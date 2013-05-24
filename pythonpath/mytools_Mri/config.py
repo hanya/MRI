@@ -26,6 +26,7 @@ class Config(object):
         'sorted', 'use_pseud_props', 'use_tab', 'macros']
     
     GRID = 0
+    GRID_UPDATE = True
     TAB = 0
     LOADED = False
     
@@ -67,6 +68,8 @@ class Config(object):
                 else:
                     Config.TAB = 1
                     Config.GRID = 2
+                    if version > "3.4":
+                        Config.GRID_UPDATE = False
             elif name == "LibreOffice":
                 if version == "3.3":
                     Config.TAB = 0
