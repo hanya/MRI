@@ -76,7 +76,7 @@ class Config(object):
                     Config.GRID = 1
                 else:
                     Config.TAB = 2
-                    Config.GRID = 3
+                    Config.GRID = 2 if version >= "4.0" else 3
             else:
                 pass
         if Config.TAB == 0:
