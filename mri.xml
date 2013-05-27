@@ -95,6 +95,10 @@
 					<item lang="en" name="Macros" page_title="Macros" title="Macros"/>
 					<item lang="ja" name="Macros" page_title="Macros" title="マクロ"/>
 				</page>
+				<page file_name="Bundled">
+					<item lang="en" name="Bundled" page_title="Bundled Macros" title="Bundled Macros"/>
+					<item lang="ja" name="Bundled" page_title="付属マクロ" title="付属マクロ"/>
+				</page>
 			</node>
 		</node>
 	</pages>

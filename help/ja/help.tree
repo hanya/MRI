@@ -18,6 +18,7 @@
 <topic id="mri/mytools.mri/Code.xhp">コード</topic>
 <topic id="mri/mytools.mri/TypeMappings.xhp">Type Mappings</topic>
 <topic id="mri/mytools.mri/Macros.xhp">マクロ</topic>
+<topic id="mri/mytools.mri/Bundled.xhp">付属マクロ</topic>
 </node>
 </help_section>
 </tree_view>

@@ -6,6 +6,7 @@
 * [[Configuration]]
 * [[Code]]
 * [[Macros]]
+* [[Bundled|Bundled Macros]]
 
 * [[Properties]]
 * [[Methods]]
