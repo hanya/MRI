@@ -433,11 +433,10 @@ class ExtendedInfo(Info):
                     return (arg, )
         
         # check all arguments
-        COMPATI_ARGS = TypeClassGroups.NUMERIC + \
-            [TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM, TypeClass.INTERFACE, TypeClass.STRUCT, TypeClass.TYPE]
+        COMPATIBLE = TypeClassGroups.COMPATIBLE
         compati = False
         for param in p_infos:
-            if param.aType.getTypeClass() in COMPATI_ARGS and param.aMode == ParamMode.IN:
+            if param.aType.getTypeClass() in COMPATIBLE and param.aMode == ParamMode.IN:
                 compati = True
             else:
                 compati = False

@@ -65,6 +65,10 @@ class TypeClassGroups(object):
     SEQ = [TypeClass.SEQUENCE, TypeClass.ARRAY]
     OBJECT = TypeClass.INTERFACE
     
+    COMPATIBLE = NUMERIC + [
+        TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM, 
+        TypeClass.INTERFACE, TypeClass.STRUCT, TypeClass.TYPE]
+    
     ALL = dict([(getattr(TypeClass, k).value, getattr(TypeClass, k)) for k in dir(TypeClass) if hasattr(getattr(TypeClass, k), 'value')])
     
     #@staticmethod
