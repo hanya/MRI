@@ -365,7 +365,8 @@ class MRI(object):
                     name = "%s()" % method.getName()
             out_params = self.get_out_param_index(method)
             if self.mode:
-                value, d = method.invoke(self.current.target, args)
+                _args, _any = self.extract_args(args)
+                value, d = method.invoke(self.current.target, _args)
             else:
                 _args, _any = self.extract_args(args)
                 if _any:

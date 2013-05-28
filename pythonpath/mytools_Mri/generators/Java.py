@@ -303,6 +303,8 @@ class GeneratorForJava(GeneratorBase):
                 _comp_type = self.TYPE_CLASS_MAP.get(_comp_type_class.value)
                 str_val = [self.value_to_string(v, _comp_type_class) for v in value]
                 return "new %s%s{%s}" % (_comp_type, "[]" * n, ", ".join(str_val))
+            elif type_class == TypeClass.INTERFACE:
+                return "null" # ToDo how about non-null values?
             else:
                 if param_info:
                     value_type_class = param_info.getTypeClass()

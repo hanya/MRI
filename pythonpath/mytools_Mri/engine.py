@@ -655,6 +655,8 @@ class MRIEngine(object):
                 ret = uno.Enum(str(type_name), str(value).upper())
             except:
                 ret = None
+        elif type_class == TypeClass.TYPE:
+            ret = uno.getTypeByName(value)
         else:
             ret = str(value)
         return ret

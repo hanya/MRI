@@ -433,7 +433,8 @@ class ExtendedInfo(Info):
                     return (arg, )
         
         # check all arguments
-        COMPATI_ARGS = TypeClassGroups.NUMERIC + [TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM]
+        COMPATI_ARGS = TypeClassGroups.NUMERIC + \
+            [TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM, TypeClass.INTERFACE, TypeClass.STRUCT]
         compati = False
         for param in p_infos:
             if param.aType.getTypeClass() in COMPATI_ARGS and param.aMode == ParamMode.IN:
@@ -443,18 +444,27 @@ class ExtendedInfo(Info):
                 break
         if not compati:
             raise Exception('unable to get arguments from input.')
-        elements = []
-        for param in p_infos:
-            elements.append('%s %s %s' % (
-                self.engine.get_mode_string(param.aMode), param.aType.Name, param.aName))
-        #arg = "( %s )" % ", ".join(elements)
-        state, str_args = self.dlgs.dialog_elemental_input(
-            elements, 'input arguments', "%s(\n\t%s\n )" % (method_name, ", \n\t".join(elements)), (method.getDeclaringClass().Name, method_name))
+        try:
+            method_args = []
+            elements = []
+            for param in p_infos:
+                arg = '%s %s %s' % (
+                    self.engine.get_mode_string(param.aMode), param.aType.Name, param.aName)
+                elements.append((arg, param.aType.getTypeClass().value))
+                method_args.append(arg)
+            state, ret_args = self.dlgs.dialog_elemental_input(
+                elements, 'input arguments', "%s(\n\t%s\n )" % (method_name, ", \n\t".join(method_args)), 
+                (method.getDeclaringClass().Name, method_name))
+        except Exception as e:
+            print(e)
         if not state: raise CancelException("canceled.")
         args = []
-        for param, element in zip(p_infos, str_args):
-            args.append(
-                self.engine.get_value(element, param.aType.getName(), param.aType.getTypeClass()))
+        for param, element in zip(p_infos, ret_args):
+            if param.aType.getTypeClass() in (TypeClass.INTERFACE, TypeClass.STRUCT):
+                args.append(element)
+            else:
+                args.append(
+                    self.engine.get_value(element, param.aType.getName(), param.aType.getTypeClass()))
         return args
     
     

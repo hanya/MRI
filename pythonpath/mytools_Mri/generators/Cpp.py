@@ -298,6 +298,13 @@ class GeneratorForCpp(GeneratorBase):
                 _comp_type = self.TYPE_CLASS_MAP.get(_comp_type_class.value)
                 str_val = [self.value_to_string(v, _comp_type_class) for v in value]
                 return "".join(("Sequence< " * n, _comp_type, " >" * n, "({%s}, %s)" % (", ".join(str_val), len(value))))
+            elif type_class == TypeClass.INTERFACE:
+                #print("void?") # ToDo return invalid reference for requested interface]
+                type_name = param_info.getName()
+                self.add_import(type_name)
+                _type_name = self.get_last_part(type_name)
+                #print(dir(param_info))
+                return "Reference< %s >()" % _type_name
             else:
                 if type_class in (TypeClass.BYTE, TypeClass.SHORT, TypeClass.UNSIGNED_SHORT, TypeClass.UNSIGNED_LONG, TypeClass.HYPER, TypeClass.UNSIGNED_HYPER, TypeClass.DOUBLE):
                     type_name = self.TYPE_CLASS_MAP[type_class.value]

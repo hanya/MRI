@@ -306,6 +306,8 @@ class GeneratorForCSharp(GeneratorBase):
                 _comp_type = self.TYPE_CLASS_MAP.get(_comp_type_class.value)
                 str_val = [self.value_to_string(v, _comp_type_class) for v in value]
                 return "new %s%s{%s}" % (comp_type.getName(), "[]" * n, ", ".join(str_val))
+            elif type_class == TypeClass.INTERFACE:
+                return "null" # ToDo
             else:
                 if type_class in (TypeClass.BYTE, TypeClass.SHORT, TypeClass.UNSIGNED_SHORT, TypeClass.UNSIGNED_LONG, TypeClass.HYPER, TypeClass.UNSIGNED_HYPER, TypeClass.DOUBLE):
                     type_name = self.TYPE_CLASS_MAP[type_class.value]

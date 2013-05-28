@@ -166,7 +166,11 @@ class GeneratorForBasic(GeneratorBase):
                 _comp_type_class = comp_type.getTypeClass()
                 str_val = [self.value_to_string(v, _comp_type_class) for v in value]
                 return "Array(%s)" % ", ".join(str_val)
+            elif type_class == TypeClass.VOID:
+                return "Null"
             else:
+                if value is None:
+                    return "Null"
                 return str(value)
     
     def add_method(self, entry):
