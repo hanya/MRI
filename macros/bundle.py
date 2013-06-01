@@ -8,6 +8,9 @@ __all__ = [
     "inspect_accessible_children", 
     "inspect_chart_type", 
     "", 
+    "add_component_context", 
+    "add_struct", 
+    "", 
     "diff_with_another_mri", "diff_from_history", 
     "", 
     "inspect_configuration_modifiable", 
@@ -17,8 +20,67 @@ __all__ = [
     "reload_macros", 
     "reload_generator", 
     "", 
-    "console"
+    "console", 
 ]
+
+import traceback
+
+def add_component_context(mri):
+    """ Add css.uno.XComponentContext to the history.
+        """
+    ctx = mri.get_component_context()
+    mri.action_by_type(ctx)
+
+def add_struct(mri):
+    """ Add new instance of a struct.
+        """
+    name, state = mri.ui.dlgs.dialog_input("Struct name", "", "com.sun.star.")
+    if state:
+        # check the name is valid struct
+        from mytools_Mri.unovalues import TypeClass, TypeClassGroups
+        try:
+            idl = mri.engine.for_name(name)
+            if not idl.getTypeClass() == TypeClass.STRUCT:
+                raise Exception()
+        except:
+            mri.ui.dlgs.message("%s is not valid struct name." % name, "Error")
+            return
+        # check the struct can be instantiated
+        COMPATIBLE = TypeClassGroups.COMPATIBLE
+        
+        fields = idl.getFields()
+        try:
+            for field in fields:
+                field_type = field.getType()
+                field_type_class = field_type.getTypeClass()
+                #field.getAccessMode() # should not READ only # ToDo ?
+                if not field_type_class in COMPATIBLE:
+                    raise Exception()
+            elements = [(field.getName(), field.getType().getTypeClass().value) 
+                            for field in fields]
+            state, ret_args = mri.ui.dlgs.dialog_elemental_input(elements, "Struct " + name, 
+                            ", \n".join(["%s %s" % (element[1], element[0]) for element in elements]), (name, ""))
+            if state:
+                try:
+                    args = []
+                    for field, element in zip(fields, ret_args):
+                        if field.getType().getTypeClass() in (TypeClass.INTERFACE, TypeClass.STRUCT):
+                            args.append(element)
+                        else:
+                            args.append(
+                                mri.engine.get_value(element, field.getType().getName(), field.getType().getTypeClass()))
+                    print(args)
+                except Exception as e:
+                    mri.ui.dlgs.message("During to instantiate struct %s, \nIllegal value specified. %s" % (name, str(e))
+                    return
+                try:
+                    entry = mri.create_struct(name, *args)
+                    mri.action_by_type(entry)
+                except:
+                    traceback.print_exc()
+        except:
+            traceback.print_exc()
+            mri.ui.dlgs.message("%s contains complex type that can not be created now" % name)
 
 
 def reload_properties(mri):
