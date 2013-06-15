@@ -1,5 +1,0 @@
-
-Python で書いたコードを MRI を拡張したりするためにマクロとして実行できます。
-
-このファイルは Python コードのインデントを表示できません。 
-[http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FMacros%2FMRI%2FDocumentation%2FMacros マクロ] を参照してください。

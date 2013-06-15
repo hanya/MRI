@@ -1,6 +1,0 @@
-
-インターフェースの情報は UNO オブジェクトの com.sun.star.lang.XTypeProvider インターフェース、com.sun.star.beans.XIntrospectionAccess、com.sun.star.reflection.TypeDescriptionManager を利用して取得されます。
-
-このスコープでは IDL Ref. ボタンはカーソルのある行の文字列に対応する IDL リファレンスのページを開きます。
-
-リスナーもこのスコープで表示されます。
