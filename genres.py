@@ -9,7 +9,7 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <identifier value="mytools.mri" />
 <version value="{VERSION}" />
 <dependencies>
-<OpenOffice.org-minimal-version value="3.0" d:name="OpenOffice.org 3.0" />
+<OpenOffice.org-minimal-version value="3.4" d:name="OpenOffice.org 3.4" />
 </dependencies>
 <registration>
 <simple-license accept-by="admin" default-license-id="this" suppress-on-update="true" suppress-if-required="true">
@@ -38,7 +38,7 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <identifier value="mytools.mri" />
 <version value="{VERSION}" />
 <dependencies>
-<d:OpenOffice.org-minimal-version value="3.0" d:name="OpenOffice.org 3.0" />
+<d:OpenOffice.org-minimal-version value="3.4" d:name="OpenOffice.org 3.4" />
 </dependencies>
 <update-download>
 <src xlink:href="https://raw.github.com/hanya/MRI/master/files/MRI-{VERSION}.oxt"/>
