@@ -48,7 +48,7 @@ oor:package="mytools.Mri">
 			<value>false</value>
 		</prop>
 		<prop oor:name="UseTab" oor:type="xs:boolean">
-			<value>false</value>
+			<value>true</value>
 		</prop>
 		<prop oor:name="Macros" oor:type="xs:string">
 			<value>$(user)/Scripts/python/pythonpath/mri</value>
