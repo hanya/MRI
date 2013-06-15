@@ -69,7 +69,6 @@ def add_struct(mri):
                         else:
                             args.append(
                                 mri.engine.get_value(element, field.getType().getName(), field.getType().getTypeClass()))
-                    print(args)
                 except Exception as e:
                     mri.ui.dlgs.message("During to instantiate struct %s, \nIllegal value specified. %s" % (name, str(e)))
                     return
