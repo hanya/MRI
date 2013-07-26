@@ -706,7 +706,14 @@ class ComponentWindowListener(unohelper.Base, XEventListener):
             if config.use_tab:
                 subcont = self.cast.cont.getControl("subcont")
                 try:
+                    for control in subcont.getControls():
+                        for c in control.getControls():
+                            control.removeControl(c)
+                            c.dispose()
+                        subcont.removeControl(control)
+                        control.dispose()
                     self.cast.cont.removeControl(subcont)
+                    subcont.dispose()
                 except Exception as e:
                     print(e)
             cast.config = None
