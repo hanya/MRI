@@ -15,7 +15,6 @@
 import uno
 import os
 import os.path
-import imp
 import types
 
 import mytools_Mri.tools
@@ -149,9 +148,14 @@ class Macros(object):
     def _load_file(self, file_name):
         """ Load the file as a module. """
         name = os.path.basename(file_name)
-        if name.endswith(self.EXTENSION) and len(name) > 3:
-            name = name[0:-4]
-        mod = imp.load_source(name, file_name)
+        if name.endswith(self.EXTENSION) and len(name) > len(self.EXTENSION):
+            name = name[0:-len(self.EXTENSION)]
+        if not isinstance(name, str):
+            name = name.encode("utf-8")
+        mod = type(os)(name)
+        with open(file_name, "r") as f:
+            code = compile(f.read(), name + self.EXTENSION, "exec")
+        exec(code, mod.__dict__)
         entry = ModuleEntry(file_name, mod)
         Macros.MODULES[file_name] = entry
         return mod
