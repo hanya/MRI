@@ -270,7 +270,7 @@ class MRIEngine(object):
             try:
                 d = (method.getName(), method.getReturnType().getName(), 
                     method.getDeclaringClass().getName(), 
-                    ', '.join([e.Name for e in method.ExceptionTypes]))
+                    ', '.join([e.getName() for e in method.getExceptionTypes()]))
             except: pass
             return d
     
@@ -281,19 +281,19 @@ class MRIEngine(object):
         txt = []
         atxt = txt.append
         for im in methods:
-            name = im.Name
-            rettype = im.ReturnType
-            ret = im.ReturnType.Name
+            name = im.getName()
+            rettype = im.getReturnType()
+            ret = im.getReturnType().getName()
             
-            parainfo = im.ParameterInfos
-            dcname = im.DeclaringClass.Name
-            exceptinfo = im.ExceptionTypes
+            parainfo = im.getParameterInfos()
+            dcname = im.getDeclaringClass().getName()
+            exceptinfo = im.getExceptionTypes()
             
             if len(parainfo) > 0:
                 args = []
                 for pi in parainfo:
                     args.append('%s %s %s' % 
-                        (self.get_mode_string(pi.aMode), pi.aType.Name, pi.aName))
+                        (self.get_mode_string(pi.aMode), pi.aType.getName(), pi.aName))
                 arg = '( %s )' % ', '.join(args)
             else:
                 arg = '()'
@@ -301,7 +301,7 @@ class MRIEngine(object):
             if len(exceptinfo) > 0:
                 excepts = []
                 for et in exceptinfo:
-                    excepts.append(et.Name)
+                    excepts.append(et.getName())
                 strexcept = ', '.join(excepts)
                 
             else:
@@ -359,7 +359,7 @@ class MRIEngine(object):
                 # get its value from its base method
                 if inspected.hasMethod('get%s' % name, mc_property):
                     midl = inspected.getMethod('get%s' % name, mc_property)
-                    rtype = midl.ReturnType
+                    rtype = midl.getReturnType()
                     adinfo = pseudprop
                     try:
                         vvalue, dummy = midl.invoke(target, ())
@@ -369,7 +369,7 @@ class MRIEngine(object):
                 
                 elif inspected.hasMethod('is%s' % name, mc_all):
                     midl = inspected.getMethod('is%s' % name, mc_all)
-                    rtype = midl.ReturnType
+                    rtype = midl.getReturnType()
                     vvalue, dummy = midl.invoke(target, ())
                     value = self.get_string_value(rtype.getTypeClass(), vvalue)
                     adinfo = pseudprop
@@ -530,10 +530,10 @@ class MRIEngine(object):
         
         #if len(fields) < 1: return ''
         for field in fields:
-            name = field.Name
-            ttype = field.Type
+            name = field.getName()
+            ttype = field.getType()
             type_class = ttype.getTypeClass()
-            type_name = ttype.Name
+            type_name = ttype.getName()
             mode = field.getAccessMode()
             access_mode = self.get_field_mode(mode) #
             try:
