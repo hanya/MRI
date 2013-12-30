@@ -787,3 +787,12 @@ class MRIEngine(object):
                         return True
             return False
         return check_super_klass(method.getDeclaringClass())
+    
+    def find_field(self, name, fields_idl):
+        """ Find specific field from fields idl. """
+        fields = fields_idl.getFields()
+        for field in fields:
+            if field.getName() == name:
+                return field
+        raise Exception("Field not found: " + name)
+

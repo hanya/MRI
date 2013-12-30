@@ -424,14 +424,10 @@ class MRI(object):
         """ Get field value from current struct. """
         entry = self.current
         target = entry.target
-        fields_idl = self.engine.get_type(entry)
-        fields = fields_idl.getFields()
-        found = None
-        for field in fields:
-            if field.getName() == name:
-                found = field
-                break
-        if not found: return
+        try:
+            found = self.engine.find_field(name, self.engine.get_type(entry))
+        except:
+            return
         try:
             value = getattr(target, name)
             field_type = found.getType()
@@ -452,14 +448,10 @@ class MRI(object):
     def set_struct_element(self, name, value):
         entry = self.current
         target = entry.target
-        fields_idl = self.engine.get_type(entry)
-        fields = fields_idl.getFields()
-        found = None
-        for field in fields:
-            if field.Name == name:
-                found = field
-                break
-        if not found: return
+        try:
+            found = self.engine.find_field(name, self.engine.get_type(entry))
+        except:
+            return
         try:
             if self.mode:
                 setattr(target, name, value)
