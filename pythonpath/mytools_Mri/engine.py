@@ -426,17 +426,17 @@ class MRIEngine(object):
             return self.get_interfaces_info(entry)
         all_services = self.get_service_names(entry, services)
         
+        has = self.tdm.hasByHierarchicalName
+        get = self.tdm.getByHierarchicalName
         interfaces = set(self.get_interfaces_info(entry)) | set(self.get_basic_interfaces_info(entry))
         for name in all_services:
-            if self.tdm.hasByHierarchicalName(name):
-                stdm = self.tdm.getByHierarchicalName(name)
-                interfaces = interfaces | self.get_exported_interfaces_names(stdm)
+            if has(name):
+                interfaces = interfaces | self.get_exported_interfaces_names(get(name))
         
         # search into interfaces hierarchi
-        hier = self.tdm.getByHierarchicalName
         try:
             for i in interfaces:
-                interfaces = interfaces | self.get_base_types(hier(i))
+                interfaces = interfaces | self.get_base_types(get(i))
         except Exception as e:
             print(e)
         return list(interfaces)
@@ -694,15 +694,15 @@ class MRIEngine(object):
     
     def find_declared_module(self, entry, name):
         """try to find declared class of named property of attribute."""
-        tdm = self.tdm
+        has = self.tdm.hasByHierarchicalName
+        get = self.tdm.getByHierarchicalName
         # services
         if self.has_interface(entry.target, 'com.sun.star.lang.XServiceInfo'):
             servs = self.get_service_names(entry)
             for s in servs:
                 n = len(s)
-                if tdm.hasByHierarchicalName(s):
-                    stdm = tdm.getByHierarchicalName(s)
-                    props = stdm.getProperties()
+                if has(s):
+                    props = get(s).getProperties()
                     for p in props:
                         if p.getName()[n+1:] == name:
                             return name, s
@@ -717,13 +717,15 @@ class MRIEngine(object):
         inters = self.all_interfaces_info(entry)
         for i in inters:
             hier_name = "%s::%s" % (i, name)
-            if tdm.hasByHierarchicalName(hier_name):
+            if has(hier_name):
                 return name, i
 
         return "", ""
     
     def get_service_names(self, entry, names=None):
         """try to get service names hierarchi."""
+        has = self.tdm.hasByHierarchicalName
+        get = self.tdm.getByHierarchicalName
         if names is None:
             names = self.get_services_info(entry)
         servs = set()
@@ -732,9 +734,8 @@ class MRIEngine(object):
                 servs.add(name)
             except Exception as e:
                 print(("Error on get_service_names: %s" % e))
-            if self.tdm.hasByHierarchicalName(name):
-                stdm = self.tdm.getByHierarchicalName(name)
-                servs = servs | self.get_included_service_names(stdm)
+            if has(name):
+                servs = servs | self.get_included_service_names(get(name))
         return servs
     
     def get_included_service_names(self, stdm):
@@ -761,11 +762,12 @@ class MRIEngine(object):
         The interface name of the attribute can not be get from introspected object.
         needs to get from TypeDescriptionManager.
         """
+        has = self.tdm.hasByHierarchicalName
         #interfaces = self.get_interfaces_info(entry)
         interfaces = self.all_interfaces_info(entry)
         for interface in interfaces:
             #name = '%s::%s' % (interface, attr)
-            if self.tdm.hasByHierarchicalName('%s::%s' % (interface, attr)):
+            if has('%s::%s' % (interface, attr)):
                 return interface
         return False
     
