@@ -89,6 +89,7 @@ class SimpleGridInfoListener(unohelper.Base, XMouseListener):
                     header_height = grid_model.ColumnHeaderHeight
                 else:
                     header_height = grid_model.ColumnModel.ColumnHeaderHeight
+                if header_height is None: header_height = 20
                 if ev.Y <= header_height:
                     return
             try:
