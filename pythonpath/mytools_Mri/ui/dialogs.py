@@ -13,6 +13,7 @@
 #  limitations under the License.
 
 import unohelper
+import traceback
 
 from com.sun.star.awt import XActionListener, XMouseListener, \
     XItemListener, Rectangle
@@ -347,6 +348,13 @@ class InputDialog2(InputDialog):
 class ElementalInputDialog(InputDialog):
     
     POSSIZE = 30, 50, 177, 67
+    FROM_HISTORY = set(("INTERFACE", "STRUCT", "EXCEPTION", "SEQUENCE"))
+    
+    class Result:
+        def __init__(self, type_name, value=None, value_type=None):
+            self.type_name = type_name
+            self.value = value
+            self.value_type = value_type
     
     class ListenerBase(unohelper.Base):
         def __init__(self, act):
@@ -356,7 +364,11 @@ class ElementalInputDialog(InputDialog):
     
     class ButtonListener(ListenerBase, XActionListener):
         def actionPerformed(self, ev):
-            self.act.button_pushed(ev.ActionCommand)
+            try:
+                self.act.button_pushed(ev)
+            except Exception as e:
+                print(e)
+                traceback.print_exc()
     
     class TreeSelectionListener(ListenerBase, XSelectionChangeListener):
         def selectionChanged(self, ev):
@@ -375,13 +387,12 @@ class ElementalInputDialog(InputDialog):
         self.add_edit("label", 2, 0, 135, 48, ("FontHeight", "MultiLine"), (8, True))
         self._button_listener = InputButtonListener(self.cast)
         self.get_control("ibtn").addActionListener(self._button_listener)
-        self._obj_args = {}
     
     def _prepare(self):
         self.set_focus("edit_0")
     
     def execute(self, elements, label="", txt="", doc=("", "")):
-        self._elements = elements
+        self._results = []
         self.set_dialog_height(67 + len(elements) * 27)
         self.set_label("line", label)
         self.set_text("label", txt)
@@ -390,16 +401,19 @@ class ElementalInputDialog(InputDialog):
         from com.sun.star.style.VerticalAlignment import BOTTOM as VA_BOTTOM
         listener = self.__class__.ButtonListener(self)
         y = 14
+        complex_types = self.FROM_HISTORY | set(("ANY",))
         for i, element in enumerate(elements):
-            is_i = element[1] == "INTERFACE"
+            is_complex = element[1] in complex_types
             self.add_label("label_%s" % i, 4, y, 170, 12, 
                 ("Label", "NoLabel", "VerticalAlign"), (element[0], True, VA_BOTTOM))
-            self.add_edit("edit_%s" % i, 2, y + 13, (150 if is_i else 171), 13, 
+            self.add_edit("edit_%s" % i, 2, y + 13, (130 if is_complex else 171), 13, 
                 ("MultiLine",), (False,))
-            if is_i:
-                self.set_enable("edit_%s" % i, False)
-                self.add_button("btn_%s" % i, 153, y + 13, 20, 13, ("Label",), ("...",), str(i))
+            if is_complex:
+                if element[1] != "ANY":
+                    self.set_enable("edit_%s" % i, False)
+                self.add_button("btn_%s" % i, 133, y + 13, 40, 13, ("Label",), ("...",), str(i))
                 self.get_control("btn_%s" % i).addActionListener(listener)
+            self._results.append(self.Result(element[1]))
             y += 27
         y += 3
         self.set_y("obtn", y)
@@ -416,36 +430,75 @@ class ElementalInputDialog(InputDialog):
     def tree_selection_changed(self):
         return self._history_selector.is_tree_selection_valid()
     
-    def button_pushed(self, command):
-        n = int(command)
+    def button_pushed(self, ev):
+        control = ev.Source
+        n = int(ev.ActionCommand)
+        type_name = self._results[n].type_name
+        with_type = False
+        if type_name == "ANY":
+            with_type = True
+            from mytools_Mri.ui.tools import create_popupmenu
+            entries = ((1, 0, 0, "void", "VOID", None), 
+                       (2, 1, 0, "boolean", "BOOLEAN", None), 
+                       (3, 2, 0, "byte", "BYTE", None), 
+                       (4, 3, 0, "short", "SHORT", None), 
+                       (5, 4, 0, "unsigned short", "UNSIGNED_SHORT", None), 
+                       (6, 5, 0, "long", "LONG", None), 
+                       (7, 6, 0, "unsigned long", "UNSIGNED_LONG", None), 
+                       (8, 7, 0, "hyper", "HYPER", None), 
+                       (9, 8, 0, "unsigned hyper", "UNSIGNED_HYPER", None), 
+                       (10, 9, 0, "float", "FLOAT", None), 
+                       (11, 10, 0, "double", "DOUBLE", None), 
+                       (12, 11, 0, "string", "STRING", None), 
+                       (13, 12, 0, "type", "TYPE", None), 
+                       (14, 13, 0, "enum", "ENUM", None), 
+                       (None, 14, 0, "", "", None), 
+                       (15, 15, 0, "struct", "STRUCT", None), 
+                       (16, 16, 0, "exception", "EXCEPTION", None), 
+                       (17, 17, 0, "sequence", "SEQUENCE", None), 
+                       (18, 18, 0, "interface", "INTERFACE", None))
+            popup = create_popupmenu(self.ctx, entries)
+            r = popup.execute(ev.Source.getPeer(), Rectangle(0, ev.Source.getPosSize().Height, 0, 0), 0)
+            if r == 0: return
+            value_type_name = popup.getCommand(r)
+            control.setLabel(popup.getItemText(r))
+            if value_type_name in self.FROM_HISTORY:
+                self.set_enable("edit_%s" % n, False)
+            else:
+                self.set_enable("edit_%s" % n, True)
+                self._results[n].value_type = value_type_name
+                return
+        obj = None
         try:
             self._history_selector = HistorySelectorDialog(self.ctx, self.cast)
             obj = self._history_selector.execute(
                         "History", self.TreeSelectionListener(self), 
                         allow_void=True, void_listener=self.ItemListener(self))
+            self._history_selector = None
         except Exception as e:
             print(e)
-            import traceback
             traceback.print_exc()
-            return
+        finally:
+            if obj is None:
+                return
         name = "edit_%s" % n
         if obj == "void":
             self.set_text(name, "void")
-            self._obj_args[n] = None # ToDo as Entry instance?
+            self._results[n].value = None
+            self._results[n].value_type = "VOID"
         elif obj:
             self.set_text(name, str(obj))
-            self._obj_args[n] = obj
-        self._history_selector = None
+            self._results[n].value = obj
+            self._results[n].value_type = value_type_name if with_type else type_name
     
     def _done(self, n):
-        args = []
         if n:
-            for i, element in enumerate(self._elements):
-                if element[1] == "INTERFACE":
-                    args.append(self._obj_args.get(i, None))
+            for i, result in enumerate(self._results):
+                if result.type_name in self.FROM_HISTORY or result.value_type == "ANY":
+                    pass
                 else:
-                    args.append(self.get_text("edit_%s" % i))
-        return n, args
+                    result.value = self.get_text("edit_%s" % i)
+        return n, self._results
 
 
 class HistorySelectorDialog(DialogBase):

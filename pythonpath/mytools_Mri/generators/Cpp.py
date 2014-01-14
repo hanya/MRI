@@ -453,9 +453,10 @@ class GeneratorForCpp(GeneratorBase):
             value_type_class = value_type.getTypeClass()
             arg = self.value_to_string(entry.args, value_type_class, idl)
             _name = self.get_last_part(value_type.getName())
-            var_name, var_type = self.make_variable(_name, idl)
-            self.register_variable(entry, var_name, idl.getTypeClass(), idl.getName())
-            self.ad("%s %s = %s;" % (var_type, var_name, arg))
+            #var_name, var_type = self.make_variable(_name, idl)
+            #self.register_variable(entry, var_name, idl.getTypeClass(), idl.getName())
+            #self.ad("%s %s = %s;" % (var_type, var_name, arg))
+            var_name = arg
             self.ad("%s->setPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM(\"%s\")), makeAny(%s));" % (propset_var, name, var_name), _break=True)
     
     def add_attr(self, entry):

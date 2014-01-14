@@ -221,7 +221,8 @@ class MRI(object):
                 if self.mode:
                     try:
                         old_value = target.getPropertyValue(name)
-                        arg = get_value(pinfo, old_value)
+                        arg = get_value(name, pinfo.Type.typeName, pinfo.Type.typeClass, 
+                                ("", ""), "current: " + str(old_value))
                     except CancelException:
                         return
                     except Exception as e:
@@ -229,8 +230,9 @@ class MRI(object):
                         return
                 try:
                     if self.mode:
-                        target.setPropertyValue(name, arg)
-                        entry = self.engine.create(self, name, old_value)
+                        _arg, _any = self.extract_args(arg)
+                        target.setPropertyValue(name, _arg)
+                        entry = self.engine.create(self, name, _arg)
                     else:
                         # ToDo any
                         _arg, _any = self.extract_args(arg)
@@ -266,7 +268,8 @@ class MRI(object):
             if self.mode:
                 try:
                     old_value = getattr(target, name)
-                    arg = get_value(pinfo, old_value)
+                    arg = get_value(name, pinfo.Type.typeName, pinfo.Type.typeClass, 
+                            ("", ""), "current: " + str(old_value))
                 except Exception as e:
                     return
             try:
@@ -306,24 +309,25 @@ class MRI(object):
         method = self.engine.get_method_info(self.current, name, raw=True)
         if method is None: return
         param_infos = method.getParameterInfos()
-        if len(param_infos) == 0:
-            return self.invoke_method(method, (), pseud=pseud)
-        else:
-            try:
-                if self.mode:
+        if self.mode:
+            if 0 < len(param_infos):
+                try:
                     if get_args:
                         args = tuple(get_args(method))
-            except:
-                return
-            try:
-                return self.invoke_method(method, args, pseud=pseud)
-            except Exception as e:
-                self.status(str(e))
-                traceback.print_exc()
-                if self.mode:
+                except:
+                    traceback.print_exc()
                     return
-                else:
-                    raise
+            else:
+                args = ()
+        try:
+            return self.invoke_method(method, args, pseud=pseud)
+        except Exception as e:
+            self.status(str(e))
+            traceback.print_exc()
+            if self.mode:
+                return
+            else:
+                raise
     
     def extract_args(self, args):
         """ Extract value from Entry instance. """
@@ -445,17 +449,27 @@ class MRI(object):
             print(("Error: get_struct_element, " + str(e)))
             traceback.print_exc()
     
-    def set_struct_element(self, name, value):
+    def set_struct_element(self, name, value=None, get_value=None):
         entry = self.current
         target = entry.target
         try:
             found = self.engine.find_field(name, self.engine.get_type(entry))
         except:
             return
+        if self.mode:
+            try:
+                if get_value:
+                    old_value = getattr(target, name)
+                    value = get_value(name, found.getType().getName(), found.getType().getTypeClass(), 
+                            ("", ""), "current: " + str(old_value))
+            except Exception as e:
+                print(e)
+                return
         try:
             if self.mode:
-                setattr(target, name, value)
-                entry = self.engine.create(self, name, value)
+                _arg, _any = self.extract_args(value)
+                setattr(target, name, _arg)
+                entry = self.engine.create(self, name, _arg)
             else:
                 _arg, _any = self.extract_args(value)
                 setattr(target, name, _arg)

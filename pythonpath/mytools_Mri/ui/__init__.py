@@ -291,12 +291,15 @@ class MRIUi(info.ExtendedInfo):
                 else:
                     try:
                         if self.main.set_property_value(word, 
-                            get_value=self.make_property_value, get_args=self.get_arguments):
+                            get_value=self.make_single_value, get_args=self.get_arguments):
                             self.pages[0] = self.get_properties_info(entry, self.config)
                     except:
                         return
             elif type_class == TypeClass.STRUCT:
-                self.main.get_struct_element(word)
+                if self.property_mode:
+                    self.main.get_struct_element(word)
+                else:
+                    self.main.set_struct_element(word, value=None, get_value=self.make_single_value)
             elif type_class == TypeClass.SEQUENCE:
                 base_type = self.engine.get_component_base_type(entry.type)
                 if base_type.getTypeClass() == TypeClass.INTERFACE:

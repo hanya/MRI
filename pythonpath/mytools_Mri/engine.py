@@ -118,7 +118,7 @@ class EntryBase(object):
                 return self.mri.get_property_value(name)
             elif type_class == TypeClass.STRUCT:
                 return self.mri.get_struct_element(name)
-        raise AttributeError("%s is not found" % name)
+        raise AttributeError("%s is not found in %s" % (name, self.__str__()))
     
     def __setattr__(self, name, value):
         if self.inspected and \
@@ -270,7 +270,7 @@ class MRIEngine(object):
             try:
                 d = (method.getName(), method.getReturnType().getName(), 
                     method.getDeclaringClass().getName(), 
-                    ', '.join([e.getName() for e in method.getExceptionTypes()]))
+                    ', '.join([e.Name for e in method.ExceptionTypes]))
             except: pass
             return d
     
@@ -281,19 +281,19 @@ class MRIEngine(object):
         txt = []
         atxt = txt.append
         for im in methods:
-            name = im.getName()
-            rettype = im.getReturnType()
-            ret = im.getReturnType().getName()
+            name = im.Name
+            rettype = im.ReturnType
+            ret = im.ReturnType.Name
             
-            parainfo = im.getParameterInfos()
-            dcname = im.getDeclaringClass().getName()
-            exceptinfo = im.getExceptionTypes()
+            parainfo = im.ParameterInfos
+            dcname = im.DeclaringClass.Name
+            exceptinfo = im.ExceptionTypes
             
             if len(parainfo) > 0:
                 args = []
                 for pi in parainfo:
                     args.append('%s %s %s' % 
-                        (self.get_mode_string(pi.aMode), pi.aType.getName(), pi.aName))
+                        (self.get_mode_string(pi.aMode), pi.aType.Name, pi.aName))
                 arg = '( %s )' % ', '.join(args)
             else:
                 arg = '()'
@@ -301,7 +301,7 @@ class MRIEngine(object):
             if len(exceptinfo) > 0:
                 excepts = []
                 for et in exceptinfo:
-                    excepts.append(et.getName())
+                    excepts.append(et.Name)
                 strexcept = ', '.join(excepts)
                 
             else:
@@ -359,7 +359,7 @@ class MRIEngine(object):
                 # get its value from its base method
                 if inspected.hasMethod('get%s' % name, mc_property):
                     midl = inspected.getMethod('get%s' % name, mc_property)
-                    rtype = midl.getReturnType()
+                    rtype = midl.ReturnType
                     adinfo = pseudprop
                     try:
                         vvalue, dummy = midl.invoke(target, ())
@@ -369,7 +369,7 @@ class MRIEngine(object):
                 
                 elif inspected.hasMethod('is%s' % name, mc_all):
                     midl = inspected.getMethod('is%s' % name, mc_all)
-                    rtype = midl.getReturnType()
+                    rtype = midl.ReturnType
                     vvalue, dummy = midl.invoke(target, ())
                     value = self.get_string_value(rtype.getTypeClass(), vvalue)
                     adinfo = pseudprop
@@ -426,17 +426,17 @@ class MRIEngine(object):
             return self.get_interfaces_info(entry)
         all_services = self.get_service_names(entry, services)
         
-        has = self.tdm.hasByHierarchicalName
-        get = self.tdm.getByHierarchicalName
         interfaces = set(self.get_interfaces_info(entry)) | set(self.get_basic_interfaces_info(entry))
         for name in all_services:
-            if has(name):
-                interfaces = interfaces | self.get_exported_interfaces_names(get(name))
+            if self.tdm.hasByHierarchicalName(name):
+                stdm = self.tdm.getByHierarchicalName(name)
+                interfaces = interfaces | self.get_exported_interfaces_names(stdm)
         
         # search into interfaces hierarchi
+        hier = self.tdm.getByHierarchicalName
         try:
             for i in interfaces:
-                interfaces = interfaces | self.get_base_types(get(i))
+                interfaces = interfaces | self.get_base_types(hier(i))
         except Exception as e:
             print(e)
         return list(interfaces)
@@ -530,10 +530,10 @@ class MRIEngine(object):
         
         #if len(fields) < 1: return ''
         for field in fields:
-            name = field.getName()
-            ttype = field.getType()
+            name = field.Name
+            ttype = field.Type
             type_class = ttype.getTypeClass()
-            type_name = ttype.getName()
+            type_name = ttype.Name
             mode = field.getAccessMode()
             access_mode = self.get_field_mode(mode) #
             try:
@@ -639,15 +639,14 @@ class MRIEngine(object):
             return str(type_class)
     
     def get_value(self, value, type_name, type_class):
+        """ Converts string value to specified type. """
+        # ToDo check value range as UNO type
         if type_class in TypeClassGroups.INT:
             ret = long(value)
         elif type_class in TypeClassGroups.FLOATING:
             ret = float(value)
         elif type_class == TypeClass.BOOLEAN:
-            if value.lower() == 'true' or value.strip() == '1':
-                ret = True
-            else:
-                ret = False
+            ret = (value.lower() == 'true' or value.strip() == '1')
         elif type_class == TypeClass.STRING:
             ret = value
         elif type_class == TypeClass.ENUM:
@@ -657,6 +656,10 @@ class MRIEngine(object):
                 ret = None
         elif type_class == TypeClass.TYPE:
             ret = uno.getTypeByName(value)
+        elif type_class == TypeClass.VOID:
+            ret = None
+        elif isinstance(value, EntryBase):
+            ret = value
         else:
             ret = str(value)
         return ret
@@ -694,15 +697,15 @@ class MRIEngine(object):
     
     def find_declared_module(self, entry, name):
         """try to find declared class of named property of attribute."""
-        has = self.tdm.hasByHierarchicalName
-        get = self.tdm.getByHierarchicalName
+        tdm = self.tdm
         # services
         if self.has_interface(entry.target, 'com.sun.star.lang.XServiceInfo'):
             servs = self.get_service_names(entry)
             for s in servs:
                 n = len(s)
-                if has(s):
-                    props = get(s).getProperties()
+                if tdm.hasByHierarchicalName(s):
+                    stdm = tdm.getByHierarchicalName(s)
+                    props = stdm.getProperties()
                     for p in props:
                         if p.getName()[n+1:] == name:
                             return name, s
@@ -717,15 +720,13 @@ class MRIEngine(object):
         inters = self.all_interfaces_info(entry)
         for i in inters:
             hier_name = "%s::%s" % (i, name)
-            if has(hier_name):
+            if tdm.hasByHierarchicalName(hier_name):
                 return name, i
 
         return "", ""
     
     def get_service_names(self, entry, names=None):
         """try to get service names hierarchi."""
-        has = self.tdm.hasByHierarchicalName
-        get = self.tdm.getByHierarchicalName
         if names is None:
             names = self.get_services_info(entry)
         servs = set()
@@ -734,8 +735,9 @@ class MRIEngine(object):
                 servs.add(name)
             except Exception as e:
                 print(("Error on get_service_names: %s" % e))
-            if has(name):
-                servs = servs | self.get_included_service_names(get(name))
+            if self.tdm.hasByHierarchicalName(name):
+                stdm = self.tdm.getByHierarchicalName(name)
+                servs = servs | self.get_included_service_names(stdm)
         return servs
     
     def get_included_service_names(self, stdm):
@@ -762,12 +764,11 @@ class MRIEngine(object):
         The interface name of the attribute can not be get from introspected object.
         needs to get from TypeDescriptionManager.
         """
-        has = self.tdm.hasByHierarchicalName
         #interfaces = self.get_interfaces_info(entry)
         interfaces = self.all_interfaces_info(entry)
         for interface in interfaces:
             #name = '%s::%s' % (interface, attr)
-            if has('%s::%s' % (interface, attr)):
+            if self.tdm.hasByHierarchicalName('%s::%s' % (interface, attr)):
                 return interface
         return False
     
@@ -792,9 +793,11 @@ class MRIEngine(object):
     
     def find_field(self, name, fields_idl):
         """ Find specific field from fields idl. """
-        fields = fields_idl.getFields()
-        for field in fields:
-            if field.getName() == name:
-                return field
-        raise Exception("Field not found: " + name)
-
+        field = fields_idl.getField(name)
+        if field is None:
+            raise Exception("Field not found: " + name)
+        return field
+    
+    def split_enum_name(self, name):
+        """ Split full name of enum value. """
+        return name.rsplit(".", 1)

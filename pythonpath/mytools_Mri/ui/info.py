@@ -375,42 +375,27 @@ from mytools_Mri import CancelException
 class ExtendedInfo(Info):
     """ Supports to get or set property value. """
     
-    def make_property_value(self, property_info, old_value=None, method_info=None):
-        """used to get new property value for callback."""
-        ARGS = TypeClassGroups.NUMERIC + [TypeClass.STRING, TypeClass.BOOLEAN]
-        if property_info:
-            prop_type = property_info.Type
-            if prop_type is None: 
-                raise Exception("%s property has multiple types." % property_info.Name)
-            prop_name = property_info.Name
-            type_class = prop_type.typeClass
-            type_name = prop_type.typeName
-        elif method_info:
-            prop_name = method_info.getName()
-            return_type = method_info.getReturnType()
-            type_class = return_type.getTypeClasss()
-            type_name = return_type.getName()
-        else:
-            raise Exception()
+    def make_single_value(self, name, type_name, type_class, doc=None, add_doc=None):
+        """  """
+        elements = ((name, type_class.value),)
+        try:
+            text = "%s %s" % (type_name, name)
+            if add_doc: text += "\n" + add_doc
+            # ToDo add information about enum if type_class is ENUM
+            state, results = self.dlgs.dialog_elemental_input(
+                elements, 'input value', text, doc)
+        except Exception as e:
+            print(e)
+        if not state: raise CancelException("canceled.")
+        result = results[0]
+        value = result.value
+        if type_class == TypeClass.ANY:
+            type_class = TypeClassGroups.get_type_class(result.value_type)
+            type_name = result.value_type
+            if value_type == "ENUM":
+                type_name, value = self.engine.split_enum_name(result.value)
+        return self.engine.get_value(value, type_name, type_class)
         
-        if type_class in ARGS:
-            strvalue = self.engine.get_string_value(type_class, old_value)
-            value, state = self.dlgs.dialog_input(
-                "Input new value.","%s\ntype: %s\nvalue: %s" % (prop_name, type_name, strvalue))
-            if state:
-                return self.engine.get_value(value, type_name, type_class)
-        
-        elif type_class == TypeClass.ENUM: # with Ref. button
-            strvalue = self.main.engine.get_string_value(type_class, old_value)
-            
-            values = ','.join([i.Name for i in self.engine.for_name(type_name).getFields()])
-            value, state = self.dlgs.dialog_input2(
-                "Input a new value.","%s\ntype: %s\nvalue: %s\nvalues: \n%s" % 
-                (prop_name, type_name, strvalue, values), '', type_name)
-            if state:
-                r = self.engine.get_value(value, type_name, type_class)
-                return r
-        raise CancelException('Unable to input value.')
     
     def get_arguments(self, method):
         """used for callback to get argument."""
@@ -418,7 +403,7 @@ class ExtendedInfo(Info):
         p_infos = method.getParameterInfos()
         n_infos = len(p_infos)
         
-        method_name = method.Name
+        method_name = method.getName()
         if n_infos == 0:
             return ()
         elif n_infos == 1:
@@ -433,16 +418,10 @@ class ExtendedInfo(Info):
                     return (arg, )
         
         # check all arguments
-        COMPATIBLE = TypeClassGroups.COMPATIBLE
-        compati = False
         for param in p_infos:
-            if param.aType.getTypeClass() in COMPATIBLE and param.aMode == ParamMode.IN:
-                compati = True
-            else:
-                compati = False
-                break
-        if not compati:
-            raise Exception('unable to get arguments from input.')
+            if param.aMode != ParamMode.IN:
+                raise Exception('unable to get arguments from input.')
+        state = 0
         try:
             method_args = []
             elements = []
@@ -451,21 +430,31 @@ class ExtendedInfo(Info):
                     self.engine.get_mode_string(param.aMode), param.aType.Name, param.aName)
                 elements.append((arg, param.aType.getTypeClass().value))
                 method_args.append(arg)
-            state, ret_args = self.dlgs.dialog_elemental_input(
+            state, results = self.dlgs.dialog_elemental_input(
                 elements, 'input arguments', "%s(\n\t%s\n )" % (method_name, ", \n\t".join(method_args)), 
-                (method.getDeclaringClass().Name, method_name))
+                (method.getDeclaringClass().getName(), method_name))
         except Exception as e:
             print(e)
+        
         if not state: raise CancelException("canceled.")
         args = []
-        for param, element in zip(p_infos, ret_args):
-            if param.aType.getTypeClass() in (TypeClass.INTERFACE, TypeClass.STRUCT):
-                args.append(element)
+        for param, result in zip(p_infos, results):
+            type_class = param.aType.getTypeClass()
+            if type_class in (TypeClass.INTERFACE, TypeClass.STRUCT, TypeClass.SEQUENCE):
+                args.append(result.value)
             else:
+                type_name = param.aType.getName()
+                value_type = result.value_type
+                value = result.value
+                if type_class == TypeClass.ANY:
+                    type_class = TypeClassGroups.get_type_class(value_type)
+                    if value_type == "ENUM":
+                        type_name, value = self.engine.split_enum_name(value)
+                else:
+                    type_class = param.aType.getTypeClass()
                 args.append(
-                    self.engine.get_value(element, param.aType.getName(), param.aType.getTypeClass()))
+                    self.engine.get_value(value, type_name, type_class))
         return args
-    
     
     def get_arguments_for_special_methods(self, method):
         """ """
