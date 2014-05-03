@@ -91,6 +91,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 					<desc>URL to User's macros directory.</desc>
 				</info>
 			</prop>
+			<prop oor:name="DoxygenRef" oor:type="xs:boolean">
+				<info>
+					<desc>Doxygen generated IDL reference is specified.</desc>
+				</info>
+			</prop>
 		</group>
 	</component>
 </oor:component-schema>

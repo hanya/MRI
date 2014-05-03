@@ -302,7 +302,8 @@ class MRIUi(info.ExtendedInfo):
                     self.main.set_struct_element(word, value=None, get_value=self.make_single_value)
             elif type_class == TypeClass.SEQUENCE:
                 base_type = self.engine.get_component_base_type(entry.type)
-                if base_type.getTypeClass() == TypeClass.INTERFACE:
+                base_tc = base_type.getTypeClass()
+                if base_tc == TypeClass.INTERFACE:
                     length = len(entry.target)
                     if length > 0:
                         n = self.dlgs.dialog_select(tuple(range(length)))
@@ -327,11 +328,20 @@ class MRIUi(info.ExtendedInfo):
                     if tag:
                         index = tag.split(',')
                         if False in [i.isdigit() for i in index]: return
-                        try:
-                            self.get_field_from_struct_sequence(word, [int(i) for i in index])
-                        except Exception as e:
-                            print(e)
-                            traceback.print_exc()
+                        if base_tc == TypeClass.STRUCT or base_tc == TypeClass.EXCEPTION or \
+                           base_tc == TypeClass.SEQUENCE:
+                            try:
+                                self.get_field_from_struct_sequence(word, [int(i) for i in index])
+                            except Exception as e:
+                                print(e)
+                                traceback.print_exc()
+                        else:
+                            try:
+                                self.main.manage_sequence(entry, int(index[0]))
+                            except Exception as e:
+                                print(e)
+                    else:
+                        print("tag not found: " + str(n))
         elif category == 1:
             self.main.call_method(word, get_args=self.get_arguments)
     

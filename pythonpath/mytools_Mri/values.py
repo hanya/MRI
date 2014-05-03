@@ -45,6 +45,7 @@ class ConfigNames(object):
     grid = 'UseGrid'
     use_tab = 'UseTab'
     macros = 'Macros'
+    ref_by_doxygen = "DoxygenRef"
 
 IGNORED_INTERFACES = set(('com.sun.star.script.browse.XBrowseNode',))
 IGNORED_PROPERTIES = set(('ActiveLayer', 'AsProperty', 'ClientMap', 'FontSlant',

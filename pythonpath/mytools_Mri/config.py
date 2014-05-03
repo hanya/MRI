@@ -23,7 +23,8 @@ class Config(object):
         'abbrev', 'browser', 'char_size', 
         'code_type', 'detailed', 'font_name', 'grid', 'pos_size', 
         'sdk_path', 'show_labels', 'show_code', 
-        'sorted', 'use_pseud_props', 'use_tab', 'macros']
+        'sorted', 'use_pseud_props', 'use_tab', 'macros', 
+        'ref_by_doxygen']
     
     GRID = 0
     GRID_UPDATE = True
@@ -125,9 +126,9 @@ class Config(object):
             
             config_writer.setHierarchicalPropertyValue(cn.pos_size, self.pos_size)
             if self.save_options:
-                cfg_names = (cn.abbrev, cn.code_type, cn.show_code, 
+                cfg_names = (cn.abbrev, cn.code_type, cn.ref_by_doxygen, cn.show_code, 
                     cn.show_labels, cn.sorted, cn.use_pseud_props)
-                cfg_values = (self.abbrev, self.code_type, self.show_code, 
+                cfg_values = (self.abbrev, self.code_type, self.ref_by_doxygen, self.show_code, 
                     self.show_labels, self.sorted, self.use_pseud_props)
                 config_writer.setPropertyValues(cfg_names, cfg_values)
                 self.save_options = False

@@ -93,3 +93,30 @@ class IDL(Web):
         else:
             self.cast.status('IDL target was not found.')
 
+
+class DoxygenIDLRef(IDL):
+    """ Link to Doxygen based IDL reference. """
+    
+    def open_idl_reference(self, idltarget, word=""):
+        if idltarget:
+            # ToDo support link to anchor
+            template = "%sdocs/idl/ref/%s%s.html"
+            type, target = self._get_target(idltarget)
+            idlurl = template % (self.sdk_path, type, target)
+            
+            self.open_url(idlurl)
+        else:
+            self.cast.status("IDL target was not found.")
+    
+    def _get_target(self, idltarget):
+        idl_type = self.cast.engine.get_module_type(idltarget)
+        if idl_type in ("CONSTANTS", "TYPEDEF"):
+            return "namespace", idltarget.replace(".", "_1_1")
+        elif idl_type == "ENUM":
+            return "namespace", idltarget[0:idltarget.rfind(".")].replace(".", "_1_1")
+        return idl_type.lower(), idltarget.replace(".", "_1_1")
+
+
+def create_IDL_opener(cast, config, doxygen_based=False):
+    klass = DoxygenIDLRef if doxygen_based else IDL
+    return klass(cast, config)

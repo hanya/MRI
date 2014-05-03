@@ -84,6 +84,7 @@ class ConfigDialog(object):
         edit_charsize_model = dlg_model.getByName('edit_charsize')
         check_grid_model = dlg_model.getByName('check_grid')
         check_tab_model = dlg_model.getByName('check_tab')
+        check_ref_by_doxygen = dlg_model.getByName("check_ref_by_doxygen")
         
         pos_size = self.cast.window.getPosSize() # get current window possize
         pos_size = ','.join( [str(pos_size.X),str(pos_size.Y),
@@ -130,6 +131,7 @@ class ConfigDialog(object):
             
             config.grid = not not check_grid_model.State
             config.use_tab = not not check_tab_model.State
+            config.ref_by_doxygen = not not check_ref_by_doxygen.State
         dlg.dispose()
         return ret
     

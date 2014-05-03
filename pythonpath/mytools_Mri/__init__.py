@@ -43,7 +43,7 @@ class MRI(object):
             values.set_mri_dir(ctx)
         self.config = Config(ctx)
         self.config.property_only = False
-        self.web = mytools_Mri.web.IDL(self, self.config)
+        self.web = mytools_Mri.web.create_IDL_opener(self, self.config, self.config.ref_by_doxygen)
         self.engine = engine.MRIEngine(ctx)
         self.history = RootEntry()
         self.current = self.history
@@ -569,6 +569,8 @@ class MRI(object):
             self.change_entry(new_entry)
         elif type_class == TypeClass.SEQUENCE:
             self.change_entry(new_entry)
+        else:
+            self.action_by_type(new_entry)
         return new_entry
     
     def _get_value(self, args):
