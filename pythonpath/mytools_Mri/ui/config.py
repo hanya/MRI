@@ -111,6 +111,7 @@ class ConfigDialog(object):
             if not config.use_tab:
                 v = 0
             check_tab_model.State = v#1 if config.use_tab else 0
+        check_ref_by_doxygen.State = 1 if config.ref_by_doxygen else 0
         
         ret = False
         if dlg.execute():
