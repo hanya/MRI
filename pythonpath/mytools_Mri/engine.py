@@ -719,7 +719,24 @@ class MRIEngine(object):
             hier_name = "%s::%s" % (i, name)
             if has(hier_name):
                 return name, i
-
+        
+        # struct or exception
+        idl_type = self.get_type(entry)
+        idl_type_class = idl_type.getTypeClass()
+        if idl_type_class == TypeClass.STRUCT or idl_type_class == TypeClass.EXCEPTION:
+            def check_members(_type):
+                if name in _type.getMemberNames():
+                    return _type.getName()
+                else:
+                    base_type = _type.getBaseType()
+                    if base_type:
+                        return check_members(base_type)
+            
+            desc = get(idl_type.getName())
+            found = check_members(desc)
+            if found:
+                return name, found
+        
         return "", ""
     
     def get_service_names(self, entry, names=None):
@@ -799,7 +816,10 @@ class MRIEngine(object):
         raise Exception("Field not found: " + name)
     
     def get_module_type(self, name):
-        idl = self.tdm.getByHierarchicalName(name)
+        try:
+            idl = self.tdm.getByHierarchicalName(name)
+        except:
+            idl = None
         if idl:
             return idl.getTypeClass().value
         return ""
