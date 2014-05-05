@@ -100,9 +100,20 @@ class DoxygenIDLRef(IDL):
     def open_idl_reference(self, idltarget, word=""):
         if idltarget:
             # ToDo support link to anchor
-            template = "%sdocs/idl/ref/%s%s.html"
-            type, target = self._get_target(idltarget)
-            idlurl = template % (self.sdk_path, type, target)
+            if word:
+                template = "{BASE}docs/idl/ref/{TYPE}{NAME}.html#{ANCHOR}"
+                try:
+                    type, target = self._get_target(idltarget)
+                except Exception as e:
+                    self.cast.status("Error: " + str(e))
+                    return
+                anchor = self._get_anchor(idltarget, word, type)
+                idlurl = template.format(BASE=self.sdk_path, 
+                    TYPE=type, NAME=target, ANCHOR=anchor)
+            else:
+                template = "%sdocs/idl/ref/%s%s.html"
+                type, target = self._get_target(idltarget)
+                idlurl = template % (self.sdk_path, type, target)
             
             self.open_url(idlurl)
         else:
@@ -115,6 +126,103 @@ class DoxygenIDLRef(IDL):
         elif idl_type == "ENUM":
             return "namespace", idltarget[0:idltarget.rfind(".")].replace(".", "_1_1")
         return idl_type.lower(), idltarget.replace(".", "_1_1")
+    
+    def _get_anchor(self, idltarget, word, type):
+        import hashlib
+        target = idltarget
+        if type in ("service", "struct", "exception"):
+            pass
+        else:
+            target = idltarget + "::" + word
+        try:
+            idl = self.cast.engine.tdm.getByHierarchicalName(target)
+        except:
+            idl = None
+        if idl:
+            anchor_value = ""
+            idl_type_name = idl.getTypeClass().value
+            if idl_type_name == "INTERFACE_METHOD":
+                # ret_type namename([mode] type pname)
+                idl_ret_type = idl.getReturnType()
+                ret_type_name = self._check_type_name(
+                    idl_ret_type, idltarget)
+                idl_params = idl.getParameters()
+                args=[]
+                for param in idl_params:
+                    mode = ("", "[in]", "[out]", "[inout]")[(1 if param.isIn() else 0) | (2 if param.isOut() else 0)]
+                    idl_param_type = param.getType()
+                    param_type = self._check_type_name(idl_param_type, idltarget)
+                    
+                    args.append("{MODE} {TYPE} {NAME}".format(
+                        MODE=mode, TYPE=param_type, NAME=param.getName()))
+                    
+                anchor_value = "{RETURN_TYPE} {NAME}{NAME}({ARGS})".format(
+                    RETURN_TYPE=ret_type_name, NAME=word, ARGS=", ".join(args))
+                
+            elif idl_type_name == "INTERFACE_ATTRIBUTE":
+                # val_type namename
+                idl_value_type = idl.getType()
+                type_name = self._check_type_name(idl_value_type, idltarget)
+                anchor_value = "{TYPE_NAME} {NAME}{NAME}".format(
+                    TYPE_NAME=type_name, NAME=word)
+            
+            elif idl_type_name == "SERVICE":
+                # ToDo constructor can be detected in _check_type_name?
+                full_name = "{BASE}.{NAME}".format(BASE=idltarget, NAME=word)
+                found = None
+                for prop in idl.getProperties():
+                    if prop.getName() == full_name:
+                        found = prop
+                        break
+                if found:
+                    value_type = self._check_type_name(found.getPropertyTypeDescription(), idltarget)
+                    anchor_value = "{TYPE_NAME} {NAME}{NAME}".format(
+                        TYPE_NAME=value_type, NAME=word)
+            
+            elif idl_type_name in ("STRUCT", "EXCEPTION"):
+                # ToDo engine.find_declared_module found base class but needs searching here?
+                found = None
+                for name, member in zip(idl.getMemberNames(), idl.getMemberTypes()):
+                    print(member.getName())
+                    if name == word:
+                        found = member
+                        break
+                if found:
+                    type_name = self._check_type_name(found, idltarget)
+                    anchor_value = "{TYPE_NAME} {NAME}{NAME}".format(
+                        TYPE_NAME=type_name, NAME=word)
+                
+            return self._get_anchor_md5(anchor_value)
+    
+    def _check_type_name(self, idl, current):
+        type_class_name = idl.getTypeClass().value
+        
+        if type_class_name in ("INTERFACE", "STRUCT", "EXCEPTION"):
+            # If the target value is defined in the same module, 
+            # its name can be abbreviated. But there is no way to know 
+            # it is really abbreviated or not in the definition.
+            # Doxygen uses written format to generate anchor value, 
+            # and then no way to make this match with them.
+            name = idl.getName()
+            #return name.replace(".", "::") # always full format
+            if name[0:name.rfind(".")] == current[0:current.rfind(".")]:
+                return name[name.rfind(".")+1:]
+            else:
+                return name.replace(".", "::")
+        elif type_class_name == "SEQUENCE":
+            inner_type = self._check_type_name(idl.getReferencedType(), current)
+            return "sequence< {TYPE} >".format(TYPE=inner_type)
+        elif type_class_name in ("ENUM", "TYPEDEF"):
+            return idl.getName().replace(".", "::")
+        else:
+            return idl.getName()
+    
+    def _get_anchor_md5(self, value):
+        """ Generate md5 value in hex from passed value. """
+        import hashlib
+        h = hashlib.md5()
+        h.update(value)
+        return "a" + h.hexdigest() # a is prefix by doxygen
 
 
 def create_IDL_opener(cast, config, doxygen_based=False):
