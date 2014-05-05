@@ -8,13 +8,25 @@ Structs is not UNO object and they have only element attribute. So, MRI shows st
 For example, com.sun.star.lang.Locale struct is shown like this below.
 
 {|
-|Name||Value Type||Value||Mode
+|Name
+|Value Type
+|Value
+|Mode
 |-
-|Country||string||US||
+|Country
+|string
+|US
+|
 |-
-|Language||string||en||
+|Language
+|string
+|en
+|
 |-
-|Variant||string||""||
+|Variant
+|string
+|""
+|
 |}
 
 You can get a value of an element by the double clicking on the information edit.

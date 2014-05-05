@@ -8,11 +8,23 @@ When you select Properties scope, information of the current target object is sh
 Properties are listed every line in the information edit.
 
 {|
-|Name||Type||Value||Info.||Attr.
+|Name
+|Type
+|Value
+|Info.
+|Attr.
 |-
-||CharFontName||string||Times New Roman|| ||Maybevoid
+|CharFontName
+|string
+|Times New Roman
+|Maybevoid
+| 
 |-
-||AvailableServiceNames||[]string||-SEQUENCE-||Pseud||ReadOnly
+|AvailableServiceNames
+|[]string
+| -SEQUENCE-
+|Pseud
+|ReadOnly
 |}
 
 In the case of CharFontName property, type of its value is "string", value is "Times New Roman", no Info., property value is "Maybevoid".
@@ -43,37 +55,49 @@ Sometimes MRI shows special notations in the type, value and information of a pr
 In the type information, these notation is used.
 
 {|
-|''Type''||''Description''
+|''Type''
+|''Description''
 |-
-|[]type||Sequence of value type
+|[]type
+|Sequence of value type
 |}
 
 These notations are shown in the value information.
 
 {|
-|''Value''||''Description''
+|''Value''
+|''Description''
 |-
-|""||Empty string.
+|""
+|Empty string.
 |-
-|-void||No value.
+| -void
+|No value.
 |-
-|-UPPERCASE-||Value could not be converted to the string type.
+| -UPPERCASE-
+|Value could not be converted to the string type.
 |-
-|-Error-||Error raised during to get its value.
+| -Error-
+|Error raised during to get its value.
 |}
 
 Pseud or other information are there and listed in the table below.
 
 {|
-|''Information''||''Description''
+|''Information''
+|''Description''
 |-
-|Pseud||Pseud property.
+|Pseud
+|Pseud property.
 |-
-| -----||Its value could not to get
+| -----
+|Its value could not to get
 |-
-|Ignored||Listed in the ignored list of properties.
+|Ignored
+|Listed in the ignored list of properties.
 |-
-|Attr.||Attribute of an interface.
+|Attr.
+|Attribute of an interface.
 |}
 
 == Getting Property Values ==
@@ -97,9 +121,12 @@ When you set a property value, MRI reloads the information of the property and t
 You can get or set property values by double clicking on the information edit. You can use Ctrl and Alt keys as modifire key.
 
 {|
-|''Key''||''Description''
+|''Key''
+|''Description''
 |-
-|Ctrl||Suppress actions caused by double clickings.
+|Ctrl
+|Suppress actions caused by double clickings.
 |-
-|Alt||Temporary, change the mode Get to Set or Set to Get.
+|Alt
+|Temporary, change the mode Get to Set or Set to Get.
 |}

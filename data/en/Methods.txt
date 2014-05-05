@@ -4,11 +4,20 @@
 An example of methods information is shown like a list below.
 
 {|
-|Name||Arguments||Return Type||Exceptions
+|Name
+|Arguments
+|Return Type
+|Exceptions
 |-
-|getName||()||string||
+|getName
+|() 
+|string
+| 
 |-
-|supportsService||( [in] string ServiceName )||boolean||
+|supportsService
+|( [in] string ServiceName )
+|boolean
+|
 |}
 
 getName can be called with no arguments and returns string type value. And supportsService method needs a string type argument and its type of returned value is boolean.
