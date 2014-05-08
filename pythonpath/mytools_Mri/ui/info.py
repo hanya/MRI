@@ -419,7 +419,7 @@ class ExtendedInfo(Info):
         
         # check all arguments
         for param in p_infos:
-            if param.aMode != ParamMode.IN:
+            if not param.aMode == ParamMode.IN:
                 raise Exception('unable to get arguments from input.')
         state = 0
         try:

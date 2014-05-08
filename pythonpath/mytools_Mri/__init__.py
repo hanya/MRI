@@ -314,6 +314,8 @@ class MRI(object):
                 try:
                     if get_args:
                         args = tuple(get_args(method))
+                except CancelException:
+                    return
                 except:
                     traceback.print_exc()
                     return
