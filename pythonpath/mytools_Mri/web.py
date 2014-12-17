@@ -157,7 +157,7 @@ class DoxygenIDLRef(IDL):
                         MODE=mode, TYPE=param_type, NAME=param.getName()))
                     
                 anchor_value = "{RETURN_TYPE} {NAME}{NAME}({ARGS})".format(
-                    RETURN_TYPE=ret_type_name, NAME=word, ARGS=", ".join(args))
+                    RETURN_TYPE=ret_type_name, NAME=word, ARGS=",".join(args))
                 
             elif idl_type_name == "INTERFACE_ATTRIBUTE":
                 # val_type namename
@@ -183,7 +183,6 @@ class DoxygenIDLRef(IDL):
                 # ToDo engine.find_declared_module found base class but needs searching here?
                 found = None
                 for name, member in zip(idl.getMemberNames(), idl.getMemberTypes()):
-                    print(member.getName())
                     if name == word:
                         found = member
                         break
@@ -221,7 +220,7 @@ class DoxygenIDLRef(IDL):
         """ Generate md5 value in hex from passed value. """
         import hashlib
         h = hashlib.md5()
-        h.update(value)
+        h.update(value.encode("utf-8"))
         return "a" + h.hexdigest() # a is prefix by doxygen
 
 
