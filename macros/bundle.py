@@ -449,27 +449,56 @@ def inspect_sequence_elements(mri):
         for i in range(len(entry.target)):
             dummy = entry[i]
 
+
 def inspect_accessible_children(mri):
     """ Inspect Accessible Children
-        Load all children from accessible interface. """
-    # show role in name?
-    entry = mri.current
+        Inspect all accessible children. """
+    _entry = mri.current
     
-    def walk_accctx(acc):
-        for i in range(acc.target.getAccessibleChildCount()):
-            c = acc.getAccessibleChild(i)
-            walk(c)
+    roles = get_enum_map(mri, "com.sun.star.accessibility.AccessibleRole")
     
-    def walk(obj):
-        if obj.has_interface("com.sun.star.accessibility.XAccessible"):
-            acc = obj.getAccessibleContext()
-            if acc and acc.has_interface("com.sun.star.accessibility.XAccessibleContext"):
-                walk_accctx(acc)
+    entry = _entry.getAccessibleContext() if _entry.has_interface("com.sun.star.accessibility.XAccessible") else _entry
+    for i in range(entry.target.getAccessibleChildCount()):
+        c = entry.getAccessibleChild(i)
+        if c:
+            if c.has_interface("com.sun.star.accessibility.XAccessibleContext"):
+                role = c.target.getAccessibleRole()
+            elif c.has_interface("com.sun.star.accessibility.XAccessible"):
+                role = c.target.getAccessibleContext().getAccessibleRole()
+            
+            c.name = c.name + ", Role: {}".format(roles[role])
+    # update history list and tree view if there
+    if mri.ui.tree:
+        mri.ui.tree.update_labels()
+
+
+def get_enum_map(mri, name):
+    """ Returns enum value to name and name to enum value map.
+        @param mri      mri instance
+        @param name     name of enum """
+    ret = {}
+    tdm = mri.engine.tdm
+    n = len(name) + 1
+    roles = tdm.getByHierarchicalName(name)
+    constants = roles.getConstants()
+    for c in constants:
+        _name = c.getName()
+        v = c.getConstantValue()
+        ret[_name[n:]] = v
+        ret[v] = _name[n:]
+    return ret
+
+
+def enum_to_name_map(mri):
+    """ Create enum value to value name mapping
+        foo. """
     
-    if entry.has_interface("com.sun.star.accessibility.XAccessible"):
-        walk(entry)
-    elif entry.has_interface("com.sun.star.accessibility.XAccessibleContext"):
-        walk_accctx(entry)
+    tdm = mri.engine.tdm
+    roles = tdm.getByHierarchicalName("com.sun.star.accessibility.AccessibleRole")
+    #print(dir(roles))
+    constants = roles.getConstants()
+    for c in constants:
+        print("{}: {}".format(c.getName()[42:], c.getConstantValue()))
 
 
 # For charts.

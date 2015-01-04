@@ -331,8 +331,8 @@ def create_tree_window(self, ctx, parent, ev=None):
     def create(name):
         return smgr.createInstanceWithContext(name, ctx)
     
-    WIDTH = 200
-    WINDOW_HEIGHT = 150
+    WIDTH = 300
+    WINDOW_HEIGHT = 350
     x = 100
     y = 100
     if ev:
@@ -463,4 +463,16 @@ class HistoryTreeUi(object):
         if select:
             self.set_selected(entry)
             self.show_entry(entry)
-
+    
+    def update_labels(self):
+        data_model = self._data_model
+        def walk(node):
+            entry = node.get_data()
+            if entry:
+                node.setDisplayValue(entry.name)
+            if node.getChildCount():
+                for i in range(node.getChildCount()):
+                    walk(node.getChildAt(i))
+                data_model.changed(ChangeType.NodeChanged, node, tuple(node.children))
+        root = self._data_model.getRoot()
+        walk(root)
