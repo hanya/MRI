@@ -433,8 +433,13 @@ class GridPages(GridPagesBase):
             data_model.addRows(headings, trows)
         
         def _search_in_first_column(self, data_model, row_index, regexp):
-            for i in range(row_index)[::-1]:
-                m = regexp.search(data_model.getCellData(0, i))
+            if row_index:
+                for i in range(row_index)[::-1]:
+                    m = regexp.search(data_model.getCellData(0, i))
+                    if m:
+                        return m.group(1)
+            elif row_index == 0:
+                m = regexp.search(data_model.getCellData(0, 0))
                 if m:
                     return m.group(1)
             return None
