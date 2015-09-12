@@ -226,7 +226,7 @@ class KeyConfig(KeyConfigLoader):
         for entry in self.entries:
             _length1 = font.getStringWidth(entry.name)
             _length2 = font.getStringWidth(entry.keydesc)
-            entries.append(entry.name + (" " * ((width - _length1 - _length2 - margin) / space_width)) + entry.keydesc)
+            entries.append(entry.name + (" " * int((width - _length1 - _length2 - margin) / space_width)) + entry.keydesc)
         self.keys_list.addItems(tuple(entries), 0)
         self.width = width
         self.space_width = space_width
