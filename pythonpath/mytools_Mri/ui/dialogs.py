@@ -629,4 +629,54 @@ class Dialogs(object):
     def history_selector(self, title="", listener=None):
         """ Select an entry from history. """
         return HistorySelectorDialog(self.ctx, self.cast).execute(title, listener)
+    
+    def _create_file_dialog(self, title, default_name, display_dir, filters, default_filter, template):
+        fp = self.smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FilePicker", self.ctx)
+        fp.initialize((template,))
+        fp.setTitle(title)
+        fp.setDefaultName(default_name)
+        if display_dir:
+            fp.setDisplayDirectory(display_dir)
+        for name, f in filters:
+            fp.appendFilter(name, f)
+        if default_filter:
+            fp.setCurrentFilter(filters[default_filter])
+        return fp
+    
+    def dialog_open(self, title="", default_name="", display_dir="", filters=(('All Files (*.*)', '*.*'),), default_filter=0, multiple=False, template=0):
+        fp = self._create_file_dialog(title, default_name, display_dir, filters, default_filter, template)
+        fp.setMultiSelectionMode(multiple)
+        
+        ret = None
+        if fp.execute() == 1:
+            files = fp.getFiles()
+            if multiple:
+                dir_url = files[0]
+                if not dir_url.endswith("/"):
+                    dir_url += "/"
+                ret = [dir_url + name for name in files[1:]]
+            else:
+                ret = files[0]
+        fp.dispose()
+        return ret
+    
+    def dialog_save(self, title="", default_name="", display_dir="", filters=(('All Files (*.*)', '*.*'),), default_filter=0, template=1):
+        fp = self._create_file_dialog(title, default_name, display_dir, filters, default_filter, template)
+        ret = None
+        if fp.execute() == 1:
+            ret = fp.getFiles()[0]
+        fp.dispose()
+        return ret
+    
+    def directory_choose(self, title="", description="", directory=""):
+        fp = self.smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FolderPicker", self.ctx)
+        fp.setTitle(title)
+        fp.setDescription(description)
+        if directory:
+            fp.setDisplayDirectory(directory)
+        ret = None
+        if fp.execute() == 1:
+            ret = fp.getDirectory()
+        fp.dispose()
+        return ret
 
