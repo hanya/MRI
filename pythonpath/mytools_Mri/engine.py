@@ -152,7 +152,7 @@ class EntryBase(object):
             return value
         raise AttributeError("__setitem__ is not supported")
     
-    def append(self, item):
+    def _append(self, item):
         if self.type.getTypeClass() == TypeClass.SEQUENCE:
             self.target.append(item)
             self.mri.change_history(0, self)
