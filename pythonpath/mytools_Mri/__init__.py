@@ -577,15 +577,9 @@ class MRI(object):
     
     def _get_value(self, args):
         if isinstance(args, tuple):
-            _args = []
-            for arg in args:
-                _args.append(self._get_value(arg))
-            return tuple(_args)
+            return tuple([self._get_value(arg) for arg in args])
         else:
-            if isinstance(args, Entry):
-                return args.target
-            else:
-                return args
+            return args.target if isinstance(args, Entry) else args
     
     # for macros
     def get_component_context(self):

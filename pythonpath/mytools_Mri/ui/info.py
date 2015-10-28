@@ -235,11 +235,8 @@ class Info(object):
             elements = []
             
             if len(entry.target) > 0:
-                for t, m in zip(b, l):
-                    #entry = Entry(self, '', t)
-                    #self.engine.complete(entry)
-                    entry = self.engine.create(self, "", t)
-                    elements.append(('(%s)' % m, self.engine.get_struct_info(entry)))
+                elements = [('(%s)' % m, self.engine.get_struct_info(self.engine.create(self, "", t))) 
+                                    for t, m in zip(b, l)]
                 
             if config.abbrev:
                 abbr_old = mytools_Mri.values.ABBROLD
@@ -247,11 +244,10 @@ class Info(object):
                 elements[:] = [
                     (i[0], [(j[0], j[1].replace(abbr_old, abbr_new), 
                         j[2], j[3]) for j in i[1]]) for i in elements]
-            length = []
-            for element in elements:
-                length.append((max([len(x[0]) for x in element[1]]), 
-                    max([len(x[1]) for x in element[1]]), 
-                    max([len(x[2]) for x in element[1]])))
+            length = [(max([len(x[0]) for x in element[1]]), 
+                        max([len(x[1]) for x in element[1]]), 
+                        max([len(x[2]) for x in element[1]]))
+                            for element in elements]
             mnlen = max([x[0] for x in length])
             mtlen = max([x[1] for x in length])
             mvlen = max([x[2] for x in length])

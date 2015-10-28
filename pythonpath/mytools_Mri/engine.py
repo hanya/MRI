@@ -58,14 +58,9 @@ class EntryBase(object):
     
     def _convert_to_tuple(self, value):
         if isinstance(value, list) or isinstance(value, tuple):
-            a = []
-            for i in value:
-                a.append(self._convert_to_tuple(i))
-            return tuple(a)
+            return tuple([self._convert_to_tuple(i) for i in value])
         else:
-            if isinstance(value, Entry):
-                return value.get_target()
-            return value
+            return value.get_target() if isinstance(value, Entry) else value
     
     def get_target(self):
         try:
@@ -290,19 +285,14 @@ class MRIEngine(object):
             exceptinfo = im.getExceptionTypes()
             
             if len(parainfo) > 0:
-                args = []
-                for pi in parainfo:
-                    args.append('%s %s %s' % 
-                        (self.get_mode_string(pi.aMode), pi.aType.getName(), pi.aName))
+                args = [" ".join((self.get_mode_string(pi.aMode), pi.aType.getName(), pi.aName))
+                                for pi in parainfo]
                 arg = '( %s )' % ', '.join(args)
             else:
                 arg = '()'
             
             if len(exceptinfo) > 0:
-                excepts = []
-                for et in exceptinfo:
-                    excepts.append(et.getName())
-                strexcept = ', '.join(excepts)
+                strexcept = ', '.join([et.getName() for et in exceptinfo])
                 
             else:
                 strexcept = ""
