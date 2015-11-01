@@ -544,6 +544,7 @@ def inspect_configuration_modifiable(mri):
 def reload_generator(mri):
     """ Reload Current Code Generator
         For code generator development. """
+    reloaded = False
     cg = mri.cg
     g = cg.generator
     cg.set_enable(False)
@@ -552,9 +553,18 @@ def reload_generator(mri):
         mod = __import__(name)
         for name in name.split(".")[1:]:
             mod = getattr(mod, name)
-        reload(mod)
+        reload(mod) # reload has been gone since Python 3.4
     except Exception as e:
-        print(e)
+        if str(e) != "name 'reload' is not defined":
+            print(e)
+    else:
+        reloaded = True
+    if not reloaded:
+        try:
+            import importlib
+            importlib.reload(mod)
+        except Exception as e:
+            print(e)
     cg.set_enable(True)
 
 
