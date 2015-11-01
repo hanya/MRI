@@ -224,6 +224,20 @@ class GeneratorForCpp(GeneratorBase):
         self.add_variable(vname)
         return vname, var_type
     
+    def _make_type_name(self, name, idl):
+        """ Construct type name. """
+        type_class = idl.getTypeClass()
+        type_name = idl.getName()
+        if type_class == TypeClass.SEQUENCE:
+            comp_idl = idl.getComponentType()
+            comp_type_class = comp_idl.getTypeClass()
+            return "Sequence< %s >" % self._make_type_name(comp_idl.getName(), comp_type_class)
+        elif type_class == TypeClass.INTERFACE:
+            self.add_import(type_name)
+            return "Reference< %s >" % self.get_last_part(type_name)
+        else:
+            return type_name
+    
     def _make_variable(self, name, idl):
         """Make a variable name from XIdlClass."""
         seq = False
@@ -239,8 +253,12 @@ class GeneratorForCpp(GeneratorBase):
                 name, vtype = self._make_variable(name, comp_idl)
                 return name, "Sequence< %s >" % vtype
             else:
-                type_class = cmp_type_class
+                #type_class = cmp_type_class
                 seq = True
+                name, vtype = self._make_variable(name, comp_idl)
+                vtype = self._make_type_name(type_name, comp_idl)
+                return name, "Sequence< %s >" % vtype
+                
         if type_class == TypeClass.INTERFACE:
             self.add_import(type_name)
             suffix = self.get_last_part(type_name)
