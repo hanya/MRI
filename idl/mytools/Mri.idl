@@ -1,0 +1,29 @@
+
+
+#ifndef __mytools_Mri_idl__
+#define __mytools_Mri_idl__
+
+#include <com/sun/star/beans/XIntrospection.idl>
+
+module mytools {
+
+service Mri : com::sun::star::beans::XIntrospection
+{
+
+    /** Create an instance inspects desktop as default target
+
+    */
+    create();
+
+    /** Create an instance and inspects passed target value
+
+    @param target
+        to be inspected
+    */
+    inspect( [in] any target );
+
+}; // service
+
+}; // module
+
+#endif
