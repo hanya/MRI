@@ -73,6 +73,13 @@ oMRI.inspect( MriTargetObject )<br />
 <paragraph id="par_id92108667" role="paragraph" xml-lang="en" />
 <paragraph id="par_id91206379" role="paragraph" xml-lang="en">The control of the program is returned after Mri subroutine passes to service of MRI. Therefore you need to breakpoints of Basic IDE debugger if you want to inspect a object temporary created or you want to inspect the target well. </paragraph>
 <paragraph id="par_id19904538" role="paragraph" xml-lang="en">If you passed to a target to Mri that is part of a document opened on the StarDesktop and it lives after your Basic code finished, you can travel in it (passed value is a copy of the target but references are the same them of the original target). </paragraph>
+<paragraph id="par_id19914538" role="paragraph" xml-lang="en">Since MRI 1.3.0, you can call constructors as follows: </paragraph>
+<paragraph id="par_id08932177" role="code" xml-lang="en">oMRI = mytools.Mri.create()<br />
+oMRI.inspect( MriTargetObject )<br />
+</paragraph>
+<paragraph id="par_id91206379" role="paragraph" xml-lang="en">Or calling another constructor with a target:</paragraph>
+<paragraph id="par_id08932178" role="code" xml-lang="en">mytools.Mri.inspect( MriTargetObject )<br />
+</paragraph>
 </section>
 <section id="sec_id67680073"><paragraph id="hd_id61594092" level="3" role="heading" xml-lang="en">BeanShell </paragraph>
 <paragraph id="par_id20147080" role="paragraph" xml-lang="en">This is an example of how to use MRI from BeanShell macros. </paragraph>
