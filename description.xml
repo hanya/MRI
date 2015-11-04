@@ -23,6 +23,6 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <src lang="en" xlink:href="descriptions/desc.en"/>
 </extension-description>
 <update-information>
-<src xlink:href="https://raw.github.com/hanya/MRI/master/files/MRI.update.xml"/>
+<src xlink:href="https://github.com/hanya/MRI/raw/master/files/MRI.update.xml"/>
 </update-information>
 </description>

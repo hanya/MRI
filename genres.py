@@ -27,7 +27,7 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <src lang="en" xlink:href="descriptions/desc.en"/>
 </extension-description>
 <update-information>
-<src xlink:href="https://raw.github.com/hanya/MRI/master/files/MRI.update.xml"/>
+<src xlink:href="https://github.com/hanya/MRI/raw/master/files/MRI.update.xml"/>
 </update-information>
 </description>"""
 
@@ -41,7 +41,7 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <d:OpenOffice.org-minimal-version value="3.4" d:name="OpenOffice.org 3.4" />
 </dependencies>
 <update-download>
-<src xlink:href="https://raw.github.com/hanya/MRI/master/files/MRI-{VERSION}.oxt"/>
+<src xlink:href="https://github.com/hanya/MRI/raw/master/files/MRI-{VERSION}.oxt"/>
 </update-download>
 </description>"""
 
