@@ -55,15 +55,14 @@ class Info(object):
                 txt.insert(0, ('(Name)', '(Value Type)', '(Value)',
                 '(Info.)', '(Attr.)', '(Handle)'))
             
-            mnlen = max([len(x[0]) for x in txt])
-            mtlen = max([len(x[1]) for x in txt])
-            mvlen = max([len(x[2]) for x in txt])
-            malen = max([len(x[4]) for x in txt])
-            
             if config.grid:
                 #return ((t[0], t[1], t[2], t[3], t[4], t[5]) for t in txt)
                 return [(t[0], t[1], t[2], t[3], t[4]) for t in txt]
             else:
+                mnlen = max([len(x[0]) for x in txt])
+                mtlen = max([len(x[1]) for x in txt])
+                mvlen = max([len(x[2]) for x in txt])
+                malen = max([len(x[4]) for x in txt])
                 return ''.join([("%s  %s  %s  %s  %s  %s  \n" % 
                     (t[0].ljust(mnlen), t[1].ljust(mtlen),
                     t[2].ljust(mvlen), t[3].ljust(8),
@@ -90,11 +89,6 @@ class Info(object):
                     _items = [(item[0], item) for item in txt]
                     _items.sort()
                     txt = [item for (key, item) in _items]
-            mnlen = max([len(x[0]) for x in txt])
-            malen = max([len(x[1]) for x in txt])
-            mrlen = max([len(x[2]) for x in txt])
-            mdlen = max([len(x[3]) for x in txt])
-            if malen > 50: malen = 50
             
             if config.show_labels and not config.grid:
                 txt.insert(0, ('(Name)', '(Arguments)', '(Return Type)', 
@@ -103,6 +97,11 @@ class Info(object):
             if config.grid:
                 return [(i[0], i[1], i[2], i[3], i[4]) for i in txt]
             else:
+                mnlen = max([len(x[0]) for x in txt])
+                malen = max([len(x[1]) for x in txt])
+                mrlen = max([len(x[2]) for x in txt])
+                mdlen = max([len(x[3]) for x in txt])
+                if malen > 50: malen = 50
                 return ''.join([('%s  %s  %s  %s  %s  \n' % 
                     (i[0].ljust(mnlen), i[1].ljust(malen), i[2].ljust(mrlen),
                     i[3].ljust(mdlen), i[4])) for i in txt])
