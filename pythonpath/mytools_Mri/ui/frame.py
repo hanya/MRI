@@ -47,14 +47,15 @@ def _create_frame(self, ctx, smgr, ps):
 def _create_menu(self, ctx, smgr, config, window, use_grid=False):
     menubar = smgr.createInstanceWithContext(
         'com.sun.star.awt.MenuBar',ctx)
+    menubar_insert = menubar.insertItem
     menubar.removeItem(0,menubar.getItemCount())
-    menubar.insertItem(0,'~File',0,0)
-    menubar.insertItem(1,'~Tools',0,1)
-    menubar.insertItem(2,'T~argets',0,2)
-    menubar.insertItem(4,'~Mode',0,3)
-    menubar.insertItem(6,'Mac~ros',0,4)
-    menubar.insertItem(5,'~Window',0,5)
-    menubar.insertItem(3,'~Help',0,6)
+    menubar_insert(0,'~File',0,0)
+    menubar_insert(1,'~Tools',0,1)
+    menubar_insert(2,'T~argets',0,2)
+    menubar_insert(4,'~Mode',0,3)
+    menubar_insert(6,'Mac~ros',0,4)
+    menubar_insert(5,'~Window',0,5)
+    menubar_insert(3,'~Help',0,6)
     menubar.setCommand(2,'targets')
     menubar.setCommand(5,'window')
     menubar.setCommand(6,'macros')
@@ -135,14 +136,14 @@ def _create_menu(self, ctx, smgr, config, window, use_grid=False):
         (1,'What\'s ~This?',0,2,'mytools.Mri:h_what'),
         (None,3),
         (2,'~About MRI',0,4,'mytools.Mri:h_about'),))
-    
-    menubar.setPopupMenu(0,filemenu)
-    menubar.setPopupMenu(1,toolsmenu)
-    menubar.setPopupMenu(2,targetsmenu)
-    menubar.setPopupMenu(3,helpmenu)
-    menubar.setPopupMenu(4,modemenu)
-    menubar.setPopupMenu(5,windowmenu)
-    menubar.setPopupMenu(6,macrosmenu)
+    menubar_set_popup = menubar.setPopupMenu
+    menubar_set_popup(0,filemenu)
+    menubar_set_popup(1,toolsmenu)
+    menubar_set_popup(2,targetsmenu)
+    menubar_set_popup(3,helpmenu)
+    menubar_set_popup(4,modemenu)
+    menubar_set_popup(5,windowmenu)
+    menubar_set_popup(6,macrosmenu)
     # ToDo set modifier keys
 
 
@@ -455,12 +456,15 @@ def get_filler(edit):
 # items [id,text,type,pos,command], if separator [-1,pos]
 def create_popupmenu(smgr,ctx,items):
     menu = smgr.createInstanceWithContext('com.sun.star.awt.PopupMenu',ctx)
+    menu_insert = menu.insertItem
+    menu_set_command = menu.setCommand
+    menu_insert_separator = menu.insertSeparator
     for item in items:
         if (not item[0] is None) and -1 < item[0]:
-            menu.insertItem(item[0],item[1],item[2],item[3])
-            menu.setCommand(item[0],item[4])
+            menu_insert(item[0],item[1],item[2],item[3])
+            menu_set_command(item[0],item[4])
         else:
-            menu.insertSeparator(item[1])
+            menu_insert_separator(item[1])
         #if len(item) >= 6 and item[5] is not None:
         #   menu.setAcceleratorKeyEvent(item[0], item[5])
     return menu
