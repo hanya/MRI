@@ -51,14 +51,14 @@ class Info(object):
                     _items = [(item[0], item) for item in txt]
                     _items.sort()
                     txt = [item for (key, item) in _items]
-            if config.show_labels and not config.grid:
-                txt.insert(0, ('(Name)', '(Value Type)', '(Value)',
-                '(Info.)', '(Attr.)', '(Handle)'))
             
             if config.grid:
                 #return ((t[0], t[1], t[2], t[3], t[4], t[5]) for t in txt)
                 return [(t[0], t[1], t[2], t[3], t[4]) for t in txt]
             else:
+                if config.show_labels and not config.grid:
+                    txt.insert(0, ('(Name)', '(Value Type)', '(Value)',
+                        '(Info.)', '(Attr.)', '(Handle)'))
                 mnlen = max([len(x[0]) for x in txt])
                 mtlen = max([len(x[1]) for x in txt])
                 mvlen = max([len(x[2]) for x in txt])
@@ -90,13 +90,12 @@ class Info(object):
                     _items.sort()
                     txt = [item for (key, item) in _items]
             
-            if config.show_labels and not config.grid:
-                txt.insert(0, ('(Name)', '(Arguments)', '(Return Type)', 
-                    '(DeclaringClass)', '(Exceptions)'))
-            
             if config.grid:
                 return [(i[0], i[1], i[2], i[3], i[4]) for i in txt]
             else:
+                if config.show_labels and not config.grid:
+                        txt.insert(0, ('(Name)', '(Arguments)', '(Return Type)', 
+                        '(DeclaringClass)', '(Exceptions)'))
                 mnlen = max([len(x[0]) for x in txt])
                 malen = max([len(x[1]) for x in txt])
                 mrlen = max([len(x[2]) for x in txt])
