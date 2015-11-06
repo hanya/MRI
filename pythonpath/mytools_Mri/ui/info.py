@@ -56,7 +56,7 @@ class Info(object):
                 #return ((t[0], t[1], t[2], t[3], t[4], t[5]) for t in txt)
                 return [(t[0], t[1], t[2], t[3], t[4]) for t in txt]
             else:
-                if config.show_labels and not config.grid:
+                if config.show_labels:
                     txt.insert(0, ('(Name)', '(Value Type)', '(Value)',
                         '(Info.)', '(Attr.)', '(Handle)'))
                 mnlen = max([len(x[0]) for x in txt])
@@ -93,7 +93,7 @@ class Info(object):
             if config.grid:
                 return [(i[0], i[1], i[2], i[3], i[4]) for i in txt]
             else:
-                if config.show_labels and not config.grid:
+                if config.show_labels:
                         txt.insert(0, ('(Name)', '(Arguments)', '(Return Type)', 
                         '(DeclaringClass)', '(Exceptions)'))
                 mnlen = max([len(x[0]) for x in txt])
@@ -197,16 +197,17 @@ class Info(object):
                     _items = [(item[0], item) for item in txt]
                     _items.sort()
                     txt = [item for (key, item) in _items]
-            if config.show_labels and not config.grid:
-                txt.insert(0, ('(Name)', '(Value Type)', '(Value)', '(AccessMode)'))
-            mnlen = max([len(x[0]) for x in txt])
-            mtlen = max([len(x[1]) for x in txt])
-            mvlen = max([len(x[2]) for x in txt])
-            if mnlen < 12: mnlen = 12
-            if mtlen < 16: mtlen = 16
+            
             if config.grid:
                 return [(t[0], t[1], t[2], '', t[3]) for t in txt]
             else:
+                if config.show_labels:
+                    txt.insert(0, ('(Name)', '(Value Type)', '(Value)', '(AccessMode)'))
+                mnlen = max([len(x[0]) for x in txt])
+                mtlen = max([len(x[1]) for x in txt])
+                mvlen = max([len(x[2]) for x in txt])
+                if mnlen < 12: mnlen = 12
+                if mtlen < 16: mtlen = 16
                 return ''.join(['%s  %s  %s %s\n' % (
                     t[0].ljust(mnlen), t[1].ljust(mtlen), t[2].ljust(mvlen), t[3]) for t in txt])
         except Exception as e:
@@ -242,20 +243,6 @@ class Info(object):
                 elements[:] = [
                     (i[0], [(j[0], j[1].replace(abbr_old, abbr_new), 
                         j[2], j[3]) for j in i[1]]) for i in elements]
-            length = [(max([len(x[0]) for x in element[1]]), 
-                        max([len(x[1]) for x in element[1]]), 
-                        max([len(x[2]) for x in element[1]]))
-                            for element in elements]
-            mnlen = max([x[0] for x in length])
-            mtlen = max([x[1] for x in length])
-            mvlen = max([x[2] for x in length])
-            
-            if mnlen < 12: mnlen = 12
-            if mtlen < 16: mtlen = 16
-            
-            #if config.show_labels:
-            if config.show_labels and not config.grid:
-                elements.insert(0, ('', [('(Name)', '(Value Type)', '(Value)', '(AccessMode)')]))
             
             if config.grid:
                 data = []
@@ -267,6 +254,18 @@ class Info(object):
                         adata((i[0], i[1], i[2], '', i[3]))
                 return data
             else:
+                length = [(max([len(x[0]) for x in element[1]]), 
+                           max([len(x[1]) for x in element[1]]), 
+                           max([len(x[2]) for x in element[1]]))
+                                for element in elements]
+                mnlen = max([x[0] for x in length])
+                mtlen = max([x[1] for x in length])
+                mvlen = max([x[2] for x in length])
+                if mnlen < 12: mnlen = 12
+                if mtlen < 16: mtlen = 16
+            
+                if config.show_labels:
+                    elements.insert(0, ('', [('(Name)', '(Value Type)', '(Value)', '(AccessMode)')]))
                 return "\n".join(["%s\n%s" % (t[0], 
                         "\n".join(["%s  %s  %s  %s" % (
                             i[0].ljust(mnlen), i[1].ljust(mtlen), 
