@@ -51,12 +51,7 @@ class SelectListListener(unohelper.Base, XMouseListener):
         pass
     def mousePressed(self,ev):
         if ev.ClickCount == 2:
-            accBtn = self.cast.getControl('obtn').getAccessibleContext()
-            if accBtn.getAccessibleActionCount() > 0:
-                # push OK
-                accBtn.doAccessibleAction(0)
-            # after 3.3
-            # self.cast.endDialog(1)
+            self.cast.endDialog(1)
 
 
 class DialogBase(object):
