@@ -12,10 +12,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-try:
-    set()
-except:
-    from sets import Set as set
 import traceback
 from mytools_Mri.generators import GeneratorBase
 from mytools_Mri.unovalues import TypeClass
