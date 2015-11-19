@@ -70,10 +70,10 @@ class TypeClassGroups(object):
         TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM, 
         TypeClass.INTERFACE, TypeClass.STRUCT, TypeClass.TYPE]
     
-    ALL = dict([(getattr(TypeClass, k).value, getattr(TypeClass, k)) for k in dir(TypeClass) if hasattr(getattr(TypeClass, k), 'value')])
+    ALL = {getattr(TypeClass, k).value: getattr(TypeClass, k) 
+            for k in dir(TypeClass) if hasattr(getattr(TypeClass, k), 'value')}
     
-    #@staticmethod
-    def get_type_class(type_name):
-        return TypeClassGroups.ALL.get(type_name.upper(), None)
-    get_type_class = staticmethod(get_type_class)
+    @classmethod
+    def get_type_class(cls, type_name):
+        return cls.ALL.get(type_name.upper(), None)
 
