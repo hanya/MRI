@@ -343,7 +343,7 @@ class InputDialog2(InputDialog):
 class ElementalInputDialog(InputDialog):
     
     POSSIZE = 30, 50, 177, 67
-    FROM_HISTORY = set(("INTERFACE", "STRUCT", "EXCEPTION", "SEQUENCE"))
+    FROM_HISTORY = {"INTERFACE", "STRUCT", "EXCEPTION", "SEQUENCE"}
     
     class Result:
         def __init__(self, type_name, value=None, value_type=None):
@@ -396,7 +396,7 @@ class ElementalInputDialog(InputDialog):
         from com.sun.star.style.VerticalAlignment import BOTTOM as VA_BOTTOM
         listener = self.__class__.ButtonListener(self)
         y = 14
-        complex_types = self.FROM_HISTORY | set(("ANY",))
+        complex_types = self.FROM_HISTORY | {"ANY"}
         for i, element in enumerate(elements):
             is_complex = element[1] in complex_types
             self.add_label("label_%s" % i, 4, y, 170, 12, 
