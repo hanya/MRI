@@ -12,11 +12,6 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 MRINAME = 'MRI'
 MRI_HOME = 'http://extensions.services.openoffice.org/project/MRI'
 MRI_ID = 'mytools.mri'
