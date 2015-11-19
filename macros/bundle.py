@@ -648,10 +648,6 @@ def diff_with_another_mri(mri):
         frame.getController().ui.main.current, 
         ui.frame.Title, frame.Title)
 
-try:
-    set()
-except:
-    from sets import Set as set
 
 def _diff_compare(mri, entry1, entry2, title1="", title2=""):
     """ Compare two entries. """
