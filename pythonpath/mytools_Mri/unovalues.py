@@ -64,6 +64,7 @@ class TypeClassGroups(object):
     STR = TypeClass.STRING
     SEQ = [TypeClass.SEQUENCE, TypeClass.ARRAY]
     OBJECT = TypeClass.INTERFACE
+    STRUCTS = (TypeClass.STRUCT, TypeClass.EXCEPTION)
     
     COMPATIBLE = NUMERIC + [
         TypeClass.STRING, TypeClass.BOOLEAN, TypeClass.ENUM, 

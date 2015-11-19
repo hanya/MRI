@@ -13,10 +13,6 @@
 #  limitations under the License.
 
 import uno
-try:
-    set()
-except:
-    from sets import Set as set
 
 from mytools_Mri.unovalues import MethodConcept, PropertyConcept, \
     PropertyAttribute, FieldAccessMode, ParamMode, TypeClass, TypeClassGroups
@@ -401,7 +397,7 @@ class MRIEngine(object):
         """get interfaces information by the introspection."""
         try:
             methods = entry.inspected.getMethods(MethodConcept.ALL)
-            interfaces = set([m.getDeclaringClass().getName() for m in methods])
+            interfaces = {m.getDeclaringClass().getName() for m in methods}
             #interfaces = interfaces | set(self.get_basic_interfaces_info(entry))
             return list(interfaces)
         except:
@@ -449,9 +445,9 @@ class MRIEngine(object):
         o_inter = set()
         
         if m_interfaces:
-            m_inter = set([m.getName() for m in m_interfaces])
+            m_inter = {m.getName() for m in m_interfaces}
         if o_interfaces:
-            o_inter = set([o.getName() for o in o_interfaces])
+            o_inter = {o.getName() for o in o_interfaces}
         return m_inter | o_inter
         
     
@@ -459,7 +455,7 @@ class MRIEngine(object):
         name = stdm.getName()
         if name == 'com.sun.star.uno.XInterface':
             return set()
-        interfaces = set([name])
+        interfaces = set((name,))
         base_interface = stdm.getBaseType()
         base_interfaces = stdm.getBaseTypes()
         optional_interfaces = stdm.getOptionalBaseTypes()
@@ -514,9 +510,7 @@ class MRIEngine(object):
         fields = ttype.getFields()
         txt = []
         atxt = txt.append
-        #modes = (FieldAccessMode.READWRITE, FieldAccessMode.READONLY)
-        read_write = FieldAccessMode.READWRITE
-        read_only = FieldAccessMode.READONLY
+        modes = (FieldAccessMode.READWRITE, FieldAccessMode.READONLY)
         
         #if len(fields) < 1: return ''
         for field in fields:
@@ -527,8 +521,7 @@ class MRIEngine(object):
             mode = field.getAccessMode()
             access_mode = self.get_field_mode(mode) #
             try:
-                #if mode in modes:
-                if mode == read_write or mode == read_only:
+                if mode in modes:
                     vvalue = field.get(target)
                     value = self.get_string_value(type_class, vvalue)
                 else:
@@ -557,17 +550,16 @@ class MRIEngine(object):
     def has_any_interface2(self, entry, interfaces):
         types = self.get_interfaces_info(entry)
         for i in interfaces:
-            if i in types: return True
+            if i in types:
+                return True
         return False
     
     def has_any_interface(self, target, interfaces):
         """check one of interfaces supported."""
-        try:
-            types = [t.typeName for t in target.Types]
-            for i in interfaces:
-                if i in types: return True
-        except Exception as e:
-            pass
+        types = [t.typeName for t in target.Types]
+        for i in interfaces:
+            if i in types:
+                return True
         return False
     
     
@@ -615,7 +607,7 @@ class MRIEngine(object):
                         # any, interfaces and so on
                         if isinstance(vvalue, basestring):
                             return vvalue
-                        elif isinstance(vvalue, int) or isinstance(vvalue, float):
+                        elif isinstance(vvalue, (int, float)):
                             return str(vvalue)                  
                         elif isinstance(vvalue, tuple):
                             return NONSTRVAL % 'Sequence'
@@ -688,32 +680,26 @@ class MRIEngine(object):
         get = self.tdm.getByHierarchicalName
         # services
         if self.has_interface(entry.target, 'com.sun.star.lang.XServiceInfo'):
-            servs = self.get_service_names(entry)
-            for s in servs:
-                n = len(s)
+            for s in self.get_service_names(entry):
                 if has(s):
-                    props = get(s).getProperties()
-                    for p in props:
-                        if p.getName()[n+1:] == name:
+                    for p in get(s).getProperties():
+                        if p.getName()[len(s)+1:] == name:
                             return name, s
         
         # method of interface
-        methods = entry.inspected.getMethods(MethodConcept.ALL)
-        for m in methods:
+        for m in entry.inspected.getMethods(MethodConcept.ALL):
             if m.getName().endswith(name):
                 return m.getName(), m.getDeclaringClass().getName()
     
         # attribute of interface
-        inters = self.all_interfaces_info(entry)
-        for i in inters:
-            hier_name = "%s::%s" % (i, name)
-            if has(hier_name):
-                return name, i
+        for interface in self.all_interfaces_info(entry):
+            if has(interface + "::" + name):
+                return name, interface
         
         # struct or exception
         idl_type = self.get_type(entry)
         idl_type_class = idl_type.getTypeClass()
-        if idl_type_class == TypeClass.STRUCT or idl_type_class == TypeClass.EXCEPTION:
+        if idl_type_class in TypeClassGroups.STRUCTS:
             def check_members(_type):
                 if name in _type.getMemberNames():
                     return _type.getName()
@@ -753,11 +739,11 @@ class MRIEngine(object):
         servs = set()
         #servs = set([m.getName() for m in mservs]) | set([o.getName() for o in oservs])
         if mservs:
-            servs = servs | set([m.getName() for m in mservs])
+            servs = servs | {m.getName() for m in mservs}
             for m in mservs:
                 servs = servs | self.get_included_service_names(m)
         if oservs:
-            servs = servs | set([o.getName() for o in oservs])
+            servs = servs | {o.getName() for o in oservs}
             for o in oservs:
                 servs = servs | self.get_included_service_names(o)
         return servs
@@ -791,16 +777,14 @@ class MRIEngine(object):
                 if k.getName() == "com.sun.star.container.XElementAccess":
                     return True
                 else:
-                    r = check_super_klass(k)
-                    if r:
+                    if check_super_klass(k):
                         return True
             return False
         return check_super_klass(method.getDeclaringClass())
     
     def find_field(self, name, fields_idl):
         """ Find specific field from fields idl. """
-        fields = fields_idl.getFields()
-        for field in fields:
+        for field in fields_idl.getFields():
             if field.getName() == name:
                 return field
         raise Exception("Field not found: " + name)
@@ -809,8 +793,7 @@ class MRIEngine(object):
         try:
             idl = self.tdm.getByHierarchicalName(name)
         except:
-            idl = None
-        if idl:
+            return ""
+        else:
             return idl.getTypeClass().value
-        return ""
     
