@@ -455,7 +455,7 @@ class MRIEngine(object):
         name = stdm.getName()
         if name == 'com.sun.star.uno.XInterface':
             return set()
-        interfaces = set((name,))
+        interfaces = {name}
         base_interface = stdm.getBaseType()
         base_interfaces = stdm.getBaseTypes()
         optional_interfaces = stdm.getOptionalBaseTypes()
@@ -737,7 +737,7 @@ class MRIEngine(object):
         oservs = stdm.getOptionalServices()
         
         servs = set()
-        #servs = set([m.getName() for m in mservs]) | set([o.getName() for o in oservs])
+        #servs = {m.getName() for m in mservs} | {o.getName() for o in oservs}
         if mservs:
             servs = servs | {m.getName() for m in mservs}
             for m in mservs:

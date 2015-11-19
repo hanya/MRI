@@ -42,10 +42,10 @@ class ConfigNames(object):
     macros = 'Macros'
     ref_by_doxygen = "DoxygenRef"
 
-IGNORED_INTERFACES = set(('com.sun.star.script.browse.XBrowseNode',))
-IGNORED_PROPERTIES = set(('ActiveLayer', 'AsProperty', 'ClientMap', 'FontSlant',
+IGNORED_INTERFACES = {'com.sun.star.script.browse.XBrowseNode'}
+IGNORED_PROPERTIES = {'ActiveLayer', 'AsProperty', 'ClientMap', 'FontSlant',
     'LayoutSize', 'Modified', 'PropertyToDefault', 'UIConfigurationManager',
-    'ParaIsNumberingRestart', 'NumberingLevel', 'NumberingStartValue', 'NumberingStartLevel', 'DataArray', 'FormulaArray', 'Printer', 'Material'))
+    'ParaIsNumberingRestart', 'NumberingLevel', 'NumberingStartValue', 'NumberingStartLevel', 'DataArray', 'FormulaArray', 'Printer', 'Material'}
 
 # value descriptions
 EMPTYSTR = '""'

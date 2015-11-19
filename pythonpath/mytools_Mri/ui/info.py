@@ -14,10 +14,6 @@
 
 import traceback
 import operator
-try:
-    set()
-except:
-    from sets import Set as set
 
 import mytools_Mri
 import mytools_Mri.values
