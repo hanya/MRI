@@ -489,18 +489,6 @@ def get_enum_map(mri, name):
     return ret
 
 
-def enum_to_name_map(mri):
-    """ Create enum value to value name mapping
-        foo. """
-    
-    tdm = mri.engine.tdm
-    roles = tdm.getByHierarchicalName("com.sun.star.accessibility.AccessibleRole")
-    #print(dir(roles))
-    constants = roles.getConstants()
-    for c in constants:
-        print("{}: {}".format(c.getName()[42:], c.getConstantValue()))
-
-
 # For charts.
 
 def inspect_chart_type(mri):
