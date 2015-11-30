@@ -1,10 +1,12 @@
 
+# Code
+
 Sometimes generated code is not executable without modifications. 
 MRI can be called from UNO components, a scripting code, menu entries 
 and so on, and MRI does not know how to be called. 
 So, it is difficult to generate complete code.
 
-== Code Menu ==
+## Code Menu
 
 You can find the Code menu in the Tools menu entry. 
 Check in Tools - Code - Code entry to show the code text field. 
@@ -14,16 +16,16 @@ Or double click with the right click of your mouse
 at the right bottom corner of the information text field. 
 Or push Ctrl + H keys on the information edit.
 
-== Code Type ==
+## Code Type
 
 A few kind of code can be chose from Tools - Code menu.
 
-== Pseud Property ==
+## Pseud Property
 
 If selected language biding supports pseud-property, 
 the code is generated with pseud-property call.
 
-== Notices ==
+## Notices
 
 MRI tries to get the type of the value from Type information, 
 css.reflection.XMethodIdl interface and Reflection API, 
@@ -37,7 +39,7 @@ The same problems are there at methods return any type value.
 
 Sometimes numerical values taken as an Any type values are miss typed.
 
-== Adding New Code Generator ==
+## Adding New Code Generator
 
 You can add new code generator.
 
@@ -48,5 +50,5 @@ New generator will be shown in the Tools - Code menu.
 
 Additional informations about code generators:
 
-* You needs to know type mappings between UNO and your desired language like a listed [[TypeMappings]].
+* You needs to know type mappings between UNO and your desired language like a listed [Type Mappings](./TypeMappings.md).
 * Creation on your desired language like structs, enums, services and so on.

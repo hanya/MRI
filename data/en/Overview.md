@@ -1,5 +1,9 @@
 
-MRI (My Reflection and Introspection) is an UNO object browser. Properties, Methods, Interfaces and Services information are shown about a passed target of an UNO object. All value types are shown in UNO type. 
+# MRI Overview
+
+MRI (My Reflection and Introspection) is an UNO object browser. Properties, Methods, Interfaces 
+and Services information are shown about a passed target of an UNO object. 
+All value types are shown in UNO type. 
 
 * Properties can be get and set.
 * You can call method directly with its arguments which can be described in string type.

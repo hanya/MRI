@@ -1,21 +1,19 @@
 
+# Installation
+
 Install MRI extension package using Extension Manager from Tools - Extension Manager entry of main menu bar.
 
 After the installation, you have to restart your office to function well. 
 If you using the quick starter, stop it once.
 
-{{Warning|If you do not have Python-UNO bridge installation, you see the following error. You need to install it.<br /><br />
+<!-- {{Warning|If you do not have Python-UNO bridge installation, you see the following error. You need to install it.
 "ImplementationRegistration::registerImplementation() - The service com.sun.star.loader.Python cannot be instantiated"
-}}
+}} -->
 
-{{Warning|If you get the error shown below, you have an problem in your {{OOo}} installation.<br /><br />
-"(com.sun.star.uno.RuntimeException){{Message = "pythonloader: couldn't find core element pythonloader.Loader", Contex = (com.sun.star.uno.XInterface) @0}}
-}}
-
-== Updating ==
+## Updating
 
 If you want to upgrade MRI, install new one from Extension Manager.
 
-== Remove ==
+## Remove
 
 Remove the package using Extension Manager from Tools - Extension Manager of the menu bar.
