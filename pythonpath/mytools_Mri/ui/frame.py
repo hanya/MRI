@@ -147,7 +147,7 @@ def _create_menu(self, ctx, smgr, config, window, use_grid=False):
     # ToDo set modifier keys
 
 
-def _create_window(ctx, smgr, frame, window, toolkit):
+def _create_window(ctx, smgr, frame, window, toolkit, ui):
     cont = smgr.createInstanceWithContext( 
         'com.sun.star.awt.UnoControlContainer', ctx)
     cont_model = smgr.createInstanceWithContext( 
@@ -159,6 +159,7 @@ def _create_window(ctx, smgr, frame, window, toolkit):
     try:
         import mytools_Mri.ui.controller
         controller = mytools_Mri.ui.controller.MRIUIController(frame, None)
+        controller.set_ui(ui)
         frame.setComponent(cont,controller)
     except Exception as e:
         print(("Error during to set controller: " + str(e)))
@@ -354,9 +355,9 @@ def create_frame(self, ctx, smgr, config, use_grid=False, use_tab=False):
     else:
         info_height = ps[3] -85
     
-    cont = _create_window(ctx, smgr, frame, window, toolkit)
+    cont = _create_window(ctx, smgr, frame, window, toolkit, self)
     self.cont = cont
-    frame.getController().set_ui(self)
+    #frame.getController().set_ui(self)
     _create_controls(ctx, smgr, cont, ps, use_tab)
     subcont = _create_subcontainer(ctx, smgr, cont, ps[2], info_height)
     _create_code(ctx, smgr, cont, config, ps)
