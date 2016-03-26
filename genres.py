@@ -41,7 +41,7 @@ xmlns:d="http://openoffice.org/extensions/description/2006">
 <d:OpenOffice.org-minimal-version value="3.4" d:name="OpenOffice.org 3.4" />
 </dependencies>
 <update-download>
-<src xlink:href="https://github.com/hanya/MRI/raw/master/files/MRI-{VERSION}.oxt"/>
+<src xlink:href="https://github.com/hanya/MRI/releases/download/v{VERSION}/MRI-{VERSION}.oxt"/>
 </update-download>
 </description>"""
 
