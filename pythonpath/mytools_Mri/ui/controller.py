@@ -15,12 +15,16 @@
 import unohelper
 
 from com.sun.star.frame import XController, XTitle, XDispatchProvider
+from com.sun.star.lang import XServiceInfo
 from com.sun.star.task import XStatusIndicatorSupplier
+
 
 class MRIUIController(unohelper.Base, 
     XController, XTitle, XDispatchProvider, 
-    XStatusIndicatorSupplier):
+    XStatusIndicatorSupplier, XServiceInfo):
     """ Provides controller which connects between frame and model. """
+    
+    IMPLE_NAME = "mytools.mri.UIController"
     
     def __init__(self,frame, model):
         self.frame = frame
@@ -54,8 +58,11 @@ class MRIUIController(unohelper.Base,
         self.model = model
     def suspend(self, Suspend):
         return True
+    
     def getViewData(self):
-        pass
+        """ Returns current instance inspected. """
+        return self.ui.main.current.target
+    
     def restoreViewData(self, Data):
         pass
     def getModel(self):
@@ -72,3 +79,12 @@ class MRIUIController(unohelper.Base,
     def queryDispatches(self, requests):
         pass
 
+    # XServiceInfo
+    def getImplementationName(self):
+        return self.IMPLE_NAME
+    
+    def supportsService(self, name):
+        return name == self.IMPLE_NAME
+    
+    def getSupportedServiceNames(self):
+        return self.IMPLE_NAME,

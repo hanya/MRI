@@ -615,7 +615,8 @@ def diff_with_another_mri(mri):
         frame = frames.getByIndex(i)
         if frame.Name == MRINAME:
             controller = frame.getController()
-            if isinstance(controller, MRIUIController) and \
+            #if isinstance(controller, MRIUIController) and \
+            if controller.getImplementationName() == MRIUIController.IMPLE_NAME and \
                 not current == controller:
                 mris.append(frame)
     if len(mris) == 0:
@@ -632,16 +633,23 @@ def diff_with_another_mri(mri):
     if frame.Name != MRINAME:
         ui.error("%s frame does not exist." % title)
         return
+    if hasattr(frame.getController(), "ui"):
+        entry2 = frame.getController().ui.main.current
+    else:
+        entry2 = frame.getController().getViewData()
     _diff_compare(mri, mri.current, 
-        frame.getController().ui.main.current, 
+        entry2, 
         ui.frame.Title, frame.Title)
 
 
 def _diff_compare(mri, entry1, entry2, title1="", title2=""):
     """ Compare two entries. """
     engine = mri.engine
+    if not isinstance(entry2, entry1.__class__):
+        entry2 = engine.create(mri, "temp", entry2)
     if engine.get_imple_name(entry1) != engine.get_imple_name(entry2):
         raise Exception("Different type objects are not comparable.")
+    
     diffs = [] # different properties
     # cutting corner
     info1 = engine.get_properties_info(entry1)
