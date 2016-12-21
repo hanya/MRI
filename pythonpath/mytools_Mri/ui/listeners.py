@@ -25,7 +25,7 @@ from com.sun.star.awt.PosSize import X as PS_X, Y as PS_Y, \
     WIDTH as PS_WIDTH, SIZE as PS_SIZE, HEIGHT as PS_HEIGHT
 from com.sun.star.awt.MenuItemStyle import RADIOCHECK as MIS_RADIOCHECK
 from com.sun.star.awt.MouseButton import LEFT as MB_LEFT, RIGHT as MB_RIGHT
-from mytools_Mri.tools import get_configvalue, call_dispatch, open_help
+from mytools_Mri.tools import get_configvalue, call_dispatch, open_help, create_service
 
 class KeyModifier(object):
     from com.sun.star.awt.KeyModifier import MOD1, MOD2, SHIFT
@@ -631,19 +631,35 @@ class MenuListener(unohelper.Base, XMenuListener):
         """ Try to open the window of online help. """
         help_exists = get_configvalue(
             self.cast.ctx, '/org.openoffice.Office.SFX', 'Help')
+        
+        lang_type = get_configvalue(self.cast.ctx,
+            '/org.openoffice.Setup/L10N', 'ooLocale')
+        if not lang_type:
+            lang_type = get_configvalue(self.cast.ctx,
+                '/org.openoffice.Office.Linguistic/General', 'DefaultLocale')
+        
+        if not help_exists:
+            # check existence of help files on LibreOffice
+            path = get_configvalue(
+                self.cast.ctx, "/org.openoffice.Office.Common/Path/Current", "Help")
+            try:
+                path = create_service(self.cast.ctx, 
+                    "com.sun.star.util.PathSubstitution").substituteVariables(path, True)
+                sfa = create_service(self.cast.ctx, "com.sun.star.ucb.SimpleFileAccess")
+                help_exists = sfa.exists(path + "/main_transform.xsl") and \
+                              sfa.getFolderContents(path + "/" + lang_type, False)
+                print(path)
+            except Exception as e:
+                print(e)
+                pass
         if not help_exists:
             return self.cast.error(
                 'Faild to open help files. \n' + \
                     'Help system is not supported by the application.')
         system_type = get_configvalue(self.cast.ctx,
             '/org.openoffice.Office.Common/Help', 'System')
-        lang_type = get_configvalue(self.cast.ctx,
-            '/org.openoffice.Setup/L10N', 'ooLocale')
         if not system_type:
             system_type = 'WIN'
-        if not lang_type:
-            lang_type = get_configvalue(self.cast.ctx,
-                '/org.openoffice.Office.Linguistic/General', 'DefaultLocale')
         from mytools_Mri.values import MRI_ID
         hpage = ('vnd.sun.star.help://shared/%s%%2Findex.xhp?Language=' % MRI_ID) + \
                     "%s&System=%s#bm_idindex" % (lang_type, system_type)
