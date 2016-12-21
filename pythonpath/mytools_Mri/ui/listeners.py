@@ -648,7 +648,6 @@ class MenuListener(unohelper.Base, XMenuListener):
                 sfa = create_service(self.cast.ctx, "com.sun.star.ucb.SimpleFileAccess")
                 help_exists = sfa.exists(path + "/main_transform.xsl") and \
                               sfa.getFolderContents(path + "/" + lang_type, False)
-                print(path)
             except Exception as e:
                 print(e)
                 pass
