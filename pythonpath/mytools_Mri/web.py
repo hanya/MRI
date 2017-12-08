@@ -101,7 +101,7 @@ class DoxygenIDLRef(IDL):
         """ Exception if type name might be abbreviated in its IDL definition. """
     
     def __init__(self, cast, config):
-        super().__init__(cast, config)
+        super(DoxygenIDLRef, self).__init__(cast, config)
         self.index = {} # file_name: list, from search/*_XX.js
         # ToDo: Use index file to get link always? Convert keyword list into dict.
     
