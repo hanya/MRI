@@ -651,10 +651,12 @@ class MenuListener(unohelper.Base, XMenuListener):
             except Exception as e:
                 print(e)
                 pass
-        if not help_exists:
-            return self.cast.error(
-                'Faild to open help files. \n' + \
-                    'Help system is not supported by the application.')
+        if not help_exists or \
+            (isinstance(help_exists, tuple) and \
+                any((i.endswith("contents.js") for i in help_exists))):
+            # show external webpage in the local webbrowser
+            self.cast.main.web.open_url("https://github.com/hanya/MRI/wiki")
+            return
         system_type = get_configvalue(self.cast.ctx,
             '/org.openoffice.Office.Common/Help', 'System')
         if not system_type:
