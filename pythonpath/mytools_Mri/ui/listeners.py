@@ -54,7 +54,7 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
                 self._resize_edit_info(0, nY, ph)
                 edit_code.setPosSize(0, split_pos.Y +6, 0, window_pos.Height - 27 - split_pos.Y, ph + PS_Y )
                 self.minimized = False#not self.minimized
-    
+
     def mouseReleased(self,ev): pass
     def mouseEntered(self,ev): pass
     def mouseExited(self,ev): pass
@@ -68,13 +68,13 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
             self.expand_code_edit()
         except Exception as e:
             print(e)
-    
+
     def expand_code_edit(self):
         if self.minimized:
             self.expand()
         else:
             self.minimize()
-    
+
     def expand(self):
         # restore position of the splitter
         window_pos = self.cast.window.OutputSize
@@ -82,14 +82,14 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
         splitter = self.cast.splitter
         splitter.setPosSize(0,self.Y,0,0,PS_Y)
         split_pos = splitter.getPosSize()
-        
+
         edit_code = cont.getControl('edit_code')
         height = split_pos.Y -65
-        
+
         self._resize_edit_info(0, height, PS_HEIGHT)
         edit_code.setPosSize(0,split_pos.Y +6, 0,window_pos.Height - 27 - split_pos.Y, PS_HEIGHT | PS_Y )
         self.minimized = False
-    
+
     def minimize(self):
         # minize code edit
         window_pos = self.cast.window.OutputSize
@@ -98,14 +98,14 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
         split_pos = splitter.getPosSize()
         self.Y = split_pos.Y
         splitter.setPosSize(0,window_pos.Height -26,0,0,PS_Y)
-        
+
         edit_code = cont.getControl('edit_code')
         y = window_pos.Height -90
-        
+
         self._resize_edit_info(0, y, PS_HEIGHT)
         edit_code.setPosSize(0,window_pos.Height -27, 0,0, PS_HEIGHT | PS_Y)
         self.minimized = True
-    
+
     def _resize_edit_info(self, width, height, mode):
         cont = self.cast.cont
         subcont = cont.getControl('subcont')
@@ -127,14 +127,14 @@ class SplitterMouseListener(unohelper.Base, XMouseListener, XMouseMotionListener
             for i in range(4):
                 subcont.getControl('info_%s' % i).setPosSize(
                     0, 0, width, height, mode)
-    
+
     def set_visible(self, state):
         self.cast.splitter.setVisible(state)
-    
+
     def close(self):
         self.minimize()
         self.set_visible(False)
-    
+
     def open(self):
         self.set_visible(True)
         self.expand()
@@ -163,9 +163,9 @@ class ButtonListener(unohelper.Base, XActionListener):
 
 
 class KeyListener(unohelper.Base, XKeyListener):
-    
+
     MACRO = "macro:"
-    
+
     def __init__(self, cast, grid=False):
         self.cast = cast
         self.grid = grid
@@ -174,21 +174,21 @@ class KeyListener(unohelper.Base, XKeyListener):
         loader.construct_keys()
         self.keys = keys.KeyConfigLoader
         self.funcs = {
-            "next": self.cast.history_forward, 
-            "previous": self.cast.history_back, 
-            "ref": self.cast.open_idl_reference, 
-            "search": self.cast.cont.getControl('edit_search').setFocus, 
-            "selectline": self.cast.pages.select_current_line, 
-            "selectword": self.cast.pages.select_current_sentence, 
-            "sort": self.sort, 
-            "abbr": self.abbr, 
-            "pseud_prop": self.pseud_prop, 
-            "code": self.code, 
-            "index": self.cast.try_index_access, 
-            "name": self.cast.try_name_access, 
-            "properties": self.properties, 
-            "methods": self.methods, 
-            "interfaces": self.interfaces, 
+            "next": self.cast.history_forward,
+            "previous": self.cast.history_back,
+            "ref": self.cast.open_idl_reference,
+            "search": self.cast.cont.getControl('edit_search').setFocus,
+            "selectline": self.cast.pages.select_current_line,
+            "selectword": self.cast.pages.select_current_sentence,
+            "sort": self.sort,
+            "abbr": self.abbr,
+            "pseud_prop": self.pseud_prop,
+            "code": self.code,
+            "index": self.cast.try_index_access,
+            "name": self.cast.try_name_access,
+            "properties": self.properties,
+            "methods": self.methods,
+            "interfaces": self.interfaces,
             "services": self.services
         }
         if grid:
@@ -211,11 +211,11 @@ class KeyListener(unohelper.Base, XKeyListener):
             if self.grid: self.context_menu(ev)
         elif cmd.startswith(self.MACRO):
             self.execute_macro()
-    
+
     def execute_macro(self, cmd):
         file_name, func_name = cmd[6:].split("$")
         self.cast.execute_macro(file_name, func_name)
-    
+
     def properties(self):
         self.cast.category_changed(0)
     def methods(self):
@@ -224,7 +224,7 @@ class KeyListener(unohelper.Base, XKeyListener):
         self.cast.category_changed(2)
     def services(self):
         self.cast.category_changed(3)
-    
+
     def open(self, cmd, mod):
         category = self.cast.pages.get_active()
         if cmd == "opennew":
@@ -233,7 +233,7 @@ class KeyListener(unohelper.Base, XKeyListener):
             self.cast.info_action(category)
         except:
             pass
-    
+
     def sort(self):
         item = self.cast.menu.getPopupMenu(1)
         self.cast.config.sorted = not item.isItemChecked(0)
@@ -258,11 +258,11 @@ class KeyListener(unohelper.Base, XKeyListener):
             transferable.set_text_to_clipboard(self.cast.ctx, word)
         except:
             pass
-    
+
     def context_menu(self, ev):
         try:
             ps = ev.Source.getPosSize()
-            ev = MouseEvent(ev.Source, 0, MB_RIGHT, 
+            ev = MouseEvent(ev.Source, 0, MB_RIGHT,
                 ps.Width / 2,  ps.Height / 4, 1, False)
             listener = self.cast.listeners['grid_info']
             listener.mousePressed(ev)
@@ -271,7 +271,7 @@ class KeyListener(unohelper.Base, XKeyListener):
 
 class ListScopeListener(unohelper.Base, XItemListener):
     """ Detect change of the category list box. """
-    
+
     def __init__(self, cast):
         self.cast = cast
     def disposing(self, ev): pass
@@ -280,7 +280,7 @@ class ListScopeListener(unohelper.Base, XItemListener):
 
 class ListHistoryListener(unohelper.Base, XItemListener):
     """ Detect the change of the history list box. """
-    
+
     def __init__(self, cast):
         self.cast = cast
     def disposing(self, ev): pass
@@ -290,7 +290,7 @@ class ListHistoryListener(unohelper.Base, XItemListener):
 
 class EditInfoListener(unohelper.Base, XMouseListener):
     """ Actions on text edit of the window. """
-    
+
     def __init__(self, cast):
         self.cast = cast
     def disposing(self, ev): pass
@@ -319,7 +319,7 @@ class EditInfoListener(unohelper.Base, XMouseListener):
                     self.cast.info_action(category)
             elif category == 1:
                 if mod == KeyModifier.SHIFT:
-                    self.cast.main.open_new = True 
+                    self.cast.main.open_new = True
                 self.cast.info_action(category)
 
 
@@ -346,20 +346,20 @@ class WindowListener(unohelper.Base, XWindowListener):
                 tab = edit_info
             else:
                 edit_info = gsc('info_0')
-            
+
             edit_code = gcont('edit_code')
             label_status = gcont('label_status')
             edit_in = gcont('edit_in')
             edit_search = gcont('edit_search')
             btn_search = gcont('btn_search')
-        
+
             info_pos = subcont.getPosSize()
             code_pos = edit_code.getPosSize()
-        
+
             info_height = info_pos.Height
             code_height = code_pos.Height
             if code_height <= 2: code_height = 0
-            
+
             if self.cast.config.show_code:
                 full_height = height - 90
                 total_height = info_height + code_height
@@ -368,9 +368,9 @@ class WindowListener(unohelper.Base, XWindowListener):
                 full_height = height - 85
                 total_height = info_height
                 info_height = full_height
-        
+
             code_height = full_height * code_height / total_height
-            
+
             subcont.setPosSize(0, 0, width, info_height, PS_SIZE)
             if self.tab_mode:
                 tab.setPosSize(0, 0, width, info_height, PS_SIZE)
@@ -391,10 +391,10 @@ class WindowListener(unohelper.Base, XWindowListener):
                 gsc('info_1').setPosSize(0, 0, width, info_height, PS_SIZE)
                 gsc('info_2').setPosSize(0, 0, width, info_height, PS_SIZE)
                 gsc('info_3').setPosSize(0, 0, width, info_height, PS_SIZE)
-            
+
             self.cast.splitter.setPosSize(0,info_pos.Y + info_height,width,0,PS_WIDTH | PS_Y)
             edit_code.setPosSize(0,info_pos.Y + info_height +6,width,code_height,PS_SIZE | PS_Y)
-        
+
             stbar_Y = height - 20
             label_status.setPosSize(0, stbar_Y, width - 320, 0, PS_Y + PS_WIDTH)
             edit_in.setPosSize(width - 315, stbar_Y, 0, 0, PS_Y + PS_X)
@@ -407,30 +407,30 @@ class WindowListener(unohelper.Base, XWindowListener):
 
 class MenuListener(unohelper.Base, XMenuListener):
     """ Executed by choosing a menu entry. """
-    
+
     def __init__(self, cast):
         self.cast = cast
         self.functions = {
-            't_': self.tools_menu, 'f_': self.file_menu, 
-            'w_': self.window_menu, 'o_': self.targets_menu, 
-            'm_': self.mode_menu, 'h_': self.help_menu, 
+            't_': self.tools_menu, 'f_': self.file_menu,
+            'w_': self.window_menu, 'o_': self.targets_menu,
+            'm_': self.mode_menu, 'h_': self.help_menu,
             's_': self.macros_menu, "e_": self.execute_macro}
-    
+
     def disposing(self,ev): pass
-    
+
     def activate(self,ev): pass
     def deactivate(self,ev): pass
-    
+
     def highlight(self,ev):
         self.itemHighlighted(ev)
-    
+
     def select(self, ev):
         self.itemSelected(ev)
-    
+
     # since AOO 4.0
     def itemActivated(self, ev): pass
     def itemDeactivated(self, ev): pass
-    
+
     def itemSelected(self, ev):
         menu = ev.Source
         mid = ev.MenuId
@@ -441,10 +441,10 @@ class MenuListener(unohelper.Base, XMenuListener):
                 fn(menu, mid, cmd)
             except Exception as e:
                 print(e)
-    
+
     def itemHighlighted(self, ev):
         cmd = ev.Source.getCommand(ev.MenuId)
-        
+
         if cmd == 'targets':
             menu = ev.Source.getPopupMenu(ev.MenuId)
             menu.removeItem(6,menu.getItemCount() -6)
@@ -454,7 +454,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 title = frames.getByIndex(i).getTitle()
                 menu.insertItem(mid, title, 0, mid)
                 menu.setCommand(mid, 'mytools.Mri:o_' + title)
-        
+
         elif cmd == 'window':
             menu = ev.Source.getPopupMenu(ev.MenuId)
             menu.removeItem(3,menu.getItemCount()-3)
@@ -467,7 +467,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 menu.setCommand(mid, 'mytools.Mri:w_' + title)
                 if frame == self.cast.frame:
                     menu.checkItem(mid, True)
-        
+
         elif cmd == "mytools.Mri:t_code":
             menu = ev.Source.getPopupMenu(ev.MenuId)
             if menu.getItemCount() < 5:
@@ -479,7 +479,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                     menu.setCommand(mid, 'mytools.Mri:t_code_%s' % g[0])
                     if g[0] == code_type:
                         menu.checkItem(mid, True)
-        
+
         elif cmd == 'macros':
             if not self.cast.main.macros.is_loaded():
                 menu = ev.Source.getPopupMenu(ev.MenuId)
@@ -492,7 +492,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 for i, name in enumerate(names):
                     menu.insertItem(i +3, os.path.basename(name), 0, i+2)
                     menu.setCommand(i +3, "mytools.Mri:s_" + name)
-        
+
         elif cmd.startswith("mytools.Mri:s_"):
             file_name = cmd[14:]
             menu = ev.Source
@@ -512,7 +512,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                             popup.insertSeparator(i)
                         else:
                             popup.insertItem(i +1, item[1], 0, i)
-                            popup.setCommand(i +1, 
+                            popup.setCommand(i +1,
                                 "mytools_Mri:s_%s$%s" % (file_name, item[0]))
                             if tip:
                                 tooltip = item[2]
@@ -520,14 +520,14 @@ class MenuListener(unohelper.Base, XMenuListener):
                                     tooltip = ""
                                 popup.setTipHelpText(i +1, tooltip)
                     menu.setPopupMenu(ev.MenuId, popup)
-    
+
     def change_frame(self,wid,name):
         if wid > 0:
             frames = self.cast.desktop.getFrames()
             frame = frames.getByIndex(wid -4)
             if frame.getTitle() == name:
                 frame.focusGained(FocusEvent())
-    
+
     def tools_menu(self, menu, mid, cmd):
         if cmd == 't_sort':
             self.cast.config.sorted = menu.isItemChecked(mid)
@@ -577,13 +577,13 @@ class MenuListener(unohelper.Base, XMenuListener):
                 self.cast.config.code_type = new_type
                 self.cast.main.cg.change_state(code_type=new_type)
                 self.cast.code_updated()
-    
+
     def targets_menu(self, menu, mid, cmd):
         self.cast.execute_macro("bundle.py", "inspect_frame", "extension", cmd[2:len(cmd)])
-    
+
     def window_menu(self, menu, mid, cmd):
         self.change_frame(mid, cmd[2:])
-    
+
     def mode_menu(self, menu, mid, cmd):
         if cmd == 'm_get':
             self.cast.property_mode = True
@@ -591,7 +591,7 @@ class MenuListener(unohelper.Base, XMenuListener):
             self.cast.property_mode = False
         menu.checkItem(0,self.cast.property_mode)
         menu.checkItem(1,not self.cast.property_mode)
-    
+
     def help_menu(self, menu, mid, cmd):
         if cmd == 'h_about':
             self.about_MRI()
@@ -599,11 +599,11 @@ class MenuListener(unohelper.Base, XMenuListener):
             self.open_help()
         elif cmd == 'h_what':
             call_dispatch(self.cast.ctx, self.cast.desktop, '.uno:ExtendedHelp')
-    
+
     def file_menu(self, menu, mid, cmd):
         if cmd.startswith('f_doc_'):
             tg = cmd[6:]
-            name = {'swriter': 'Text Document', 'scalc': 'Spreadsheet', 
+            name = {'swriter': 'Text Document', 'scalc': 'Spreadsheet',
                 'simpress': 'Presentation', 'sdraw': 'Drawing'}.get(tg, None)
             if tg:
                 self.cast.execute_macro("bundle.py", "inspect_new_document", "extension", tg)
@@ -626,24 +626,24 @@ class MenuListener(unohelper.Base, XMenuListener):
             except Exception as e:
                 print(e)
                 traceback.print_exc()
-    
+
     def open_help(self):
         """ Try to open the window of online help. """
         help_exists = get_configvalue(
             self.cast.ctx, '/org.openoffice.Office.SFX', 'Help')
-        
+
         lang_type = get_configvalue(self.cast.ctx,
             '/org.openoffice.Setup/L10N', 'ooLocale')
         if not lang_type:
             lang_type = get_configvalue(self.cast.ctx,
                 '/org.openoffice.Office.Linguistic/General', 'DefaultLocale')
-        
+
         if not help_exists:
             # check existence of help files on LibreOffice
             path = get_configvalue(
                 self.cast.ctx, "/org.openoffice.Office.Common/Path/Current", "Help")
             try:
-                path = create_service(self.cast.ctx, 
+                path = create_service(self.cast.ctx,
                     "com.sun.star.util.PathSubstitution").substituteVariables(path, True)
                 sfa = create_service(self.cast.ctx, "com.sun.star.ucb.SimpleFileAccess")
                 help_exists = sfa.exists(path + "/main_transform.xsl") and \
@@ -672,7 +672,7 @@ class MenuListener(unohelper.Base, XMenuListener):
                 return self.cast.error("Faild to open help files. \n" + \
                     " Help system is not supported by the application.")
         call_dispatch(self.cast.ctx,help_frame,hpage)
-    
+
     def about_MRI(self):
         """ Show about message. """
         from mytools_Mri.values import MRINAME, MRI_HOME, MRI_ID
@@ -683,7 +683,7 @@ class MenuListener(unohelper.Base, XMenuListener):
         txt.append("Home:\n%s" % MRI_HOME)
         txt.append("\n\nPython %s" % sys.version)
         self.cast.message("\n".join(txt), MRINAME)
-    
+
     def macros_menu(self, menu, mid, cmd):
         """ Macro entry is selected. """
         path = cmd[2:]
@@ -695,7 +695,7 @@ class MenuListener(unohelper.Base, XMenuListener):
             self.cast.status("function name is not specified: \n%s" % path)
             return
         self.cast.execute_macro(file_name, func_name)
-    
+
     def execute_macro(self, menu, mid, cmd):
         """ Execute selected macro. """
         if cmd.startswith("e_extension"):
@@ -709,10 +709,10 @@ class MenuListener(unohelper.Base, XMenuListener):
 
 class ComponentWindowListener(unohelper.Base, XEventListener):
     """ Detect window closing and cleaning. """
-    
+
     def __init__(self,cast):
         self.cast = cast
-    
+
     def disposing(self, ev):
         try:
             cast = self.cast
@@ -768,14 +768,14 @@ def set_listeners(self, use_grid=False, use_tab=False):
     listener = WindowListener(self, use_tab)
     ctl.addWindowListener(listener)
     listeners['win'] = listener
-    
+
     cwl = ComponentWindowListener(self)
     cont.addEventListener(cwl)
     listeners['cont'] = cwl
-    
+
     listener = ButtonListener(self)
     listeners['btn'] = listener
-    
+
     gc('btn_ref').addActionListener(listener)
     gc('btn_search').addActionListener(listener)
     gc('btn_back').addActionListener(listener)
@@ -783,7 +783,7 @@ def set_listeners(self, use_grid=False, use_tab=False):
     gc('btn_index_acc').addActionListener(listener)
     gc('btn_name_acc').addActionListener(listener)
     gc('btn_tree').addActionListener(listener)
-    
+
     if use_tab:
         tab = subcont.getControl('tab')
         tab_pages = tab.getControls()
@@ -813,14 +813,14 @@ def set_listeners(self, use_grid=False, use_tab=False):
         listener = ListScopeListener(self)
         ctl.addItemListener(listener)
         listeners['list_category'] = listener
-    
+
     listener2 = KeyListener(self, use_grid)
     listeners['key'] = listener2
     info_0.addKeyListener(listener2)
     info_1.addKeyListener(listener2)
     info_2.addKeyListener(listener2)
     info_3.addKeyListener(listener2)
-    
+
     if use_grid:
         from mytools_Mri.ui.grid import GridInfoListener
         listener = GridInfoListener(self)
@@ -832,26 +832,29 @@ def set_listeners(self, use_grid=False, use_tab=False):
     listeners['info'] = listener
     info_0.addMouseListener(listener)
     info_1.addMouseListener(listener)
-    
+
     ctl = cont.getControl('list_hist')
     listener = ListHistoryListener(self)
     ctl.addItemListener(listener)
     listeners['list_hist'] = listener
-    
+
     listener = SplitterMouseListener(self, use_tab)
     self.splitter.addMouseListener(listener)
     self.splitter.addMouseMotionListener(listener)
-    
+
     if not use_grid:
-        get_filler(info_0).addMouseListener(listener)
-        get_filler(info_1).addMouseListener(listener)
-        get_filler(info_2).addMouseListener(listener)
-        get_filler(info_3).addMouseListener(listener)
-    
+        try:
+            get_filler(info_0).addMouseListener(listener)
+            get_filler(info_1).addMouseListener(listener)
+            get_filler(info_2).addMouseListener(listener)
+            get_filler(info_3).addMouseListener(listener)
+        except Exception as e:
+            print(e)
+
     filler = get_filler(cont.getControl('edit_code'))
     if filler: filler.addMouseListener(listener)
     listeners['splitter'] = listener
-    
+
     listener = MenuListener(self)
     listeners['menu'] = listener
     menu = self.menu
@@ -870,7 +873,7 @@ def removeListeners(self, use_grid=False, use_tab=False):
         listeners = self.listeners
         ctl = self.window
         ctl.removeWindowListener(listeners['win'])
-        
+
         ctls = self.cont.getControls()
         if ctls:
             cont = self.cont
@@ -882,7 +885,7 @@ def removeListeners(self, use_grid=False, use_tab=False):
             gc('btn_search').removeActionListener(listener)
             gc('btn_back' ).removeActionListener(listener)
             gc('btn_forward').removeActionListener(listener)
-            
+
             if use_tab:
                 tab = subcont.getControl("tab")
                 tab_pages = tab.getControls()
@@ -895,7 +898,7 @@ def removeListeners(self, use_grid=False, use_tab=False):
                 info_1 = gsc('info_1')
                 info_2 = gsc('info_2')
                 info_3 = gsc('info_3')
-            
+
             if use_tab:
                 if hasattr(tab, "removeTabPageContainerListener"):
                     tab.removeTabPageContainerListener(listeners['tab'])
@@ -905,7 +908,7 @@ def removeListeners(self, use_grid=False, use_tab=False):
                     tab.removeTabListener(listeners['tab'])
             else:
                 cont.getControl('list_category').removeItemListener(listeners['list_category'])
-            
+
             mouse_listener = listeners['info']
             key_listener = listeners['key']
             info_0.removeMouseListener(mouse_listener)
@@ -916,13 +919,13 @@ def removeListeners(self, use_grid=False, use_tab=False):
             info_2.removeKeyListener(key_listener)
             info_3.removeMouseListener(mouse_listener)
             info_3.removeKeyListener(key_listener)
-            
+
             del mouse_listener, key_listener
             cont.getControl('list_hist').removeItemListener(listeners['list_hist'])
         listener = listeners['splitter']
         self.splitter.removeMouseListener(listener)
         self.splitter.removeMouseMotionListener(listener)
-        
+
         menu = self.menu
         listener = self.listeners['menu']
         menu.removeMenuListener(listener)
